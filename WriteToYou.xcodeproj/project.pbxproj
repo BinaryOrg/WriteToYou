@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		371F07AF221D49AB00453357 /* ZDDThreeLinesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */; };
+		371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */; };
 		4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */; };
 		4AF49DB4221A8A18004F45EB /* TEMPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49DB3221A8A18004F45EB /* TEMPAppDelegate.m */; };
 		4AF49DBC221A8A29004F45EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49DBB221A8A29004F45EB /* Assets.xcassets */; };
@@ -39,6 +40,9 @@
 /* Begin PBXFileReference section */
 		371F07AD221D49AB00453357 /* ZDDThreeLinesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLinesCell.h; sourceTree = "<group>"; };
 		371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLinesCell.m; sourceTree = "<group>"; };
+		371F07B0221D4DC900453357 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		371F07B1221D51BA00453357 /* ZDDThreeLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLineModel.h; sourceTree = "<group>"; };
+		371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineModel.m; sourceTree = "<group>"; };
 		4A7FCF04221B94F300CD6876 /* ZDDTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDTabBarController.h; sourceTree = "<group>"; };
 		4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDTabBarController.m; sourceTree = "<group>"; };
 		4AF49DAF221A8A18004F45EB /* WriteToYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WriteToYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +138,8 @@
 		371F07AB221D497E00453357 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				371F07B1221D51BA00453357 /* ZDDThreeLineModel.h */,
+				371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +185,7 @@
 				4AF49DBB221A8A29004F45EB /* Assets.xcassets */,
 				4AF49DBD221A8A29004F45EB /* LaunchScreen.storyboard */,
 				4AF49DC0221A8A29004F45EB /* Info.plist */,
+				371F07B0221D4DC900453357 /* PrefixHeader.pch */,
 				4AF49DC1221A8A29004F45EB /* main.m */,
 			);
 			path = WriteToYou;
@@ -502,6 +509,7 @@
 				4AF49DD5221A8FE3004F45EB /* TEMPKeyConfiguration.m in Sources */,
 				4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */,
 				4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */,
+				371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */,
 				4AF49E0A221A9AD3004F45EB /* ZDDOneTabController.m in Sources */,
 				4AF49DED221A92F1004F45EB /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				4AF49DFA221A937A004F45EB /* TEMPAppDelegate+OpenURL.m in Sources */,
@@ -654,6 +662,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96NZDADFWS;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/WriteToYou/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -673,6 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96NZDADFWS;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/WriteToYou/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

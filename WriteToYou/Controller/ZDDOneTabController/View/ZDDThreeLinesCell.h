@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDDThreeLineModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZDDThreeLinesCell : UITableViewCell
+@interface ZDDThreeLinesCell : UICollectionViewCell
+
+/** <#class#> */
+@property (nonatomic, strong) ZDDThreeLineModel *model;
+
 
 @end
 

@@ -38,4 +38,7 @@
 #define RECT_CHANGE_SIZE(v,w,h)     CGRectMake(X(v), Y(v), w, h)
 
 
+#define color(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define GODColor(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
+
 #endif /* TEMPMacro_h */
