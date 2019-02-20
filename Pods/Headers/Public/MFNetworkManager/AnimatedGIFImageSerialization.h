@@ -1,0 +1,1 @@
+../../../MFNetworkManager/MFNetworkManagerDemo/MFNetworkManagerDemo/MFNetworkManager/AnimatedGIFImageSerialization.h
