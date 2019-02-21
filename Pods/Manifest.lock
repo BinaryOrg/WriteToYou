@@ -323,6 +323,7 @@ PODS:
     - RealReachability/Ping (= 1.3.0)
   - RealReachability/Connection (1.3.0)
   - RealReachability/Ping (1.3.0)
+  - RQShineLabel (0.1.3)
   - SAMKeychain (1.5.3)
   - SSZipArchive (2.1.4)
   - Texture (2.8):
@@ -368,6 +369,7 @@ DEPENDENCIES:
   - MFNetworkManager
   - MJRefresh
   - QMUIKit
+  - RQShineLabel
   - SAMKeychain
   - SSZipArchive
   - Texture
@@ -395,6 +397,7 @@ SPEC REPOS:
     - QMUIKit
     - Reachability
     - RealReachability
+    - RQShineLabel
     - SAMKeychain
     - SSZipArchive
     - Texture
@@ -423,6 +426,7 @@ SPEC CHECKSUMS:
   QMUIKit: 765333b31bb25a973f2ea11e0a67fca727ef29a7
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RealReachability: eae9c58d2db52fadd8e1cba4b5d4c028454fbc47
+  RQShineLabel: ae66343d6c779a8efdf61241734ddcec5d79d351
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   Texture: fc6e0157201f3a6e503d364c147b1872e365cef4
@@ -432,6 +436,6 @@ SPEC CHECKSUMS:
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: fbd28036b7ea73a5fa57174b7b215663f2da8177
+PODFILE CHECKSUM: dea2519fbe3153a477b83da789c9f66033c882c3
 
 COCOAPODS: 1.5.3
