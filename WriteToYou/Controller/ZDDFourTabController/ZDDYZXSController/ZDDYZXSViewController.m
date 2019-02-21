@@ -63,23 +63,18 @@
     [self.label addSubview:button];
     [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    [self animated1];
+    
 }
 
-- (void)animated1 {
-    [UIView animateWithDuration:1.5 delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.cover_book.transform = CGAffineTransformMakeScale(0.99, 0.99);
-    } completion:^(BOOL finished) {
-        [self animated2];
-    }];
-}
-
-- (void)animated2 {
-    [UIView animateWithDuration:1.5 delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.cover_book.transform = CGAffineTransformMakeScale(1.01, 1.01);
-    } completion:^(BOOL finished) {
-        [self animated1];
-    }];
+- (void)animated {
+    CABasicAnimation *ani = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    ani.autoreverses = YES;
+    ani.repeatCount = CGFLOAT_MAX;
+    ani.fromValue = @(0.99);
+    ani.toValue = @(1.01);
+    ani.duration = 1.5;
+    [self.cover_book.layer addAnimation:ani forKey:@"scale"];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,6 +82,7 @@
     [self _hideStautsBar];
     self.label.text = @"从前\n车马很慢\n书信很远\n一生\n只够爱一人";
     [self.label shine];
+    [self animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -107,7 +103,6 @@
 
 - (void)_showStatusBar {
     [UIView animateWithDuration:0.1 animations:^{
-        
         UIView *statusBar = [[UIApplication sharedApplication] valueForKey:@"statusBar"];
         statusBar.alpha = 1;
     }];
