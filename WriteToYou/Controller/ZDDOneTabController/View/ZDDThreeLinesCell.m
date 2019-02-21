@@ -39,6 +39,10 @@
         make.top.mas_equalTo(self.contentLb.mas_bottom).mas_equalTo(10);
         make.right.mas_equalTo(self.authoLb.mas_right);
     }];
+    
+    self.contentView.layer.cornerRadius = 6;
+    self.contentView.layer.masksToBounds = YES;
+    self.contentView.backgroundColor = [UIColor grayColor];
 }
 
 

@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Template' do
+target 'WriteToYou' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  # Pods for Template
+  # Pods for WriteToYou
   pod 'YYWebImage',:inhibit_warnings => true
   pod 'QMUIKit',:inhibit_warnings => true
   pod 'MFNetworkManager',:inhibit_warnings => true

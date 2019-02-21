@@ -279,7 +279,7 @@ extern unsigned long long const kDDDefaultLogFilesDiskQuota;
  * It can also be removed by calling `setLogFormatter:`, and passing a nil parameter.
  *
  * In addition to the convenience of having a logical default formatter,
- * it will also provide a template that makes it easy for developers to copy and change.
+ * it will also provide a WriteToYou that makes it easy for developers to copy and change.
  **/
 @interface DDLogFileFormatterDefault : NSObject <DDLogFormatter>
 
