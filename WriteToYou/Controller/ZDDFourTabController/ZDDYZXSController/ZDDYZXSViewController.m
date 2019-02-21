@@ -9,13 +9,18 @@
 #import "ZDDYZXSViewController.h"
 #import "UIImage+Blur.h"
 #import <RQShineLabel/RQShineLabel.h>
-#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "UIColor+ZDDColor.h"
 @interface ZDDYZXSViewController ()
+@property (nonatomic, strong) UIImageView *bottom_cover_book;
+@property (nonatomic, strong) UIImageView *bottom_suture;
+@property (nonatomic, strong) UIView *promptView;
+@property (nonatomic, strong) UIImageView *top_cover_book;
 @property (nonatomic, strong) UIImageView *cover_book;
 @property (nonatomic, strong) UIImageView *cover_rope;
 @property (nonatomic, strong) UIImageView *suture;
 @property (nonatomic, strong) UIImageView *cover_stamp;
 @property (nonatomic, strong) RQShineLabel *label;
+@property (nonatomic, strong) RQShineLabel *promptLabel;
 @end
 
 @implementation ZDDYZXSViewController
@@ -29,11 +34,59 @@
     bg.userInteractionEnabled = YES;
     [self.view addSubview:bg];
     
+    UIButton *dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    dismissButton.frame = CGRectMake(20, 30, 25, 25);
+    [self.view addSubview:dismissButton];
+    [dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *image = [[UIImage imageNamed:@"no_border_close_24x24_"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    dismissButton.tintColor = [UIColor zdd_grayColor];
+    [dismissButton setImage:image forState:UIControlStateNormal];
+    dismissButton.adjustsImageWhenHighlighted = NO;
+    
+    self.bottom_cover_book = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 267, 417)];
+    self.bottom_cover_book.image = [UIImage imageNamed:@"cover_book_267x417_"];
+    self.bottom_cover_book.center = self.view.center;
+    [self.view addSubview:self.bottom_cover_book];
+    self.bottom_cover_book.userInteractionEnabled = YES;
+    
+    self.bottom_suture = [[UIImageView alloc] initWithFrame:CGRectMake(0, 2.5, 260, 412)];
+    [self.bottom_cover_book addSubview:self.bottom_suture];
+    self.bottom_suture.userInteractionEnabled = YES;
+    self.bottom_suture.image = [UIImage imageNamed:@"notebook_suture_260x412_"];
+
+    self.promptView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 252, 393)];
+    self.promptView.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1];
+    self.promptView.frame = CGRectMake(3, 10, 251, 393);
+    [self.bottom_cover_book addSubview:self.promptView];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.promptView.bounds byRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomRight cornerRadii:CGSizeMake(20, 20)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.promptView.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.promptView.layer.mask = maskLayer;
+    
+    
+    self.promptLabel = [[RQShineLabel alloc] initWithFrame:self.promptView.bounds];
+    self.promptLabel.numberOfLines = 0;
+    self.promptLabel.textAlignment = NSTextAlignmentCenter;
+    self.promptLabel.textColor = [UIColor grayColor];
+    [self.promptView addSubview:self.promptLabel];
+    self.promptLabel.shineDuration = 1.f;
+    self.promptLabel.userInteractionEnabled = YES;
+    
+    UISwipeGestureRecognizer *swipeback = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backButtonClick)];
+    [self.promptView addGestureRecognizer:swipeback];
+    
+    self.top_cover_book = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 267, 417)];
+    self.top_cover_book.userInteractionEnabled = YES;
+    self.top_cover_book.image = [UIImage imageNamed:@"cover_book_267x417_"];
+    [self.view addSubview:self.top_cover_book];
+    self.top_cover_book.center = self.view.center;
+    self.top_cover_book.userInteractionEnabled = YES;
+    
     self.cover_book = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 267, 417)];
-    [self.view addSubview:self.cover_book];
     self.cover_book.userInteractionEnabled = YES;
     self.cover_book.image = [UIImage imageNamed:@"cover_book_267x417_"];
-    self.cover_book.center = self.view.center;
+    [self.top_cover_book addSubview:self.cover_book];
     
     self.suture = [[UIImageView alloc] initWithFrame:CGRectMake(0, 2.5, 260, 412)];
     [self.cover_book addSubview:self.suture];
@@ -56,31 +109,50 @@
     self.label.textColor = [UIColor grayColor];
     [self.cover_stamp addSubview:self.label];
     self.label.shineDuration = 2.f;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = self.label.bounds;
     self.label.userInteractionEnabled = YES;
-    [self.label addSubview:button];
-    [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    [self animated1];
+    UISwipeGestureRecognizer *swipeforward = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(buttonClick)];
+    [self.cover_book addGestureRecognizer:swipeforward];
+    swipeforward.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+//    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+//    [self.cover_book addGestureRecognizer:swipeDown];
+//    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    
+    [self setAnchorPoint:CGPointMake(0, 0.5) forView:self.top_cover_book];
+    [self setAnchorPoint:CGPointMake(0, 0.5) forView:self.promptView];
+    
+    self.top_cover_book.layer.transform = [self transform3D];
+    self.promptView.layer.transform = [self transform3D];
+    
+    self.top_cover_book.layer.allowsEdgeAntialiasing = YES;
+    self.promptView.layer.allowsEdgeAntialiasing = YES;
+    
 }
 
-- (void)animated1 {
-    [UIView animateWithDuration:1.5 delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.cover_book.transform = CGAffineTransformMakeScale(0.99, 0.99);
-    } completion:^(BOOL finished) {
-        [self animated2];
-    }];
+- (CATransform3D)transform3D {
+    CATransform3D transform = CATransform3DIdentity;
+    transform.m34 = 1.f / -2000;
+    return transform;
 }
 
-- (void)animated2 {
-    [UIView animateWithDuration:1.5 delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.cover_book.transform = CGAffineTransformMakeScale(1.01, 1.01);
-    } completion:^(BOOL finished) {
-        [self animated1];
-    }];
+- (void)dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)backButtonClick {
+    [UIView animateWithDuration:0.8 animations:^{
+        self.bottom_cover_book.transform = CGAffineTransformIdentity;
+    }];
+    [UIView animateWithDuration:1.f animations:^{
+        self.top_cover_book.transform = CGAffineTransformIdentity;
+    }];
+    [self hide];
+}
+
+CGFloat DegreesToRadians(CGFloat degrees) {
+    return degrees * M_PI / 180;
+};
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -95,7 +167,26 @@
 }
 
 - (void)buttonClick {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIView animateWithDuration:0.8 animations:^{
+        self.bottom_cover_book.transform = CGAffineTransformTranslate(self.bottom_cover_book.transform, -5, 0);
+    }];
+    [UIView animateWithDuration:1.f animations:^{
+        self.top_cover_book.layer.transform = CATransform3DMakeRotation(DegreesToRadians(-179), 0, 1, 0);
+    }];
+    [self show];
+}
+
+- (void)show {
+    self.promptLabel.alpha = 1;
+    self.promptLabel.text = @"是否需要打印情书\n并寄给您的意中人?\n我们帮您打印并包装好\n送到他(她)的手中！\n\n\n请联系微信：迟大雕";
+    [self.promptLabel shine];
+}
+
+- (void)hide {
+    [self.promptLabel fadeOut];
+    [UIView animateWithDuration:0.7 animations:^{
+        self.promptLabel.alpha = 0;
+    }];
 }
 
 - (void)_hideStautsBar {
@@ -107,10 +198,14 @@
 
 - (void)_showStatusBar {
     [UIView animateWithDuration:0.1 animations:^{
-        
         UIView *statusBar = [[UIApplication sharedApplication] valueForKey:@"statusBar"];
         statusBar.alpha = 1;
     }];
+}
+
+- (void)setAnchorPoint:(CGPoint)point forView:(UIView *)view{
+    view.frame = CGRectOffset(view.frame, (point.x - view.layer.anchorPoint.x) * view.frame.size.width, (point.y - view.layer.anchorPoint.y) * view.frame.size.height);
+    view.layer.anchorPoint = point;
 }
 
 @end

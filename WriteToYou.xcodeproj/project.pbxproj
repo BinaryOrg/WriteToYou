@@ -10,6 +10,7 @@
 		371F07AF221D49AB00453357 /* ZDDThreeLinesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */; };
 		371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */; };
 		371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */; };
+
 		371F729B221E8A12001DEC05 /* ZDDSnowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F729A221E8A12001DEC05 /* ZDDSnowView.m */; };
 		371F729E221E9097001DEC05 /* ZDDThreeLineCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F729D221E9097001DEC05 /* ZDDThreeLineCommentView.m */; };
 		371F72A1221E949F001DEC05 /* ZDDInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72A0221E949F001DEC05 /* ZDDInputView.m */; };
@@ -18,8 +19,12 @@
 		371F72AB221EA3C7001DEC05 /* ZDDCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AA221EA3C7001DEC05 /* ZDDCommentModel.m */; };
 		371F72B0221EA896001DEC05 /* NSMutableAttributedString+Chain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */; };
 		371F72B1221EA896001DEC05 /* NSMutableDictionary+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AF221EA896001DEC05 /* NSMutableDictionary+Attributes.m */; };
+
 		4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275555221E3D14003689F6 /* UIImage+Blur.m */; };
 		4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */; };
+		4A275562221E9708003689F6 /* ZDDPersonHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275561221E9708003689F6 /* ZDDPersonHeadTableViewCell.m */; };
+		4A275565221E9715003689F6 /* ZDDPersonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275564221E9715003689F6 /* ZDDPersonSettingTableViewCell.m */; };
+		4A275568221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275567221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m */; };
 		4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */; };
 		4AF49DB4221A8A18004F45EB /* TEMPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49DB3221A8A18004F45EB /* TEMPAppDelegate.m */; };
 		4AF49DBC221A8A29004F45EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49DBB221A8A29004F45EB /* Assets.xcassets */; };
@@ -76,6 +81,12 @@
 		4A275555221E3D14003689F6 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		4A275558221E3DA3003689F6 /* ZDDYZXSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDYZXSViewController.h; sourceTree = "<group>"; };
 		4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDYZXSViewController.m; sourceTree = "<group>"; };
+		4A275560221E9708003689F6 /* ZDDPersonHeadTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDPersonHeadTableViewCell.h; sourceTree = "<group>"; };
+		4A275561221E9708003689F6 /* ZDDPersonHeadTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDPersonHeadTableViewCell.m; sourceTree = "<group>"; };
+		4A275563221E9715003689F6 /* ZDDPersonSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDPersonSettingTableViewCell.h; sourceTree = "<group>"; };
+		4A275564221E9715003689F6 /* ZDDPersonSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDPersonSettingTableViewCell.m; sourceTree = "<group>"; };
+		4A275566221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDPersonLogoutTableViewCell.h; sourceTree = "<group>"; };
+		4A275567221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDPersonLogoutTableViewCell.m; sourceTree = "<group>"; };
 		4A7FCF04221B94F300CD6876 /* ZDDTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDTabBarController.h; sourceTree = "<group>"; };
 		4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDTabBarController.m; sourceTree = "<group>"; };
 		4AF49DAF221A8A18004F45EB /* WriteToYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WriteToYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +236,19 @@
 				4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */,
 			);
 			path = ZDDYZXSController;
+			sourceTree = "<group>";
+		};
+		4A27555F221E96DB003689F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A275560221E9708003689F6 /* ZDDPersonHeadTableViewCell.h */,
+				4A275561221E9708003689F6 /* ZDDPersonHeadTableViewCell.m */,
+				4A275563221E9715003689F6 /* ZDDPersonSettingTableViewCell.h */,
+				4A275564221E9715003689F6 /* ZDDPersonSettingTableViewCell.m */,
+				4A275566221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.h */,
+				4A275567221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4AF49DA6221A8A18004F45EB = {
@@ -435,9 +459,10 @@
 		4AF49E07221A9AA8004F45EB /* ZDDFourTabController */ = {
 			isa = PBXGroup;
 			children = (
-				4A275557221E3D3B003689F6 /* ZDDYZXSController */,
 				4AF49E11221A9B1A004F45EB /* ZDDFourTabController.h */,
 				4AF49E12221A9B1A004F45EB /* ZDDFourTabController.m */,
+				4A27555F221E96DB003689F6 /* View */,
+				4A275557221E3D3B003689F6 /* ZDDYZXSController */,
 			);
 			path = ZDDFourTabController;
 			sourceTree = "<group>";
@@ -584,18 +609,21 @@
 				4AF49DF8221A937A004F45EB /* TEMPAppDelegate+PushService.m in Sources */,
 				4AF49DE9221A92B8004F45EB /* Foundation+Log.m in Sources */,
 				371F07AF221D49AB00453357 /* ZDDThreeLinesCell.m in Sources */,
+				4A275562221E9708003689F6 /* ZDDPersonHeadTableViewCell.m in Sources */,
 				4AF49DFF221A9944004F45EB /* TEMPBaseViewController.m in Sources */,
 				4AF49DD5221A8FE3004F45EB /* TEMPKeyConfiguration.m in Sources */,
 				4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */,
 				4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */,
 				371F72AB221EA3C7001DEC05 /* ZDDCommentModel.m in Sources */,
 				4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */,
+				4A275565221E9715003689F6 /* ZDDPersonSettingTableViewCell.m in Sources */,
 				371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */,
 				371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */,
 				4AF49E0A221A9AD3004F45EB /* ZDDOneTabController.m in Sources */,
 				4AF49DED221A92F1004F45EB /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				371F72A5221E990A001DEC05 /* UIView+ZDD.m in Sources */,
 				4AF49DFA221A937A004F45EB /* TEMPAppDelegate+OpenURL.m in Sources */,
+				4A275568221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m in Sources */,
 				4AF49DD8221A90DE004F45EB /* TEMPSDKManager.m in Sources */,
 				4AF49E02221A9977004F45EB /* TEMPBaseTabViewController.m in Sources */,
 				4AF49DF1221A9307004F45EB /* UIColor+ZDDColor.m in Sources */,

@@ -102,9 +102,9 @@
 - (void)heartAnimation{
     CABasicAnimation *anima = [CABasicAnimation animation];
     anima.keyPath = @"transform.scale";
-    anima.toValue = @1.2;
+    anima.toValue = @0.5;
     anima.repeatCount = MAXFLOAT;
-    anima.duration = 0.35;
+    anima.duration = 0.3;
     anima.autoreverses = YES;
     [self.likeImageView.layer addAnimation:anima forKey:@"shake"];
 }

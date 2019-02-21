@@ -9,6 +9,7 @@
 
 @interface UIImage (Blur)
 
-- (UIImage*)blurredImage;
+- (UIImage *)blurredImage;
+- (UIImage *)blurredImageWithRadius:(CGFloat)radius;
 
 @end
