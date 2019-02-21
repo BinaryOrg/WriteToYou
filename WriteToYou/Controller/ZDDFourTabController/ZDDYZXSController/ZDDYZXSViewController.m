@@ -133,8 +133,7 @@
     [self hide];
 }
 
-CGFloat DegreesToRadians(CGFloat degrees)
-{
+CGFloat DegreesToRadians(CGFloat degrees) {
     return degrees * M_PI / 180;
 };
 
