@@ -7,7 +7,7 @@
 //
 
 #import "ZDDFourTabController.h"
-
+#import "ZDDYZXSViewController.h"
 @interface ZDDFourTabController ()
 
 @end
@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    [self.navigationController pushViewController:[ZDDYZXSViewController new] animated:YES];
+    [self presentViewController:[ZDDYZXSViewController new] animated:YES completion:nil];
 }
 
 @end

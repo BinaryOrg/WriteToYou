@@ -23,4 +23,5 @@ target 'WriteToYou' do
   pod 'SSZipArchive'
   pod 'Masonry'
   pod 'MFExtractColor'
+  pod 'RQShineLabel'
 end
