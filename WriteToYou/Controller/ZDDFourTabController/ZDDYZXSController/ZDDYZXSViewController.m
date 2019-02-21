@@ -9,7 +9,7 @@
 #import "ZDDYZXSViewController.h"
 #import "UIImage+Blur.h"
 #import <RQShineLabel/RQShineLabel.h>
-
+#import "UIColor+ZDDColor.h"
 @interface ZDDYZXSViewController ()
 @property (nonatomic, strong) UIImageView *bottom_cover_book;
 @property (nonatomic, strong) UIImageView *bottom_suture;
@@ -33,6 +33,15 @@
     bg.image = [[UIImage imageNamed:@"notebook_skin_default_261x464_"] blurredImage];
     bg.userInteractionEnabled = YES;
     [self.view addSubview:bg];
+    
+    UIButton *dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    dismissButton.frame = CGRectMake(20, 30, 25, 25);
+    [self.view addSubview:dismissButton];
+    [dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *image = [[UIImage imageNamed:@"pro-ad-close_26x26_"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    dismissButton.tintColor = [UIColor zdd_grayColor];
+    [dismissButton setImage:image forState:UIControlStateNormal];
+    dismissButton.adjustsImageWhenHighlighted = NO;
     
     self.bottom_cover_book = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 267, 417)];
     self.bottom_cover_book.image = [UIImage imageNamed:@"cover_book_267x417_"];
@@ -106,6 +115,10 @@
     [self.cover_book addGestureRecognizer:swipeforward];
     swipeforward.direction = UISwipeGestureRecognizerDirectionLeft;
     
+//    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+//    [self.cover_book addGestureRecognizer:swipeDown];
+//    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    
     [self setAnchorPoint:CGPointMake(0, 0.5) forView:self.top_cover_book];
     [self setAnchorPoint:CGPointMake(0, 0.5) forView:self.promptView];
     
@@ -121,6 +134,10 @@
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = 1.f / -2000;
     return transform;
+}
+
+- (void)dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)backButtonClick {
