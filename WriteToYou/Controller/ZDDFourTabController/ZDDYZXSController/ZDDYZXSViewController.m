@@ -38,7 +38,7 @@
     dismissButton.frame = CGRectMake(20, 30, 25, 25);
     [self.view addSubview:dismissButton];
     [dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *image = [[UIImage imageNamed:@"pro-ad-close_26x26_"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *image = [[UIImage imageNamed:@"no_border_close_24x24_"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     dismissButton.tintColor = [UIColor zdd_grayColor];
     [dismissButton setImage:image forState:UIControlStateNormal];
     dismissButton.adjustsImageWhenHighlighted = NO;
