@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		371F07AF221D49AB00453357 /* ZDDThreeLinesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */; };
 		371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */; };
+
+		371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */; };
+
 		4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275555221E3D14003689F6 /* UIImage+Blur.m */; };
 		4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */; };
 		4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */; };
@@ -45,6 +48,8 @@
 		371F07B0221D4DC900453357 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		371F07B1221D51BA00453357 /* ZDDThreeLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLineModel.h; sourceTree = "<group>"; };
 		371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineModel.m; sourceTree = "<group>"; };
+		371F7296221E3D76001DEC05 /* ZDDThreeLineCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLineCardView.h; sourceTree = "<group>"; };
+		371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineCardView.m; sourceTree = "<group>"; };
 		4A275554221E3D14003689F6 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		4A275555221E3D14003689F6 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		4A275558221E3DA3003689F6 /* ZDDYZXSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDYZXSViewController.h; sourceTree = "<group>"; };
@@ -137,6 +142,8 @@
 			children = (
 				371F07AD221D49AB00453357 /* ZDDThreeLinesCell.h */,
 				371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */,
+				371F7296221E3D76001DEC05 /* ZDDThreeLineCardView.h */,
+				371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -536,6 +543,7 @@
 				4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */,
 				4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */,
 				4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */,
+				371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */,
 				371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */,
 				4AF49E0A221A9AD3004F45EB /* ZDDOneTabController.m in Sources */,
 				4AF49DED221A92F1004F45EB /* UINavigationController+FDFullscreenPopGesture.m in Sources */,

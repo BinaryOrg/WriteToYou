@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UILabel *contentLb;
 @property (nonatomic, strong) UILabel *authoLb;
-//@property (nonatomic, strong) UILabel *timeLb;
+@property (nonatomic, strong) UILabel *timeLb;
 @property (nonatomic, strong) UILabel *likeAndCommentCountLb;
 
 
@@ -22,23 +22,36 @@
 @implementation ZDDThreeLinesCell
 
 - (void)layoutSubviews {
+    [self.contentView addSubview:self.timeLb];
     [self.contentView addSubview:self.contentLb];
     [self.contentView addSubview:self.authoLb];
     [self.contentView addSubview:self.likeAndCommentCountLb];
     
+    
+   
+    
+    [self.timeLb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(50);
+        make.right.mas_equalTo(self.authoLb.mas_right);
+    }];
+    
+    
     [self.contentLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(0);
+//        make.top.mas_equalTo(self.timeLb.mas_bottom).mas_equalTo(80);
+//        make.centerX.mas_equalTo(0);
     }];
     
     [self.authoLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentLb.mas_bottom).mas_equalTo(10);
+        make.top.mas_equalTo(self.timeLb.mas_bottom).mas_equalTo(10);
         make.left.mas_equalTo(self.contentLb.mas_right).mas_equalTo(-80);
     }];
     
     [self.likeAndCommentCountLb mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentLb.mas_bottom).mas_equalTo(10);
+        make.top.mas_equalTo(self.authoLb.mas_bottom).mas_equalTo(8);
         make.right.mas_equalTo(self.authoLb.mas_right);
     }];
+  
     
     self.contentView.layer.cornerRadius = 6;
     self.contentView.layer.masksToBounds = YES;
@@ -51,6 +64,7 @@
     self.contentLb.text = model.content;
     self.authoLb.text = [NSString stringWithFormat:@"------  %@", model.autho];
     self.likeAndCommentCountLb.text = [NSString stringWithFormat:@"%ld 喜欢 * %ld 评论", model.likeCount, model.commentCount];
+    self.timeLb.text = @"2019 / 02 / 20";
 }
 
 
@@ -60,12 +74,22 @@
         _contentLb = [[UILabel alloc] init];
         _contentLb.font = [UIFont fontWithName:@"PingFangSC-Light" size:16];
         _contentLb.textAlignment = NSTextAlignmentCenter;
-        _contentLb.textColor = color(53, 64, 72, 1);
+        _contentLb.textColor = [UIColor whiteColor];
         _contentLb.numberOfLines = 0;
     }
     return _contentLb;
 }
 
+
+- (UILabel *)timeLb {
+    if (!_timeLb) {
+        _timeLb = [[UILabel alloc] init];
+        _timeLb.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+        _timeLb.textAlignment = NSTextAlignmentCenter;
+        _timeLb.textColor = color(53, 64, 72, 1);
+    }
+    return _timeLb;
+}
 
 - (UILabel *)authoLb {
     if (!_authoLb) {
