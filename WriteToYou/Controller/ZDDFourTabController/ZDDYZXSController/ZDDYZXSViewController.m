@@ -9,8 +9,10 @@
 #import "ZDDYZXSViewController.h"
 #import "UIImage+Blur.h"
 #import <RQShineLabel/RQShineLabel.h>
-#import "UINavigationController+FDFullscreenPopGesture.h"
+
 @interface ZDDYZXSViewController ()
+@property (nonatomic, strong) UIImageView *bottom_cover_book;
+@property (nonatomic, strong) UIView *promptView;
 @property (nonatomic, strong) UIImageView *cover_book;
 @property (nonatomic, strong) UIImageView *cover_rope;
 @property (nonatomic, strong) UIImageView *suture;
@@ -29,10 +31,33 @@
     bg.userInteractionEnabled = YES;
     [self.view addSubview:bg];
     
+    self.bottom_cover_book = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 267, 417)];
+    self.bottom_cover_book.image = [UIImage imageNamed:@"cover_book_267x417_"];
+    self.bottom_cover_book.center = self.view.center;
+    [self.view addSubview:self.bottom_cover_book];
+    self.bottom_cover_book.userInteractionEnabled = YES;
+
+    self.promptView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 258, 393)];
+    self.promptView.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1];
+    self.promptView.frame = CGRectMake(3, 10, 255, 393);
+    [self.bottom_cover_book addSubview:self.promptView];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.promptView.bounds byRoundingCorners:UIRectCornerTopRight | UIRectCornerBottomRight cornerRadii:CGSizeMake(20, 20)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.promptView.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.promptView.layer.mask = maskLayer;
+    
+    
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.promptView addSubview:backButton];
+    backButton.frame = self.promptView.bounds;
+    [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
     self.cover_book = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 267, 417)];
-    [self.view addSubview:self.cover_book];
     self.cover_book.userInteractionEnabled = YES;
     self.cover_book.image = [UIImage imageNamed:@"cover_book_267x417_"];
+    [self.view addSubview:self.cover_book];
     self.cover_book.center = self.view.center;
     
     self.suture = [[UIImageView alloc] initWithFrame:CGRectMake(0, 2.5, 260, 412)];
@@ -62,19 +87,25 @@
     self.label.userInteractionEnabled = YES;
     [self.label addSubview:button];
     [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-    
+    [self setAnchorPoint:CGPointMake(0, 0.5) forView:self.cover_book];
+    self.cover_book.layer.transform = [self transform3D];
     
 }
 
-- (void)animated {
-    CABasicAnimation *ani = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    ani.autoreverses = YES;
-    ani.repeatCount = CGFLOAT_MAX;
-    ani.fromValue = @(0.99);
-    ani.toValue = @(1.01);
-    ani.duration = 1.5;
-    [self.cover_book.layer addAnimation:ani forKey:@"scale"];
-    
+- (CATransform3D)transform3D {
+    CATransform3D transform = CATransform3DIdentity;
+    transform.m34 = 2.5 / -2000;
+    return transform;
+}
+
+- (void)backButtonClick {
+    NSLog(@"123");
+    [UIView animateWithDuration:0.8 animations:^{
+        self.bottom_cover_book.transform = CGAffineTransformIdentity;
+    }];
+    [UIView animateWithDuration:1.f animations:^{
+        self.cover_book.transform = CGAffineTransformIdentity;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,7 +113,6 @@
     [self _hideStautsBar];
     self.label.text = @"从前\n车马很慢\n书信很远\n一生\n只够爱一人";
     [self.label shine];
-    [self animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -91,7 +121,15 @@
 }
 
 - (void)buttonClick {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIView animateWithDuration:0.8 animations:^{
+        self.bottom_cover_book.transform = CGAffineTransformTranslate(self.bottom_cover_book.transform, -5, 0);
+    }];
+    [UIView animateWithDuration:1.f animations:^{
+        self.cover_book.layer.transform = CATransform3DMakeRotation(-M_PI + 0.01, 0, 1, 0);
+        
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)_hideStautsBar {
@@ -106,6 +144,11 @@
         UIView *statusBar = [[UIApplication sharedApplication] valueForKey:@"statusBar"];
         statusBar.alpha = 1;
     }];
+}
+
+- (void)setAnchorPoint:(CGPoint)point forView:(UIView *)view{
+    view.frame = CGRectOffset(view.frame, (point.x - view.layer.anchorPoint.x) * view.frame.size.width, (point.y - view.layer.anchorPoint.y) * view.frame.size.height);
+    view.layer.anchorPoint = point;
 }
 
 @end

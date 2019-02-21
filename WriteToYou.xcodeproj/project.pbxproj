@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		371F07AF221D49AB00453357 /* ZDDThreeLinesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */; };
 		371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */; };
-
 		371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */; };
-
 		4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275555221E3D14003689F6 /* UIImage+Blur.m */; };
 		4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */; };
 		4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */; };
