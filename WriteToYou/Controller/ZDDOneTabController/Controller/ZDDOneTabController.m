@@ -7,12 +7,12 @@
 //
 
 #import "ZDDOneTabController.h"
-#import "ZDDThreeLinesCell.h"
+#import "ZDDThreeLineCardView.h"
 
-@interface ZDDOneTabController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ZDDOneTabController ()
 
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) ZDDThreeLineCardView *cardView;
 
 @end
 
@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.cardView];
     [self loadData];
     
 }
@@ -53,43 +53,15 @@
     model3.commentCount = arc4random()%9999999;
     
     self.dataArray = @[model, model1, model2, model3];
-    [self.collectionView reloadData];
+    self.cardView.models = self.dataArray;
 }
 
 
-#pragma mark - collectionViewDelegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataArray.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ZDDThreeLinesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZDDThreeLinesCell" forIndexPath:indexPath];
-    cell.model = self.dataArray[indexPath.row];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-}
-
-
--(UICollectionView *)collectionView {
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(SCREENWIDTH - 40, SCREENHEIGHT - 150);
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.delegate = self;
-        _collectionView.contentInset = UIEdgeInsetsMake(0, 20, 0, 20);
-        _collectionView.dataSource = self;
-        _collectionView.pagingEnabled = YES;
-        _collectionView.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT);
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        [_collectionView registerClass:[ZDDThreeLinesCell class] forCellWithReuseIdentifier:@"ZDDThreeLinesCell"];
+- (ZDDThreeLineCardView *)cardView {
+    if (!_cardView) {
+        _cardView = [[ZDDThreeLineCardView alloc] initWithFrame:CGRectMake(0, 150, SCREENWIDTH, SCREENHEIGHT - 150 - TABBARHEIGHT - 50)];
     }
-    return _collectionView;
+    return _cardView;
 }
 
 @end
