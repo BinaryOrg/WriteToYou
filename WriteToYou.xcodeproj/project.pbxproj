@@ -9,9 +9,15 @@
 /* Begin PBXBuildFile section */
 		371F07AF221D49AB00453357 /* ZDDThreeLinesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */; };
 		371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */; };
-
 		371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */; };
-
+		371F729B221E8A12001DEC05 /* ZDDSnowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F729A221E8A12001DEC05 /* ZDDSnowView.m */; };
+		371F729E221E9097001DEC05 /* ZDDThreeLineCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F729D221E9097001DEC05 /* ZDDThreeLineCommentView.m */; };
+		371F72A1221E949F001DEC05 /* ZDDInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72A0221E949F001DEC05 /* ZDDInputView.m */; };
+		371F72A5221E990A001DEC05 /* UIView+ZDD.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72A3221E990A001DEC05 /* UIView+ZDD.m */; };
+		371F72A8221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72A7221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m */; };
+		371F72AB221EA3C7001DEC05 /* ZDDCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AA221EA3C7001DEC05 /* ZDDCommentModel.m */; };
+		371F72B0221EA896001DEC05 /* NSMutableAttributedString+Chain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */; };
+		371F72B1221EA896001DEC05 /* NSMutableDictionary+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AF221EA896001DEC05 /* NSMutableDictionary+Attributes.m */; };
 		4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275555221E3D14003689F6 /* UIImage+Blur.m */; };
 		4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */; };
 		4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */; };
@@ -50,6 +56,22 @@
 		371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineModel.m; sourceTree = "<group>"; };
 		371F7296221E3D76001DEC05 /* ZDDThreeLineCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLineCardView.h; sourceTree = "<group>"; };
 		371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineCardView.m; sourceTree = "<group>"; };
+		371F7299221E8A12001DEC05 /* ZDDSnowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDSnowView.h; sourceTree = "<group>"; };
+		371F729A221E8A12001DEC05 /* ZDDSnowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDSnowView.m; sourceTree = "<group>"; };
+		371F729C221E9097001DEC05 /* ZDDThreeLineCommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLineCommentView.h; sourceTree = "<group>"; };
+		371F729D221E9097001DEC05 /* ZDDThreeLineCommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineCommentView.m; sourceTree = "<group>"; };
+		371F729F221E949F001DEC05 /* ZDDInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDInputView.h; sourceTree = "<group>"; };
+		371F72A0221E949F001DEC05 /* ZDDInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDInputView.m; sourceTree = "<group>"; };
+		371F72A3221E990A001DEC05 /* UIView+ZDD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDD.m"; sourceTree = "<group>"; };
+		371F72A4221E990A001DEC05 /* UIView+ZDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDD.h"; sourceTree = "<group>"; };
+		371F72A6221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLineCommentCellNode.h; sourceTree = "<group>"; };
+		371F72A7221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineCommentCellNode.m; sourceTree = "<group>"; };
+		371F72A9221EA3C7001DEC05 /* ZDDCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDCommentModel.h; sourceTree = "<group>"; };
+		371F72AA221EA3C7001DEC05 /* ZDDCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDCommentModel.m; sourceTree = "<group>"; };
+		371F72AC221EA895001DEC05 /* NSMutableDictionary+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Attributes.h"; sourceTree = "<group>"; };
+		371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Chain.m"; sourceTree = "<group>"; };
+		371F72AE221EA896001DEC05 /* NSMutableAttributedString+Chain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Chain.h"; sourceTree = "<group>"; };
+		371F72AF221EA896001DEC05 /* NSMutableDictionary+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Attributes.m"; sourceTree = "<group>"; };
 		4A275554221E3D14003689F6 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		4A275555221E3D14003689F6 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		4A275558221E3DA3003689F6 /* ZDDYZXSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDYZXSViewController.h; sourceTree = "<group>"; };
@@ -144,6 +166,14 @@
 				371F07AE221D49AB00453357 /* ZDDThreeLinesCell.m */,
 				371F7296221E3D76001DEC05 /* ZDDThreeLineCardView.h */,
 				371F7297221E3D76001DEC05 /* ZDDThreeLineCardView.m */,
+				371F7299221E8A12001DEC05 /* ZDDSnowView.h */,
+				371F729A221E8A12001DEC05 /* ZDDSnowView.m */,
+				371F729C221E9097001DEC05 /* ZDDThreeLineCommentView.h */,
+				371F729D221E9097001DEC05 /* ZDDThreeLineCommentView.m */,
+				371F729F221E949F001DEC05 /* ZDDInputView.h */,
+				371F72A0221E949F001DEC05 /* ZDDInputView.m */,
+				371F72A6221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.h */,
+				371F72A7221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,6 +183,8 @@
 			children = (
 				371F07B1221D51BA00453357 /* ZDDThreeLineModel.h */,
 				371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */,
+				371F72A9221EA3C7001DEC05 /* ZDDCommentModel.h */,
+				371F72AA221EA3C7001DEC05 /* ZDDCommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +196,17 @@
 				4AF49E09221A9AD3004F45EB /* ZDDOneTabController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		371F72A2221E98FA001DEC05 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				371F72AE221EA896001DEC05 /* NSMutableAttributedString+Chain.h */,
+				371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */,
+				371F72AC221EA895001DEC05 /* NSMutableDictionary+Attributes.h */,
+				371F72AF221EA896001DEC05 /* NSMutableDictionary+Attributes.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		4A275553221E3CF7003689F6 /* UIImageCategory */ = {
@@ -256,6 +299,7 @@
 		4AF49DCE221A8F3F004F45EB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				371F72A2221E98FA001DEC05 /* Category */,
 				4A275553221E3CF7003689F6 /* UIImageCategory */,
 				4AF49E14221A9E31004F45EB /* ThemeColorConfiguration */,
 				4AF49DEE221A92F7004F45EB /* UIColorCategory */,
@@ -271,6 +315,8 @@
 		4AF49DCF221A8F70004F45EB /* Macro */ = {
 			isa = PBXGroup;
 			children = (
+				371F72A4221E990A001DEC05 /* UIView+ZDD.h */,
+				371F72A3221E990A001DEC05 /* UIView+ZDD.m */,
 				4AF49DD1221A8F89004F45EB /* TEMPMacro.h */,
 			);
 			path = Macro;
@@ -542,26 +588,34 @@
 				4AF49DD5221A8FE3004F45EB /* TEMPKeyConfiguration.m in Sources */,
 				4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */,
 				4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */,
+				371F72AB221EA3C7001DEC05 /* ZDDCommentModel.m in Sources */,
 				4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */,
 				371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */,
 				371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */,
 				4AF49E0A221A9AD3004F45EB /* ZDDOneTabController.m in Sources */,
 				4AF49DED221A92F1004F45EB /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				371F72A5221E990A001DEC05 /* UIView+ZDD.m in Sources */,
 				4AF49DFA221A937A004F45EB /* TEMPAppDelegate+OpenURL.m in Sources */,
 				4AF49DD8221A90DE004F45EB /* TEMPSDKManager.m in Sources */,
 				4AF49E02221A9977004F45EB /* TEMPBaseTabViewController.m in Sources */,
 				4AF49DF1221A9307004F45EB /* UIColor+ZDDColor.m in Sources */,
 				4AF49E13221A9B1A004F45EB /* ZDDFourTabController.m in Sources */,
+				371F72B1221EA896001DEC05 /* NSMutableDictionary+Attributes.m in Sources */,
+				371F72A8221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m in Sources */,
 				4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */,
 				4AF49DDD221A922D004F45EB /* ZDDNotificationName.m in Sources */,
 				4AF49DCD221A8EE2004F45EB /* TEMPLaunchManager.m in Sources */,
 				4AF49DF9221A937A004F45EB /* TEMPAppDelegate+BackgroundTask.m in Sources */,
 				4AF49E0D221A9AFD004F45EB /* ZDDTwoTabController.m in Sources */,
+				371F729B221E8A12001DEC05 /* ZDDSnowView.m in Sources */,
+				371F729E221E9097001DEC05 /* ZDDThreeLineCommentView.m in Sources */,
 				4AF49E10221A9B0E004F45EB /* ZDDThreeTabController.m in Sources */,
 				4AF49DE7221A92B8004F45EB /* NSArray+HYBUnicodeReadable.m in Sources */,
 				4AF49DC2221A8A29004F45EB /* main.m in Sources */,
+				371F72B0221EA896001DEC05 /* NSMutableAttributedString+Chain.m in Sources */,
 				4AF49DB4221A8A18004F45EB /* TEMPAppDelegate.m in Sources */,
 				4AF49DE6221A92B8004F45EB /* NSDictionary+HYBUnicodeReadable.m in Sources */,
+				371F72A1221E949F001DEC05 /* ZDDInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

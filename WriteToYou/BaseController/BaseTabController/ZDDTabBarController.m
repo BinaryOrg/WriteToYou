@@ -61,7 +61,7 @@ UITabBarControllerDelegate
 - (void)setupChildViewControllers {
     ZDDOneTabController *one = [[ZDDOneTabController alloc] initWithTabImageName:@"tab_now_nor"
                                                                selectedImageName:@"tab_now_press"
-                                                                           title:@"G"];
+                                                                           title:@"三行情书"];
     ZDDTwoTabController *two = [[ZDDTwoTabController alloc] initWithTabImageName:@"tab_see_nor"
                                                                selectedImageName:@"tab_see_press"
                                                                            title:@"O"];

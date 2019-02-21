@@ -9,11 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "ZDDThreeLineModel.h"
 
+@protocol ZDDThreeLineCardViewDelegate <NSObject>
+
+@optional
+
+- (void)clickCardWithModel:(ZDDThreeLineModel *)model;
+
+@end
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDThreeLineCardView : UIView
 
 @property(nonatomic, copy) NSArray <ZDDThreeLineModel *>*models;
+@property (nonatomic, weak) id <ZDDThreeLineCardViewDelegate> delegate;
 
 @end
 

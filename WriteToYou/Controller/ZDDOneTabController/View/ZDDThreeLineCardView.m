@@ -115,10 +115,20 @@ CGFloat const ItemMargin = 10.0;
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(clickCardWithModel:)] && indexPath.item < _models.count) {
+        [self.delegate clickCardWithModel:_models[indexPath.item]];
+    }
+}
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView == _panScrollView) {
         _collectionView.contentOffset = _panScrollView.contentOffset;
     }
+}
+
+- (void)dealloc {
+    self.delegate = nil;
 }
 @end
