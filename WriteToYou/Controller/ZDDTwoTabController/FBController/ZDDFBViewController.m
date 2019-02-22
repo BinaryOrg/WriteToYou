@@ -13,6 +13,7 @@
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 #import "ZDDNotificationName.h"
 #import <QMUIKit.h>
+#import "ZDDThemeConfiguration.h"
 @interface ZDDFBViewController ()
 <
 CTAssetsPickerControllerDelegate
@@ -102,10 +103,11 @@ CTAssetsPickerControllerDelegate
 }
 
 - (UIView *)rightButton {
+    ZDDThemeConfiguration *theme = [ZDDThemeConfiguration defaultConfiguration];
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 26)];
     container.layer.masksToBounds = YES;
     container.layer.cornerRadius = 5;
-    container.backgroundColor = [UIColor zdd_blueColor];
+    container.backgroundColor = theme.selectTabColor;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"发布" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:14];
