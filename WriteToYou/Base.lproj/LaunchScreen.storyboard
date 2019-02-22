@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notebook_skin_default_261x464_" translatesAutoresizingMaskIntoConstraints="NO" id="8NX-cl-ULg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illustration_group_chat_bg_300x426_" translatesAutoresizingMaskIntoConstraints="NO" id="8NX-cl-ULg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
@@ -34,10 +34,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="-543" y="244"/>
         </scene>
     </scenes>
     <resources>
-        <image name="notebook_skin_default_261x464_" width="261" height="464"/>
+        <image name="illustration_group_chat_bg_300x426_" width="450" height="639"/>
     </resources>
 </document>

@@ -52,6 +52,9 @@ CTAssetsPickerControllerDelegate
     addLabel.textColor = [UIColor zdd_grayColor];
     [self.view addSubview:addLabel];
     
+    UIImageView *rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREENWIDTH - 30, 17 + CGRectGetMaxY(self.textView.frame), 7, 12)];
+    rightImageView.image = [UIImage imageNamed:@"ic_common_arrow_right_7x12_"];
+    [self.view addSubview:rightImageView];
     
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
     addButton.frame = CGRectMake(0, 300, SCREENWIDTH, 46);
@@ -78,7 +81,7 @@ CTAssetsPickerControllerDelegate
 -(UITextView *)textView {
     if (!_textView) {
         _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 300)];
-        _textView.textContainerInset = UIEdgeInsetsMake(15, 5, 5, 5);
+        _textView.textContainerInset = UIEdgeInsetsMake(15, 20, 15, 20);
         _textView.font = [UIFont systemFontOfSize:16];
         _textView.placeholder = @"想跟前女友说什么?";
         _textView.tintColor = [UIColor zdd_blueColor];
