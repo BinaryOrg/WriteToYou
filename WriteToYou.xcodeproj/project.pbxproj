@@ -19,6 +19,10 @@
 		371F72B0221EA896001DEC05 /* NSMutableAttributedString+Chain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */; };
 		371F72B1221EA896001DEC05 /* NSMutableDictionary+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AF221EA896001DEC05 /* NSMutableDictionary+Attributes.m */; };
 		4A14A60A221F95E00078C8BC /* ZDDWDFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A609221F95E00078C8BC /* ZDDWDFBViewController.m */; };
+		4A14A60F221FA0350078C8BC /* ZDDQR1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A60E221FA0350078C8BC /* ZDDQR1TableViewCell.m */; };
+		4A14A612221FA04B0078C8BC /* ZDDQR2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A611221FA04B0078C8BC /* ZDDQR2TableViewCell.m */; };
+		4A14A616221FA4900078C8BC /* ZDDQRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A615221FA4900078C8BC /* ZDDQRDetailViewController.m */; };
+		4A14A61A221FA8CB0078C8BC /* ZDDFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A619221FA8CB0078C8BC /* ZDDFBViewController.m */; };
 		4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275555221E3D14003689F6 /* UIImage+Blur.m */; };
 		4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */; };
 		4A275562221E9708003689F6 /* ZDDPersonHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275561221E9708003689F6 /* ZDDPersonHeadTableViewCell.m */; };
@@ -78,6 +82,14 @@
 		371F72AF221EA896001DEC05 /* NSMutableDictionary+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Attributes.m"; sourceTree = "<group>"; };
 		4A14A608221F95E00078C8BC /* ZDDWDFBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDWDFBViewController.h; sourceTree = "<group>"; };
 		4A14A609221F95E00078C8BC /* ZDDWDFBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDWDFBViewController.m; sourceTree = "<group>"; };
+		4A14A60D221FA0350078C8BC /* ZDDQR1TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDQR1TableViewCell.h; sourceTree = "<group>"; };
+		4A14A60E221FA0350078C8BC /* ZDDQR1TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDQR1TableViewCell.m; sourceTree = "<group>"; };
+		4A14A610221FA04B0078C8BC /* ZDDQR2TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDQR2TableViewCell.h; sourceTree = "<group>"; };
+		4A14A611221FA04B0078C8BC /* ZDDQR2TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDQR2TableViewCell.m; sourceTree = "<group>"; };
+		4A14A614221FA4900078C8BC /* ZDDQRDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDQRDetailViewController.h; sourceTree = "<group>"; };
+		4A14A615221FA4900078C8BC /* ZDDQRDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDQRDetailViewController.m; sourceTree = "<group>"; };
+		4A14A618221FA8CB0078C8BC /* ZDDFBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDFBViewController.h; sourceTree = "<group>"; };
+		4A14A619221FA8CB0078C8BC /* ZDDFBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDFBViewController.m; sourceTree = "<group>"; };
 		4A275554221E3D14003689F6 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		4A275555221E3D14003689F6 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		4A275558221E3DA3003689F6 /* ZDDYZXSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDYZXSViewController.h; sourceTree = "<group>"; };
@@ -233,6 +245,10 @@
 		4A14A60B221F9A8A0078C8BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A14A60D221FA0350078C8BC /* ZDDQR1TableViewCell.h */,
+				4A14A60E221FA0350078C8BC /* ZDDQR1TableViewCell.m */,
+				4A14A610221FA04B0078C8BC /* ZDDQR2TableViewCell.h */,
+				4A14A611221FA04B0078C8BC /* ZDDQR2TableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -242,6 +258,24 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4A14A613221FA3CB0078C8BC /* DetailController */ = {
+			isa = PBXGroup;
+			children = (
+				4A14A614221FA4900078C8BC /* ZDDQRDetailViewController.h */,
+				4A14A615221FA4900078C8BC /* ZDDQRDetailViewController.m */,
+			);
+			path = DetailController;
+			sourceTree = "<group>";
+		};
+		4A14A617221FA8B30078C8BC /* FBController */ = {
+			isa = PBXGroup;
+			children = (
+				4A14A618221FA8CB0078C8BC /* ZDDFBViewController.h */,
+				4A14A619221FA8CB0078C8BC /* ZDDFBViewController.m */,
+			);
+			path = FBController;
 			sourceTree = "<group>";
 		};
 		4A275553221E3CF7003689F6 /* UIImageCategory */ = {
@@ -465,6 +499,8 @@
 		4AF49E05221A9A8B004F45EB /* ZDDTwoTabController */ = {
 			isa = PBXGroup;
 			children = (
+				4A14A617221FA8B30078C8BC /* FBController */,
+				4A14A613221FA3CB0078C8BC /* DetailController */,
 				4A14A60C221F9A920078C8BC /* Model */,
 				4A14A60B221F9A8A0078C8BC /* View */,
 				4AF49E0B221A9AFD004F45EB /* ZDDTwoTabController.h */,
@@ -584,6 +620,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WriteToYou/Pods-WriteToYou-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/CTAssetsPickerController/CTAssetsPickerController.bundle",
 				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle",
@@ -593,6 +630,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTAssetsPickerController.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIResources.bundle",
@@ -652,11 +690,13 @@
 				4AF49DFA221A937A004F45EB /* TEMPAppDelegate+OpenURL.m in Sources */,
 				4A275568221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m in Sources */,
 				4AF49DD8221A90DE004F45EB /* TEMPSDKManager.m in Sources */,
+				4A14A60F221FA0350078C8BC /* ZDDQR1TableViewCell.m in Sources */,
 				4AF49E02221A9977004F45EB /* TEMPBaseTabViewController.m in Sources */,
 				4AF49DF1221A9307004F45EB /* UIColor+ZDDColor.m in Sources */,
 				4A14A60A221F95E00078C8BC /* ZDDWDFBViewController.m in Sources */,
 				4AF49E13221A9B1A004F45EB /* ZDDFourTabController.m in Sources */,
 				371F72B1221EA896001DEC05 /* NSMutableDictionary+Attributes.m in Sources */,
+				4A14A612221FA04B0078C8BC /* ZDDQR2TableViewCell.m in Sources */,
 				371F72A8221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m in Sources */,
 				4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */,
 				4AF49DDD221A922D004F45EB /* ZDDNotificationName.m in Sources */,
@@ -664,12 +704,14 @@
 				4AF49DF9221A937A004F45EB /* TEMPAppDelegate+BackgroundTask.m in Sources */,
 				4AF49E0D221A9AFD004F45EB /* ZDDTwoTabController.m in Sources */,
 				371F729B221E8A12001DEC05 /* ZDDSnowView.m in Sources */,
+				4A14A616221FA4900078C8BC /* ZDDQRDetailViewController.m in Sources */,
 				371F729E221E9097001DEC05 /* ZDDThreeLineCommentView.m in Sources */,
 				4AF49E10221A9B0E004F45EB /* ZDDThreeTabController.m in Sources */,
 				4AF49DE7221A92B8004F45EB /* NSArray+HYBUnicodeReadable.m in Sources */,
 				4AF49DC2221A8A29004F45EB /* main.m in Sources */,
 				371F72B0221EA896001DEC05 /* NSMutableAttributedString+Chain.m in Sources */,
 				4AF49DB4221A8A18004F45EB /* TEMPAppDelegate.m in Sources */,
+				4A14A61A221FA8CB0078C8BC /* ZDDFBViewController.m in Sources */,
 				4AF49DE6221A92B8004F45EB /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				371F72A1221E949F001DEC05 /* ZDDInputView.m in Sources */,
 			);

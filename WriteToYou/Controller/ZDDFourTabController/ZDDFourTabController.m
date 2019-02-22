@@ -101,7 +101,7 @@ UITableViewDataSource
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
         if (!indexPath.row) {
-            
+            [self.navigationController pushViewController:[ZDDWDFBViewController new] animated:YES];
         }else if (indexPath.row == 1) {
             [self presentViewController:[ZDDYZXSViewController new] animated:YES completion:nil];
         }

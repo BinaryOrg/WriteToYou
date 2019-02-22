@@ -24,4 +24,6 @@ target 'WriteToYou' do
   pod 'Masonry'
   pod 'MFExtractColor'
   pod 'RQShineLabel'
+  pod 'UITextView+Placeholder'
+  pod 'CTAssetsPickerController',  '~> 3.3.0'
 end
