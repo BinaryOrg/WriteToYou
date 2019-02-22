@@ -24,4 +24,7 @@ target 'WriteToYou' do
   pod 'Masonry'
   pod 'MFExtractColor'
   pod 'RQShineLabel'
+  pod ‘MFHUDManager’
+  pod 'mob_smssdk'
+
 end

@@ -126,7 +126,7 @@
 - (UILabel *)contentLb {
     if (!_contentLb) {
         _contentLb = [[UILabel alloc] init];
-        _contentLb.font = [UIFont fontWithName:@"PingFangSC-Light" size:16];
+        _contentLb.font = [UIFont fontWithName:@"American Typewriter" size:16];
         _contentLb.textAlignment = NSTextAlignmentCenter;
         _contentLb.textColor = [UIColor whiteColor];
         _contentLb.numberOfLines = 0;

@@ -13,7 +13,10 @@
 #define  NAVIGATIONBARHEIGHT               self.navigationController.navigationBar.frame.size.height
 #define  TABBARHEIGHT                      self.tabBarController.tabBar.frame.size.height
 #define  STATUSBARANDNAVIGATIONBARHEIGHT   (STATUSBARHEIGHT + NAVIGATIONBARHEIGHT)
+#define StatusBarHeight (SCREENHEIGHT >= 812.0 ? 44 : 20)
 
+/** 顶部导航栏高度 */
+#define NavBarHeight (SCREENHEIGHT >= 812.0 ? 88 : 64)
 
 #define X(v)                    (v).frame.origin.x
 #define Y(v)                    (v).frame.origin.y
