@@ -64,17 +64,17 @@ UITabBarControllerDelegate
                                                                            title:@"三行情书"];
     ZDDTwoTabController *two = [[ZDDTwoTabController alloc] initWithTabImageName:@"tab_see_nor"
                                                                selectedImageName:@"tab_see_press"
-                                                                           title:@"O"];
-    ZDDThreeTabController *three = [[ZDDThreeTabController alloc] initWithTabImageName:@"tab_qworld_nor"
-                                                                     selectedImageName:@"tab_qworld_press"
-                                                                                 title:@"D"];
+                                                                           title:@"写给前任"];
+//    ZDDThreeTabController *three = [[ZDDThreeTabController alloc] initWithTabImageName:@"tab_qworld_nor"
+//                                                                     selectedImageName:@"tab_qworld_press"
+//                                                                                 title:@"D"];
     ZDDFourTabController *four = [[ZDDFourTabController alloc] initWithTabImageName:@"tab_recent_nor"
                                                                   selectedImageName:@"tab_recent_press"
-                                                                              title:@"Z"];
+                                                                              title:@"我的"];
     
     UINavigationController *n1 = [[UINavigationController alloc] initWithRootViewController:one];
     UINavigationController *n2 = [[UINavigationController alloc] initWithRootViewController:two];
-    UINavigationController *n3 = [[UINavigationController alloc] initWithRootViewController:three];
+//    UINavigationController *n3 = [[UINavigationController alloc] initWithRootViewController:three];
     UINavigationController *n4 = [[UINavigationController alloc] initWithRootViewController:four];
     
     [self addChildViewController:n1];
@@ -83,20 +83,20 @@ UITabBarControllerDelegate
         UIViewController *center = [[UIViewController alloc] init];
         [self addChildViewController:center];
     }
-    [self addChildViewController:n3];
+//    [self addChildViewController:n3];
     [self addChildViewController:n4];
     
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     //点击发布
-    if ([tabBarController.viewControllers objectAtIndex:2] == viewController) {
-        if (self.hasCenterButton) {
-            [self addButtonClick];
-            return NO;
-        }
-        return NO;
-    }
+//    if ([tabBarController.viewControllers objectAtIndex:2] == viewController) {
+//        if (self.hasCenterButton) {
+//            [self addButtonClick];
+//            return NO;
+//        }
+//        return NO;
+//    }
     return YES;
 }
 
