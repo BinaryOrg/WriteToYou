@@ -17,6 +17,9 @@
 #import "ZDDFBViewController.h"
 #import "ZDDNotificationName.h"
 
+#import "ZDDQRDetailViewController.h"
+#import "ZDDQRModel.h"
+#import <YYWebImage/YYWebImage.h>
 @interface ZDDTwoTabController ()
 <
 UITableViewDelegate,
@@ -74,10 +77,10 @@ UITableViewDataSource
         _tableView.mj_header = gifHeader;
         
         
-        MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
-//            [weakSelf mf_loadMoreDataWithId:weakSelf.pagination.last_key];
-        }];
-        _tableView.mj_footer = footer;
+//        MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+////            [weakSelf mf_loadMoreDataWithId:weakSelf.pagination.last_key];
+//        }];
+//        _tableView.mj_footer = footer;
         
     }
     return _tableView;
@@ -93,11 +96,65 @@ UITableViewDataSource
 }
 
 - (void)refreshPage {
-    
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)sendRequest {
+    [MFNETWROK get:@"" params:nil success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        [self.tableView.mj_header endRefreshing];
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+        [self.tableView.mj_header endRefreshing];
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.list.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ZDDQRModel *qr = self.list[indexPath.row];
+    if (qr.pics.count == 1) {
+        ZDDQR1TableViewCell *cell = [[ZDDQR1TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"qr1"];
+        [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:qr.pics[0]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        cell.summaryLabel.text = qr.summary;
+        cell.dateLabel.text = qr.date;
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.like_count)];
+        cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.comment_count)];
+        if (qr.liked) {
+            cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_selected_20x20_"];
+        }else {
+            cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
+        }
+        return cell;
+    }else {
+        ZDDQR2TableViewCell *cell = [[ZDDQR2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"qr2"];
+        [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:qr.pics[0]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        [cell.imageView2 yy_setImageWithURL:[NSURL URLWithString:qr.pics[1]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        cell.summaryLabel.text = qr.summary;
+        cell.dateLabel.text = qr.date;
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.like_count)];
+        cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.comment_count)];
+        if (qr.liked) {
+            cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_selected_20x20_"];
+        }else {
+            cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
+        }
+        return cell;
+    }
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return ((SCREENWIDTH - 80)/2) + 40 + 80;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ZDDQRDetailViewController *detail = [[ZDDQRDetailViewController alloc] init];
     
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detail animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)fbClick {

@@ -23,6 +23,7 @@
 		4A14A612221FA04B0078C8BC /* ZDDQR2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A611221FA04B0078C8BC /* ZDDQR2TableViewCell.m */; };
 		4A14A616221FA4900078C8BC /* ZDDQRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A615221FA4900078C8BC /* ZDDQRDetailViewController.m */; };
 		4A14A61A221FA8CB0078C8BC /* ZDDFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A619221FA8CB0078C8BC /* ZDDFBViewController.m */; };
+		4A14A61E221FF3DD0078C8BC /* ZDDQRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A14A61D221FF3DD0078C8BC /* ZDDQRModel.m */; };
 		4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275555221E3D14003689F6 /* UIImage+Blur.m */; };
 		4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275559221E3DA3003689F6 /* ZDDYZXSViewController.m */; };
 		4A275562221E9708003689F6 /* ZDDPersonHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275561221E9708003689F6 /* ZDDPersonHeadTableViewCell.m */; };
@@ -90,6 +91,8 @@
 		4A14A615221FA4900078C8BC /* ZDDQRDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDQRDetailViewController.m; sourceTree = "<group>"; };
 		4A14A618221FA8CB0078C8BC /* ZDDFBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDFBViewController.h; sourceTree = "<group>"; };
 		4A14A619221FA8CB0078C8BC /* ZDDFBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDFBViewController.m; sourceTree = "<group>"; };
+		4A14A61C221FF3DD0078C8BC /* ZDDQRModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDQRModel.h; sourceTree = "<group>"; };
+		4A14A61D221FF3DD0078C8BC /* ZDDQRModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDQRModel.m; sourceTree = "<group>"; };
 		4A275554221E3D14003689F6 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		4A275555221E3D14003689F6 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		4A275558221E3DA3003689F6 /* ZDDYZXSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDYZXSViewController.h; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 		4A14A60C221F9A920078C8BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A14A61C221FF3DD0078C8BC /* ZDDQRModel.h */,
+				4A14A61D221FF3DD0078C8BC /* ZDDQRModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -700,6 +705,7 @@
 				371F72A8221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m in Sources */,
 				4A275556221E3D14003689F6 /* UIImage+Blur.m in Sources */,
 				4AF49DDD221A922D004F45EB /* ZDDNotificationName.m in Sources */,
+				4A14A61E221FF3DD0078C8BC /* ZDDQRModel.m in Sources */,
 				4AF49DCD221A8EE2004F45EB /* TEMPLaunchManager.m in Sources */,
 				4AF49DF9221A937A004F45EB /* TEMPAppDelegate+BackgroundTask.m in Sources */,
 				4AF49E0D221A9AFD004F45EB /* ZDDTwoTabController.m in Sources */,
