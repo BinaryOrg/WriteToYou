@@ -37,7 +37,7 @@ static ZDDUserTool *userTool = nil;
 
 /// 是否登陆
 + (BOOL)isLogin {
-    return [ZDDUserTool shared].user.id.length ? YES : NO;
+    return [ZDDUserTool shared].user.user_id.length ? YES : NO;
 }
 
 /// 清除用户信息

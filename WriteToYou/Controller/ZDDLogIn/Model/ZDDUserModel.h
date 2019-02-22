@@ -11,11 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDUserModel : NSObject
-@property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSString *id;
-
+@property (nonatomic, strong) NSString *user_name;
+@property (nonatomic, strong) NSString *user_id;
+@property (nonatomic, strong) NSString *sex;
 @property (nonatomic, strong) NSString *avatar;
-@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *mobile_number;
 @end
 
 NS_ASSUME_NONNULL_END

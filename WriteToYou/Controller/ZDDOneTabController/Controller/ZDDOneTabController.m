@@ -10,6 +10,7 @@
 #import "ZDDThreeLineCardView.h"
 #import "ZDDSnowView.h"
 #import "ZDDThreeLineCommentView.h"
+#import "ZDDLogController.h"
 
 @interface ZDDOneTabController () <ZDDThreeLineCardViewDelegate>
 
@@ -94,6 +95,13 @@
 
 //点击发布
 - (void)clickPostBtn {
+    if ([ZDDUserTool isLogin]) {
+        
+    }else {
+        ZDDLogController *vc = [ZDDLogController new];
+        
+        [self.navigationController presentViewController:vc animated:YES completion:nil] ;
+    }
     
     
 }
