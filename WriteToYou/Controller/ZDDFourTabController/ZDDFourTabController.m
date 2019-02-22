@@ -8,6 +8,7 @@
 
 #import "ZDDFourTabController.h"
 #import "ZDDYZXSViewController.h"
+#import "ZDDWDFBViewController.h"
 #import "TEMPMacro.h"
 #import "ZDDPersonHeadTableViewCell.h"
 #import "ZDDPersonSettingTableViewCell.h"

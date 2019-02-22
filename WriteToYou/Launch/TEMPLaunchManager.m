@@ -42,7 +42,7 @@
     [[UITabBar appearance] setUnselectedItemTintColor:theme.normalTabColor];
     BOOL isDark = [theme.themeColor isDarkColor];
     [UIApplication sharedApplication].statusBarStyle = isDark ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-    ZDDTabBarController *tabBarController = [[ZDDTabBarController alloc] initWithCenterButton:YES];
+    ZDDTabBarController *tabBarController = [[ZDDTabBarController alloc] initWithCenterButton:NO];
     window.rootViewController = tabBarController;
     window.backgroundColor = [UIColor whiteColor];
     [window makeKeyAndVisible];
