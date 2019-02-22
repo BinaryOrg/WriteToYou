@@ -119,6 +119,9 @@ CTAssetsPickerControllerDelegate
 
 - (void)fbClick {
 //    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
+    if (![QMUIToastView toastInView:self.view]) {
+        
+    }
 }
 
 - (void)addButtonClick {
