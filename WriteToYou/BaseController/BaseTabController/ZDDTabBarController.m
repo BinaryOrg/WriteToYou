@@ -70,7 +70,7 @@ UITabBarControllerDelegate
 //                                                                                 title:@"D"];
     ZDDFourTabController *four = [[ZDDFourTabController alloc] initWithTabImageName:@"tab_recent_nor"
                                                                   selectedImageName:@"tab_recent_press"
-                                                                              title:@"我的"];
+                                                                              title:@"个人中心"];
     
     UINavigationController *n1 = [[UINavigationController alloc] initWithRootViewController:one];
     UINavigationController *n2 = [[UINavigationController alloc] initWithRootViewController:two];

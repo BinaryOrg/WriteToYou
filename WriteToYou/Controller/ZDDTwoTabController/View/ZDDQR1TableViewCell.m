@@ -30,11 +30,8 @@
         self.imageView1.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.imageView1];
         
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.imageView1.frame) + 5, 300, 30)];
-        [self.contentView addSubview:self.titleLabel];
-        self.titleLabel.font = [UIFont systemFontOfSize:16];
         
-        self.summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.titleLabel.frame), SCREENWIDTH - 60, 50)];
+        self.summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.imageView1.frame) + 5, SCREENWIDTH - 60, 50)];
         self.summaryLabel.numberOfLines = 0;
         self.summaryLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         
@@ -43,15 +40,15 @@
         self.imageView1.userInteractionEnabled = YES;
         
         
-        self.commentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREENWIDTH - 135, CGRectGetMaxY(self.summaryLabel.frame) + 5, 25, 25)];
+        self.commentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREENWIDTH - 135, CGRectGetMaxY(self.summaryLabel.frame) + 5, 20, 20)];
         self.commentImageView.image = [UIImage imageNamed:@"ic_messages_comment_20x20_"];
         [self.contentView addSubview:self.commentImageView];
-        self.commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.commentImageView.frame), CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 25)];
+        self.commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.commentImageView.frame), CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 20)];
         [self.contentView addSubview:self.commentCountLabel];
-        self.likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.commentCountLabel.frame) + 5, CGRectGetMaxY(self.summaryLabel.frame) + 5, 25, 25)];
+        self.likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.commentCountLabel.frame) + 5, CGRectGetMaxY(self.summaryLabel.frame) + 5, 20, 20)];
         self.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
         [self.contentView addSubview:self.likeImageView];
-        self.likeCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.likeImageView.frame), CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 25)];
+        self.likeCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.likeImageView.frame), CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 20)];
         [self.contentView addSubview:self.likeCountLabel];
         
     }

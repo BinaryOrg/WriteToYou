@@ -14,6 +14,8 @@
 #import "ZDDNotificationName.h"
 #import <QMUIKit.h>
 #import "ZDDThemeConfiguration.h"
+#import <MFNetworkManager/MFNetworkManager.h>
+
 @interface ZDDFBViewController ()
 <
 CTAssetsPickerControllerDelegate
@@ -24,9 +26,17 @@ CTAssetsPickerControllerDelegate
 @property (nonatomic, assign) NSInteger count;
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, assign) BOOL fuck;
+@property (nonatomic, strong) NSMutableArray *images;
 @end
 
 @implementation ZDDFBViewController
+
+- (NSMutableArray *)images {
+    if (!_images) {
+        _images = @[].mutableCopy;
+    }
+    return _images;
+}
 
 - (NSMutableArray *)assets {
     if (!_assets) {
@@ -93,11 +103,12 @@ CTAssetsPickerControllerDelegate
 
 -(UITextView *)textView {
     if (!_textView) {
+        ZDDThemeConfiguration *theme = [ZDDThemeConfiguration defaultConfiguration];
         _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 300)];
         _textView.textContainerInset = UIEdgeInsetsMake(15, 20, 15, 20);
         _textView.font = [UIFont systemFontOfSize:16];
         _textView.placeholder = @"想跟前女友说什么?";
-        _textView.tintColor = [UIColor zdd_blueColor];
+        _textView.tintColor = theme.selectTabColor;
     }
     return _textView;
 }
@@ -122,7 +133,15 @@ CTAssetsPickerControllerDelegate
 - (void)fbClick {
 //    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
     if (![QMUIToastView toastInView:self.view]) {
-        
+        [MFNETWROK upload:@""
+                   params:@{}
+                     name:@""
+                   images:self.images
+               imageScale:1.f
+                imageType:MFImageTypePNG
+                 progress:nil
+                  success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {}
+                  failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {}];
     }
 }
 
