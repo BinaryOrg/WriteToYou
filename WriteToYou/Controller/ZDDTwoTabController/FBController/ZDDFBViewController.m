@@ -12,6 +12,7 @@
 #import <UITextView+Placeholder/UITextView+Placeholder.h>
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 #import "ZDDNotificationName.h"
+#import <QMUIKit.h>
 @interface ZDDFBViewController ()
 <
 CTAssetsPickerControllerDelegate
@@ -21,6 +22,7 @@ CTAssetsPickerControllerDelegate
 @property (nonatomic, strong) UIImageView *imageView2;
 @property (nonatomic, assign) NSInteger count;
 @property (nonatomic, strong) NSMutableArray *assets;
+@property (nonatomic, assign) BOOL fuck;
 @end
 
 @implementation ZDDFBViewController
@@ -76,6 +78,16 @@ CTAssetsPickerControllerDelegate
     self.imageView2.layer.masksToBounds = YES;
     self.imageView2.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.imageView2];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!self.fuck) {
+        [self.textView becomeFirstResponder];
+    }
+    self.fuck = YES;
+    
 }
 
 -(UITextView *)textView {
@@ -124,54 +136,106 @@ CTAssetsPickerControllerDelegate
                 picker.modalPresentationStyle = UIModalPresentationFormSheet;
             
             // present picker
-            [self presentViewController:picker animated:YES completion:nil];
+            [self presentViewController:picker animated:YES completion:^{
+                self.imageView1.alpha = 0;
+                self.imageView2.alpha = 0;
+            }];
         });
     }];
 
 }
 
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets {
+    self.imageView1.image = nil;
+    self.imageView2.image = nil;
     [picker dismissViewControllerAnimated:YES completion:nil];
     self.count = 0;
     if (self.assets.count) {
         [self.assets removeAllObjects];
     }
     self.assets = [NSMutableArray arrayWithArray:assets];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self startLoadingWithText:@"获取图片..."];
+    });
     if (self.assets.count == 1) {
         PHAsset *asset = self.assets[0];
-        [self fetchImageWithAsset:asset imageBlock:^(NSData *data) {
-            self.imageView1.image = [UIImage imageWithData:data];
+        [self fetchImageWithAsset:asset imageView:self.imageView1 imageBlock:^(NSData *data) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.imageView1.image = [UIImage imageWithData:data];
+                [self stopLoading];
+            });
         }];
     }else {
-        PHAsset *asset1 = self.assets[0];
-        [self fetchImageWithAsset:asset1 imageBlock:^(NSData *data) {
-            self.imageView1.image = [UIImage imageWithData:data];
-        }];
-        PHAsset *asset2 = self.assets[1];
-        [self fetchImageWithAsset:asset2 imageBlock:^(NSData *data) {
-            self.imageView2.image = [UIImage imageWithData:data];
-        }];
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_group_enter(group);
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHAsset *asset1 = self.assets[0];
+            [self fetchImageWithAsset:asset1 imageView:self.imageView1 imageBlock:^(NSData *data) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.imageView1.image = [UIImage imageWithData:data];
+                    dispatch_group_leave(group);
+                });
+            }];
+        });
+        
+        dispatch_group_enter(group);
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHAsset *asset2 = self.assets[1];
+            [self fetchImageWithAsset:asset2 imageView:self.imageView2 imageBlock:^(NSData *data) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.imageView2.image = [UIImage imageWithData:data];
+                    dispatch_group_leave(group);
+                });
+            }];
+        });
+        
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            [self stopLoading];
+        });
     }
 }
 
-- (void)fetchImageWithAsset:(PHAsset*)mAsset imageBlock:(void(^)(NSData*))imageBlock {
+- (void)startLoadingWithText:(NSString *)text {
+    [QMUITips showLoading:text inView:self.view];
+}
+
+- (void)stopLoading {
+    [QMUITips hideAllToastInView:self.view animated:YES];
+}
+
+- (void)fetchImageWithAsset:(PHAsset*)mAsset imageView:(UIImageView *)imageView imageBlock:(void(^)(NSData*))imageBlock {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.networkAccessAllowed = YES;
     options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info)
     {
-        NSLog(@"--%@", info);
+        if (progress == 1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.5 animations:^{
+                    imageView.alpha = 1;
+                }];
+            });
+        }
     };
     [[PHImageManager defaultManager] requestImageDataForAsset:mAsset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
         // 直接得到最终的 NSData 数据
-        NSLog(@"%@", info);
-        if (imageBlock) {
-            imageBlock(imageData);
+        
+        {
+            if (imageBlock) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.5 animations:^{
+                        imageView.alpha = 1;
+                    }];
+                });
+                imageBlock(imageData);
+            }
         }
     }];
 }
 
 - (void)assetsPickerControllerDidCancel:(CTAssetsPickerController *)picker {
     self.count = 0;
+    self.imageView1.alpha = 1;
+    self.imageView2.alpha = 1;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
