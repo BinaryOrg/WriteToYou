@@ -15,6 +15,7 @@
 #import "ZDDQR2TableViewCell.h"
 
 #import "ZDDFBViewController.h"
+#import "ZDDNotificationName.h"
 
 @interface ZDDTwoTabController ()
 <
@@ -40,9 +41,9 @@ UITableViewDataSource
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc] init];
-//        __weak typeof(self) weakSelf = self;
+        __weak typeof(self) weakSelf = self;
         MJRefreshGifHeader *gifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-            
+            [weakSelf refreshPage];
         }];
         
         NSMutableArray *idleImages = [NSMutableArray array];
@@ -84,10 +85,15 @@ UITableViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:FBSuccessNotification object:nil];
     self.navigationItem.title = @"写给前任";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_comment_reply_24x24_"] style:UIBarButtonItemStylePlain target:self action:@selector(fbClick)];
 //    [self.view addSubview:self.tableView];
     [self sendRequest];
+}
+
+- (void)refreshPage {
+    
 }
 
 - (void)sendRequest {

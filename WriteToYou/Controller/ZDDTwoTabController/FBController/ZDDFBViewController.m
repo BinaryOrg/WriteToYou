@@ -11,7 +11,7 @@
 #import "TEMPMacro.h"
 #import <UITextView+Placeholder/UITextView+Placeholder.h>
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
-
+#import "ZDDNotificationName.h"
 @interface ZDDFBViewController ()
 <
 CTAssetsPickerControllerDelegate
@@ -103,7 +103,7 @@ CTAssetsPickerControllerDelegate
 }
 
 - (void)fbClick {
-    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
 }
 
 - (void)addButtonClick {
