@@ -95,7 +95,9 @@ UITableViewDataSource
 }
 
 - (void)fbClick {
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:[ZDDFBViewController new] animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end
