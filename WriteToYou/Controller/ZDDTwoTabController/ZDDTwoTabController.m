@@ -20,6 +20,7 @@
 #import "ZDDQRDetailViewController.h"
 #import "ZDDQRModel.h"
 #import <YYWebImage/YYWebImage.h>
+#import "ZDDLogController.h"
 @interface ZDDTwoTabController ()
 <
 UITableViewDelegate,
@@ -158,9 +159,15 @@ UITableViewDataSource
 }
 
 - (void)fbClick {
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:[ZDDFBViewController new] animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    if ([ZDDUserTool isLogin]) {
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:[ZDDFBViewController new] animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }else {
+        ZDDLogController *vc = [ZDDLogController new];
+        
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 @end

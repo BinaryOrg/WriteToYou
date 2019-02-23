@@ -10,7 +10,7 @@
 #import <JPush/JPUSHService.h>
 #import "TEMPKeyConfiguration.h"
 #import <UserNotifications/UserNotifications.h>
-
+#import <MFNetworkManager/MFNetworkManager.h>
 @interface TEMPSDKManager ()
 <
 JPUSHRegisterDelegate
@@ -31,7 +31,7 @@ JPUSHRegisterDelegate
  *  启动，初始化
  */
 - (void)launchInWindow:(UIWindow *)window options:(NSDictionary *)launchOptions {
-    
+    MFNETWROK.baseURL = @"http://47.106.189.135:10005/";
     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
     entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];

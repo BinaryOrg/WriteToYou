@@ -14,6 +14,8 @@
 #import "ZDDPersonSettingTableViewCell.h"
 #import "ZDDPersonLogoutTableViewCell.h"
 #import <YYWebImage/YYWebImage.h>
+#import "ZDDNotificationName.h"
+#import "ZDDUserModel.h"
 @interface ZDDFourTabController ()
 <
 UITableViewDelegate,
@@ -51,10 +53,18 @@ UITableViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCustomInfo) name:LoginSuccessNotification object:nil];
+}
+
+- (void)reloadCustomInfo {
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    if ([ZDDUserTool isLogin]) {
+        return 3;
+    }
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,9 +79,10 @@ UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath.section) {
+        ZDDUserModel *user = [ZDDUserTool shared].user;
         ZDDPersonHeadTableViewCell *cell = [[ZDDPersonHeadTableViewCell alloc] init];
-        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:@""] placeholder:[UIImage imageNamed:@"sex_boy_110x110_"]];
-        
+        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:user.avatar] placeholder:[UIImage imageNamed:@"sex_boy_110x110_"]];
+//        cell.
         return cell;
     }
     else if (indexPath.section == 1) {
@@ -107,6 +118,10 @@ UITableViewDataSource
         }else if (indexPath.row == 1) {
             [self presentViewController:[ZDDYZXSViewController new] animated:YES completion:nil];
         }
+    }
+    else if (indexPath.section == 2) {
+        [[ZDDUserTool shared] clearUserInfo];
+        [self.tableView reloadData];
     }
     
 }

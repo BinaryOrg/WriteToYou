@@ -12,7 +12,7 @@
 #import "ZDDTabBarController.h"
 #import <SMS_SDK/SMSSDK.h>
 #import "NSString+Regex.h"
-
+#import "ZDDNotificationName.h"
 
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -368,12 +368,14 @@ static CGFloat const YYSpringBounciness = 16.0;
     
     NSString *phoneNum = self.userTextField.text;
     MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
-    [MFNETWROK post:@"http://47.106.189.135:10005/User/Login" params:@{@"mobileNumber": phoneNum} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-        
+    [MFNETWROK post:@"User/Login" params:@{@"mobileNumber": phoneNum} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        NSLog(@"--==%@", result);
         ZDDUserModel *userModel = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
         // 存储用户信息
         [ZDDUserTool shared].user = userModel;
         [ZDDUserTool shared].phone = phoneNum;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:LoginSuccessNotification object:nil];
         [self loginSuccess];
     } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
         [MFHUDManager showError:@"登录失败"];
