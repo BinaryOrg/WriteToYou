@@ -4,15 +4,10 @@
 
 #import "TEMPAppDelegate+BackgroundTask.h"
 #import <objc/runtime.h>
-#import <Bugly/Bugly/Bugly.h>
 #import <AVFoundation/AVFoundation.h>
 #import "TEMPMacro.h"
 
 @implementation TEMPAppDelegate (BackgroundTask)
-
-void uncaughtExceptionHandler(NSException *exception) {
-    [Bugly reportException:exception];
-}
 
 - (void)setCount:(NSInteger)count {
     objc_setAssociatedObject(self, @selector(count), @(count), OBJC_ASSOCIATION_ASSIGN);

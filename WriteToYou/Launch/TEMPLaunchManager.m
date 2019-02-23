@@ -24,13 +24,13 @@
 
 - (void)launchInWindow:(UIWindow *)window {
     ZDDThemeConfiguration *theme = [ZDDThemeConfiguration defaultConfiguration];
-
-//    只需要在这里修改如下5个主题颜色即可，注意颜色搭配和理性:
-//    theme.naviTitleColor =
-//    theme.naviTintColor =
-//    theme.themeColor =
-//    theme.normalTabColor =
-//    theme.selectTabColor =
+    
+    //    只需要在这里修改如下5个主题颜色即可，注意颜色搭配和理性:
+    theme.naviTitleColor = [UIColor blackColor];
+    theme.naviTintColor = [UIColor blackColor];
+    //    theme.themeColor =
+    theme.normalTabColor = [UIColor blackColor];
+    theme.selectTabColor = [UIColor zdd_yellowColor];
     theme.addButtonColor = [UIColor whiteColor];
     //NavigationBar 和 TabBar 偏好设置
     NSDictionary *dict = [NSDictionary dictionaryWithObject:theme.naviTitleColor forKey:NSForegroundColorAttributeName];
@@ -42,7 +42,7 @@
     [[UITabBar appearance] setUnselectedItemTintColor:theme.normalTabColor];
     BOOL isDark = [theme.themeColor isDarkColor];
     [UIApplication sharedApplication].statusBarStyle = isDark ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-    ZDDTabBarController *tabBarController = [[ZDDTabBarController alloc] initWithCenterButton:YES];
+    ZDDTabBarController *tabBarController = [[ZDDTabBarController alloc] initWithCenterButton:NO];
     window.rootViewController = tabBarController;
     window.backgroundColor = [UIColor whiteColor];
     [window makeKeyAndVisible];

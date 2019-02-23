@@ -1,1 +1,0 @@
-../../../../mob_smssdk/SDK/SMSSDK/SMS_SDK.framework/Headers/SMSSDKUserInfo.h

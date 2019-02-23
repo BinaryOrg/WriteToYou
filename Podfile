@@ -14,7 +14,6 @@ target 'WriteToYou' do
   pod 'MBProgressHUD',:inhibit_warnings => true
   pod 'YTKNetwork',:inhibit_warnings => true
   pod 'YYModel',:inhibit_warnings => true
-  pod 'Bugly',:inhibit_warnings => true
   pod 'Texture',:inhibit_warnings => true
   pod 'DateTools',:inhibit_warnings => true
   pod 'JPush',:inhibit_warnings => true
@@ -24,7 +23,9 @@ target 'WriteToYou' do
   pod 'Masonry'
   pod 'MFExtractColor'
   pod 'RQShineLabel'
-  pod ‘MFHUDManager’
+  pod 'MFHUDManager'
   pod 'mob_smssdk'
 
+  pod 'UITextView+Placeholder'
+  pod 'CTAssetsPickerController',  '~> 3.3.0'
 end

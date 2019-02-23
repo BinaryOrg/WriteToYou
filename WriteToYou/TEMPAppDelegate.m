@@ -18,6 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    application.statusBarHidden = NO;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [[TEMPSDKManager defaultManager] launchInWindow:self.window options:launchOptions];
     [[TEMPLaunchManager defaultManager] launchInWindow:self.window];

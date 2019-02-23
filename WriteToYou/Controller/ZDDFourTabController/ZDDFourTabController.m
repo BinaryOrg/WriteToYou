@@ -8,6 +8,7 @@
 
 #import "ZDDFourTabController.h"
 #import "ZDDYZXSViewController.h"
+#import "ZDDWDFBViewController.h"
 #import "TEMPMacro.h"
 #import "ZDDPersonHeadTableViewCell.h"
 #import "ZDDPersonSettingTableViewCell.h"
@@ -100,7 +101,9 @@ UITableViewDataSource
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
         if (!indexPath.row) {
-            
+            self.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:[ZDDWDFBViewController new] animated:YES];
+            self.hidesBottomBarWhenPushed = NO;
         }else if (indexPath.row == 1) {
             [self presentViewController:[ZDDYZXSViewController new] animated:YES completion:nil];
         }

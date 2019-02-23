@@ -74,6 +74,12 @@
 		4AF49E10221A9B0E004F45EB /* ZDDThreeTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49E0F221A9B0E004F45EB /* ZDDThreeTabController.m */; };
 		4AF49E13221A9B1A004F45EB /* ZDDFourTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49E12221A9B1A004F45EB /* ZDDFourTabController.m */; };
 		4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49E16221A9E58004F45EB /* ZDDThemeConfiguration.m */; };
+		7554A27F2220C18900F7F099 /* ZDDWDFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A27E2220C18900F7F099 /* ZDDWDFBViewController.m */; };
+		7554A2842220C1F400F7F099 /* ZDDFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A2832220C1F300F7F099 /* ZDDFBViewController.m */; };
+		7554A2882220C20A00F7F099 /* ZDDQRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A2862220C20A00F7F099 /* ZDDQRDetailViewController.m */; };
+		7554A28D2220C22F00F7F099 /* ZDDQRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A28C2220C22E00F7F099 /* ZDDQRModel.m */; };
+		7554A2922220C23E00F7F099 /* ZDDQR1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A28F2220C23D00F7F099 /* ZDDQR1TableViewCell.m */; };
+		7554A2932220C23E00F7F099 /* ZDDQR2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A2902220C23D00F7F099 /* ZDDQR2TableViewCell.m */; };
 		9A592D327C8F6F7C4FABCD74 /* libPods-WriteToYou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91BE538803D042BD4B754A12 /* libPods-WriteToYou.a */; };
 /* End PBXBuildFile section */
 
@@ -225,6 +231,18 @@
 		4AF49E12221A9B1A004F45EB /* ZDDFourTabController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDFourTabController.m; sourceTree = "<group>"; };
 		4AF49E15221A9E58004F45EB /* ZDDThemeConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThemeConfiguration.h; sourceTree = "<group>"; };
 		4AF49E16221A9E58004F45EB /* ZDDThemeConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThemeConfiguration.m; sourceTree = "<group>"; };
+		7554A27D2220C18900F7F099 /* ZDDWDFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDWDFBViewController.h; sourceTree = "<group>"; };
+		7554A27E2220C18900F7F099 /* ZDDWDFBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDDWDFBViewController.m; sourceTree = "<group>"; };
+		7554A2822220C1F300F7F099 /* ZDDFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDFBViewController.h; sourceTree = "<group>"; };
+		7554A2832220C1F300F7F099 /* ZDDFBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDDFBViewController.m; sourceTree = "<group>"; };
+		7554A2862220C20A00F7F099 /* ZDDQRDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDDQRDetailViewController.m; sourceTree = "<group>"; };
+		7554A2872220C20A00F7F099 /* ZDDQRDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDQRDetailViewController.h; sourceTree = "<group>"; };
+		7554A28B2220C22E00F7F099 /* ZDDQRModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDQRModel.h; sourceTree = "<group>"; };
+		7554A28C2220C22E00F7F099 /* ZDDQRModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDDQRModel.m; sourceTree = "<group>"; };
+		7554A28E2220C23D00F7F099 /* ZDDQR2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDQR2TableViewCell.h; sourceTree = "<group>"; };
+		7554A28F2220C23D00F7F099 /* ZDDQR1TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDDQR1TableViewCell.m; sourceTree = "<group>"; };
+		7554A2902220C23D00F7F099 /* ZDDQR2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDDQR2TableViewCell.m; sourceTree = "<group>"; };
+		7554A2912220C23E00F7F099 /* ZDDQR1TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDQR1TableViewCell.h; sourceTree = "<group>"; };
 		7C615778C541EDDE5C5ED866 /* Pods-WriteToYou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WriteToYou.release.xcconfig"; path = "Pods/Target Support Files/Pods-WriteToYou/Pods-WriteToYou.release.xcconfig"; sourceTree = "<group>"; };
 		915664136FB0004CAE80CFAA /* Pods-WriteToYou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WriteToYou.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WriteToYou/Pods-WriteToYou.debug.xcconfig"; sourceTree = "<group>"; };
 		91BE538803D042BD4B754A12 /* libPods-WriteToYou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WriteToYou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -643,6 +661,10 @@
 		4AF49E05221A9A8B004F45EB /* ZDDTwoTabController */ = {
 			isa = PBXGroup;
 			children = (
+				7554A28A2220C22100F7F099 /* View */,
+				7554A2892220C21900F7F099 /* Model */,
+				7554A2852220C1FC00F7F099 /* DetailController */,
+				7554A2812220C1E400F7F099 /* FBController */,
 				4AF49E0B221A9AFD004F45EB /* ZDDTwoTabController.h */,
 				4AF49E0C221A9AFD004F45EB /* ZDDTwoTabController.m */,
 			);
@@ -665,6 +687,7 @@
 				4AF49E12221A9B1A004F45EB /* ZDDFourTabController.m */,
 				4A27555F221E96DB003689F6 /* View */,
 				4A275557221E3D3B003689F6 /* ZDDYZXSController */,
+				7554A27C2220C16900F7F099 /* ZDDWDFBController */,
 			);
 			path = ZDDFourTabController;
 			sourceTree = "<group>";
@@ -676,6 +699,53 @@
 				4AF49E16221A9E58004F45EB /* ZDDThemeConfiguration.m */,
 			);
 			path = ThemeColorConfiguration;
+			sourceTree = "<group>";
+		};
+		7554A27C2220C16900F7F099 /* ZDDWDFBController */ = {
+			isa = PBXGroup;
+			children = (
+				7554A27D2220C18900F7F099 /* ZDDWDFBViewController.h */,
+				7554A27E2220C18900F7F099 /* ZDDWDFBViewController.m */,
+			);
+			path = ZDDWDFBController;
+			sourceTree = "<group>";
+		};
+		7554A2812220C1E400F7F099 /* FBController */ = {
+			isa = PBXGroup;
+			children = (
+				7554A2822220C1F300F7F099 /* ZDDFBViewController.h */,
+				7554A2832220C1F300F7F099 /* ZDDFBViewController.m */,
+			);
+			path = FBController;
+			sourceTree = "<group>";
+		};
+		7554A2852220C1FC00F7F099 /* DetailController */ = {
+			isa = PBXGroup;
+			children = (
+				7554A2872220C20A00F7F099 /* ZDDQRDetailViewController.h */,
+				7554A2862220C20A00F7F099 /* ZDDQRDetailViewController.m */,
+			);
+			path = DetailController;
+			sourceTree = "<group>";
+		};
+		7554A2892220C21900F7F099 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7554A28B2220C22E00F7F099 /* ZDDQRModel.h */,
+				7554A28C2220C22E00F7F099 /* ZDDQRModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7554A28A2220C22100F7F099 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7554A2912220C23E00F7F099 /* ZDDQR1TableViewCell.h */,
+				7554A28F2220C23D00F7F099 /* ZDDQR1TableViewCell.m */,
+				7554A28E2220C23D00F7F099 /* ZDDQR2TableViewCell.h */,
+				7554A2902220C23D00F7F099 /* ZDDQR2TableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -759,7 +829,8 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WriteToYou/Pods-WriteToYou-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WriteToYou/Pods-WriteToYou-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/CTAssetsPickerController/CTAssetsPickerController.bundle",
 				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_error.png",
 				"${PODS_ROOT}/MFHUDManager/Image/notice_type_success.png",
@@ -770,6 +841,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CTAssetsPickerController.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_error.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/notice_type_success.png",
@@ -780,7 +852,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WriteToYou/Pods-WriteToYou-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WriteToYou/Pods-WriteToYou-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9BE694A407294B7E9F2A4F49 /* [CP] Check Pods Manifest.lock */ = {
@@ -810,6 +882,7 @@
 			files = (
 				4AF49DE8221A92B8004F45EB /* NSSet+HYBUnicodeReadable.m in Sources */,
 				4AF49DF8221A937A004F45EB /* TEMPAppDelegate+PushService.m in Sources */,
+				7554A2932220C23E00F7F099 /* ZDDQR2TableViewCell.m in Sources */,
 				37FA5416221F9F0900E5C5A9 /* POPAnimatableProperty.mm in Sources */,
 				4AF49DE9221A92B8004F45EB /* Foundation+Log.m in Sources */,
 				371F07AF221D49AB00453357 /* ZDDThreeLinesCell.m in Sources */,
@@ -819,12 +892,14 @@
 				4AF49DD5221A8FE3004F45EB /* TEMPKeyConfiguration.m in Sources */,
 				4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */,
 				4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */,
+				7554A27F2220C18900F7F099 /* ZDDWDFBViewController.m in Sources */,
 				371F72AB221EA3C7001DEC05 /* ZDDCommentModel.m in Sources */,
 				37FA5417221F9F0900E5C5A9 /* POPAnimationRuntime.mm in Sources */,
 				4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */,
 				4A275565221E9715003689F6 /* ZDDPersonSettingTableViewCell.m in Sources */,
 				37FA540B221F9F0900E5C5A9 /* POPAnimationTracer.mm in Sources */,
 				37FA5427221FD28200E5C5A9 /* NSString+Regex.m in Sources */,
+				7554A2882220C20A00F7F099 /* ZDDQRDetailViewController.m in Sources */,
 				37FA5419221F9F0900E5C5A9 /* POPLayerExtras.mm in Sources */,
 				37FA5409221F9F0900E5C5A9 /* POPSpringAnimation.mm in Sources */,
 				371F7298221E3D76001DEC05 /* ZDDThreeLineCardView.m in Sources */,
@@ -832,6 +907,7 @@
 				4AF49E0A221A9AD3004F45EB /* ZDDOneTabController.m in Sources */,
 				37FA540C221F9F0900E5C5A9 /* POPAnimationExtras.mm in Sources */,
 				4AF49DED221A92F1004F45EB /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				7554A2842220C1F400F7F099 /* ZDDFBViewController.m in Sources */,
 				371F72A5221E990A001DEC05 /* UIView+ZDD.m in Sources */,
 				4AF49DFA221A937A004F45EB /* TEMPAppDelegate+OpenURL.m in Sources */,
 				37FA540A221F9F0900E5C5A9 /* POPCustomAnimation.mm in Sources */,
@@ -850,6 +926,7 @@
 				4AF49DDD221A922D004F45EB /* ZDDNotificationName.m in Sources */,
 				37FA5421221FC2DD00E5C5A9 /* ZDDUserModel.m in Sources */,
 				4AF49DCD221A8EE2004F45EB /* TEMPLaunchManager.m in Sources */,
+				7554A28D2220C22F00F7F099 /* ZDDQRModel.m in Sources */,
 				4AF49DF9221A937A004F45EB /* TEMPAppDelegate+BackgroundTask.m in Sources */,
 				37FA5415221F9F0900E5C5A9 /* POPAnimator.mm in Sources */,
 				37FA53CC221F89EB00E5C5A9 /* ZDDLogController.m in Sources */,
@@ -868,6 +945,7 @@
 				4AF49DB4221A8A18004F45EB /* TEMPAppDelegate.m in Sources */,
 				4AF49DE6221A92B8004F45EB /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				37FA5418221F9F0900E5C5A9 /* POPAnimationEvent.mm in Sources */,
+				7554A2922220C23E00F7F099 /* ZDDQR1TableViewCell.m in Sources */,
 				371F72A1221E949F001DEC05 /* ZDDInputView.m in Sources */,
 				37FA5413221F9F0900E5C5A9 /* POPBasicAnimation.mm in Sources */,
 			);

@@ -27,6 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     UIImageView *bg = [[UIImageView alloc] initWithFrame:self.view.bounds];
     bg.contentMode = UIViewContentModeScaleAspectFill;
     bg.layer.masksToBounds = YES;
@@ -53,7 +57,7 @@
     [self.bottom_cover_book addSubview:self.bottom_suture];
     self.bottom_suture.userInteractionEnabled = YES;
     self.bottom_suture.image = [UIImage imageNamed:@"notebook_suture_260x412_"];
-
+    
     self.promptView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 252, 393)];
     self.promptView.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1];
     self.promptView.frame = CGRectMake(3, 10, 251, 393);
@@ -115,9 +119,9 @@
     [self.cover_book addGestureRecognizer:swipeforward];
     swipeforward.direction = UISwipeGestureRecognizerDirectionLeft;
     
-//    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-//    [self.cover_book addGestureRecognizer:swipeDown];
-//    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    //    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    //    [self.cover_book addGestureRecognizer:swipeDown];
+    //    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
     
     [self setAnchorPoint:CGPointMake(0, 0.5) forView:self.top_cover_book];
     [self setAnchorPoint:CGPointMake(0, 0.5) forView:self.promptView];
@@ -128,6 +132,9 @@
     self.top_cover_book.layer.allowsEdgeAntialiasing = YES;
     self.promptView.layer.allowsEdgeAntialiasing = YES;
     
+    [self _hideStautsBar];
+    self.label.text = @"从前\n车马很慢\n书信很远\n一生\n只够爱一人";
+    [self.label shine];
 }
 
 - (CATransform3D)transform3D {
@@ -154,12 +161,6 @@ CGFloat DegreesToRadians(CGFloat degrees) {
     return degrees * M_PI / 180;
 };
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self _hideStautsBar];
-    self.label.text = @"从前\n车马很慢\n书信很远\n一生\n只够爱一人";
-    [self.label shine];
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

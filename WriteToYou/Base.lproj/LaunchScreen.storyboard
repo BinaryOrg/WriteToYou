@@ -18,8 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notebook_skin_default_261x464_" translatesAutoresizingMaskIntoConstraints="NO" id="8NX-cl-ULg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8NX-cl-ULg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <string key="image" base64-UTF8="YES">
+CQ
+</string>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -38,6 +41,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="notebook_skin_default_261x464_" width="261" height="464"/>
+        <image width="16" height="16">
+            <string key="name" base64-UTF8="YES">
+CQ
+</string>
+        </image>
     </resources>
 </document>

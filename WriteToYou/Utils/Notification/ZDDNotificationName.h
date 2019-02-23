@@ -10,6 +10,7 @@
 #import "TEMPMacro.h"
 NS_ASSUME_NONNULL_BEGIN
 TEMP_EXTERN NSNotificationName const ExampleNotificationName;
+TEMP_EXTERN NSNotificationName const FBSuccessNotification;
 @interface ZDDNotificationName : NSObject
 
 @end
