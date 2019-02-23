@@ -99,7 +99,7 @@
 - (void)clickPostBtn {
     
     
-    MODropAlertView *alert = [[MODropAlertView alloc]initDropAlertWithTitle:@"Custom Info"
+    MODropAlertView *alert = [[MODropAlertView alloc]initDropAlertWithTitle:@"Write To You"
                                                                 description:@"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                                                               okButtonTitle:@"OK"
                                                           cancelButtonTitle:@"Cancel"

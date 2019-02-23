@@ -12,7 +12,7 @@
 #import "ZDDTabBarController.h"
 #import <SMS_SDK/SMSSDK.h>
 #import "NSString+Regex.h"
-
+#import "ZDDNotificationName.h"
 
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -59,6 +59,8 @@ static CGFloat const YYSpringBounciness = 16.0;
 @end
 
 @implementation ZDDLogController
+
+
 
 - (void)viewDidLoad
 {
@@ -141,6 +143,7 @@ static CGFloat const YYSpringBounciness = 16.0;
         }
         else
         {
+            NSLog(@"%@", error.userInfo);
             // error
             [MFHUDManager showError:@"网络开小差了~"];
             //button设置为可以点击
@@ -368,17 +371,18 @@ static CGFloat const YYSpringBounciness = 16.0;
     
     NSString *phoneNum = self.userTextField.text;
     MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
-    [MFNETWROK post:[NSString stringWithFormat:@"%@/User/Login", BASE_URL]params:@{@"mobileNumber": phoneNum} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-        
+    
+    [MFNETWROK post:@"User/Login" params:@{@"mobileNumber": phoneNum} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
         ZDDUserModel *userModel = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
         // 存储用户信息
         [ZDDUserTool shared].user = userModel;
         [ZDDUserTool shared].phone = phoneNum;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:LoginSuccessNotification object:nil];
         [self loginSuccess];
     } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
         [MFHUDManager showError:@"登录失败"];
         [self loginFail];
-
     }];
 }
 
@@ -585,7 +589,7 @@ static CGFloat const YYSpringBounciness = 16.0;
         _userTextField.textAlignment = NSTextAlignmentLeft;
         _userTextField.secureTextEntry =  NO;
         _userTextField.tintColor = ButtonColor;
-        
+        _userTextField.keyboardType = UIKeyboardTypeNumberPad;
         UIView *seperatorLine = [[UIView alloc] init];
         [_userTextField addSubview:seperatorLine];
         seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
@@ -616,7 +620,7 @@ static CGFloat const YYSpringBounciness = 16.0;
         _codeTextField.textAlignment = NSTextAlignmentLeft;
         _codeTextField.secureTextEntry = YES;
         _codeTextField.tintColor = ButtonColor;
-        
+        _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
         UIView *seperatorLine = [[UIView alloc] init];
         [_codeTextField addSubview:seperatorLine];
         seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);

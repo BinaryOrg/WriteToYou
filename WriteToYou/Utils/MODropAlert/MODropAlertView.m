@@ -12,15 +12,15 @@
 static const CGFloat kAlertButtonBottomMargin = 10;
 static const CGFloat kAlertButtonSideMargin = 15;
 static const CGFloat kAlertButtonsBetweenMargin = 3;
-static const CGFloat kAlertButtonHeight = 30;
+static const CGFloat kAlertButtonHeight = 60;
 
 static const CGFloat kAlertTitleLabelHeight = 30;
 static const CGFloat kAlertTitleLabelTopMargin = 30;
-static const CGFloat kALertdescriptionViewTopMargin = 40;
+static const CGFloat kALertdescriptionViewTopMargin = 50;
 static const CGFloat kAlertdescriptionViewHeight = 100;
 
 static const CGFloat kAlertTitleLabelFontSize = 24;
-static const CGFloat kAlertdescriptionViewFontSize = 14;
+static const CGFloat kAlertdescriptionViewFontSize = 16;
 static const CGFloat kAlertButtonFontSize = 14;
 
 static NSString* kAlertOKButtonNormalColor = @"#5677fc";
@@ -135,10 +135,10 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
 
 - (void)makeAlertPopupView
 {
-    CGRect frame = CGRectMake(0, 0, 200, 200);
+//    CGRect frame = CGRectMake(0, 0, 200, 200);
     CGRect screen = [self mainScreenFrame];
     
-    alertView = [[UIView alloc]initWithFrame:frame];
+    alertView = [[UIView alloc]initWithFrame:CGRectMake(20, 0, SCREENWIDTH - 40, SCREENHEIGHT - 250)];
     
     alertView.center = CGPointMake(CGRectGetWidth(screen)/2, CGRectGetHeight(screen)/2);
     
@@ -173,7 +173,7 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     
     descriptionView.layer.cornerRadius = 6;
     descriptionView.layer.masksToBounds = YES;
-    descriptionView.layer.borderColor = [UIColor redColor].CGColor;
+    descriptionView.layer.borderColor = [UIColor grayColor].CGColor;
     descriptionView.layer.borderWidth = 0.5;
     
     [descriptionView setTextAlignment:NSTextAlignmentLeft];
@@ -196,15 +196,16 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
         [cancelButton setCenter:CGPointMake(CGRectGetWidth(alertView.frame)*3/4 - kAlertButtonsBetweenMargin,
                                             CGRectGetHeight(alertView.frame) - CGRectGetHeight(okButton.frame)/2 - kAlertButtonBottomMargin)];
         
-        if (cancelButtonColor) {
-            [cancelButton setBackgroundImage:[UIImage imageWithColor:cancelButtonColor] forState:UIControlStateNormal];
-        } else {
-            [cancelButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertCancelButtonNormalColor]] forState:UIControlStateNormal];
-            [cancelButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertCancelButtonHighlightColor]] forState:UIControlStateHighlighted];
-        }
-        
-        [cancelButton setTitle:cancelButtonTitleString
-                      forState:UIControlStateNormal];
+//        if (cancelButtonColor) {
+//            [cancelButton setBackgroundImage:[UIImage imageWithColor:cancelButtonColor] forState:UIControlStateNormal];
+//        } else {
+//            [cancelButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertCancelButtonNormalColor]] forState:UIControlStateNormal];
+//            [cancelButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertCancelButtonHighlightColor]] forState:UIControlStateHighlighted];
+//        }
+        [cancelButton setImage:[UIImage imageNamed:@"send"] forState:UIControlStateNormal];
+
+//        [cancelButton setTitle:cancelButtonTitleString
+//                      forState:UIControlStateNormal];
         [cancelButton.titleLabel setFont:[cancelButton.titleLabel.font fontWithSize:kAlertButtonFontSize]];
         [cancelButton addTarget:self
                          action:@selector(pressAlertButton:)
@@ -220,15 +221,17 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     }
     [self setShadowLayer:okButton.layer];
     
-    if (okButtonColor) {
-        [okButton setBackgroundImage:[UIImage imageWithColor:okButtonColor] forState:UIControlStateNormal];
-    } else {
-        [okButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertOKButtonNormalColor]] forState:UIControlStateNormal];
-        [okButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertOKButtonHighlightColor]] forState:UIControlStateHighlighted];
-    }
+//    if (okButtonColor) {
+//        [okButton setBackgroundImage:[UIImage imageWithColor:okButtonColor] forState:UIControlStateNormal];
+//    } else {
+//        [okButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertOKButtonNormalColor]] forState:UIControlStateNormal];
+//        [okButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertOKButtonHighlightColor]] forState:UIControlStateHighlighted];
+//    }
     
-    [okButton setTitle:okButtonTitleStr
-              forState:UIControlStateNormal];
+    [okButton setImage:[UIImage imageNamed:@"send"] forState:UIControlStateNormal];
+    
+//    [okButton setTitle:okButtonTitleStr
+//              forState:UIControlStateNormal];
     [okButton.titleLabel setFont:[okButton.titleLabel.font fontWithSize:kAlertButtonFontSize]];
     [okButton addTarget:self
                  action:@selector(pressAlertButton:)
