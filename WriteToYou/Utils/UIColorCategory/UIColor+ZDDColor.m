@@ -6,6 +6,11 @@
 
 @implementation UIColor (ZDDColor)
 
++ (UIColor *)zdd_skyBlueColor {
+//    49, 189, 243
+    return [self zdd_colorWithRed:49 green:189 blue:243];
+}
+
 - (BOOL)isDarkColor {
     CGFloat r, g, b, a;
     [self getRed:&r green:&g blue:&b alpha:&a];

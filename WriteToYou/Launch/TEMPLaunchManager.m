@@ -33,8 +33,8 @@
     theme.naviTitleColor = [UIColor blackColor];
     theme.naviTintColor = [UIColor blackColor];
     //    theme.themeColor =
-    theme.normalTabColor = [UIColor blackColor];
-    theme.selectTabColor = [UIColor zdd_yellowColor];
+    theme.normalTabColor = [UIColor zdd_grayColor];
+    theme.selectTabColor = [UIColor zdd_skyBlueColor];
     theme.addButtonColor = [UIColor whiteColor];
     //NavigationBar 和 TabBar 偏好设置
     NSDictionary *dict = [NSDictionary dictionaryWithObject:theme.naviTitleColor forKey:NSForegroundColorAttributeName];
