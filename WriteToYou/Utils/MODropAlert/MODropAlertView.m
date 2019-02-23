@@ -16,17 +16,27 @@ static const CGFloat kAlertButtonHeight = 60;
 
 static const CGFloat kAlertTitleLabelHeight = 30;
 static const CGFloat kAlertTitleLabelTopMargin = 30;
-static const CGFloat kALertdescriptionViewTopMargin = 50;
-static const CGFloat kAlertdescriptionViewHeight = 100;
+//static const CGFloat kALertdescriptionViewTopMargin = 50;
+static const CGFloat kAlertdescriptionViewHeight = 50;
 
 static const CGFloat kAlertTitleLabelFontSize = 24;
-static const CGFloat kAlertdescriptionViewFontSize = 16;
+//static const CGFloat kAlertdescriptionViewFontSize = 16;
 static const CGFloat kAlertButtonFontSize = 14;
 
 static NSString* kAlertOKButtonNormalColor = @"#5677fc";
 static NSString* kAlertOKButtonHighlightColor = @"#2a36b1";
 static NSString* kAlertCancelButtonNormalColor = @"#e51c23";
 static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
+
+
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define BG_COLOR UIColorFromRGB(0xefeff4)
+
+#define YYScreenW [UIScreen mainScreen].bounds.size.width
+#define YYScreenH [UIScreen mainScreen].bounds.size.height
+
+#define ButtonColor [UIColor colorWithRed:156/255.0 green:197/255.0 blue:251/255.0 alpha:1.0]
 
 @implementation MODropAlertView {
     
@@ -40,8 +50,10 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     UIView *alertView;
     
     UILabel *titleLabel;
-    UITextView *descriptionView;
-    
+    UITextField *firstLineView;
+    UITextField *secondLineView;
+    UITextField *thridLineView;
+    UILabel *tipsLabel;
     UIButton *okButton;
     UIButton *cancelButton;
     
@@ -94,6 +106,8 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
         successBlockCallback = successBlock;
         failureBlockCallback = failureBlock;
         [self initDropAlert];
+        
+        [firstLineView becomeFirstResponder];
     }
     return self;
 }
@@ -109,7 +123,10 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     
     [self makeAlertButton:cancelButtonTitleString ? YES : NO];
     [self makeAlertTitleLabel];
-    [self makeAlertdescriptionView];
+    [self makeFirstAlertdescriptionView];
+    [self makeSecondAlertdescriptionView];
+    [self makeThridAlertdescriptionView];
+    [self makeAlertTips];
     
     [self moveAlertPopupView];
 }
@@ -138,7 +155,7 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
 //    CGRect frame = CGRectMake(0, 0, 200, 200);
     CGRect screen = [self mainScreenFrame];
     
-    alertView = [[UIView alloc]initWithFrame:CGRectMake(20, 0, SCREENWIDTH - 40, SCREENHEIGHT - 250)];
+    alertView = [[UIView alloc]initWithFrame:CGRectMake(20, 0, SCREENWIDTH - 40, 380)];
     
     alertView.center = CGPointMake(CGRectGetWidth(screen)/2, CGRectGetHeight(screen)/2);
     
@@ -160,26 +177,90 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     [alertView addSubview:titleLabel];
 }
 
-- (void)makeAlertdescriptionView
+- (void)makeFirstAlertdescriptionView
 {
-    descriptionView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin, kAlertdescriptionViewHeight)];
-    descriptionView.center = CGPointMake(CGRectGetWidth(alertView.frame)/2, kAlertTitleLabelTopMargin + CGRectGetHeight(titleLabel.frame) + kALertdescriptionViewTopMargin);
-    descriptionView.text = descrptionString;
-    descriptionView.textColor = [UIColor grayColor];
-    descriptionView.font = [descriptionView.font fontWithSize:kAlertdescriptionViewFontSize];
+//    descriptionView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin, kAlertdescriptionViewHeight)];
+    firstLineView = [[UITextField alloc] init];
+    firstLineView.font = [UIFont systemFontOfSize:15];
+    firstLineView.borderStyle = UITextBorderStyleNone;
+    firstLineView.placeholder = @"第 一 行";
+    [firstLineView setValue:UIColorFromRGB(0xcccccc) forKeyPath:@"_placeholderLabel.textColor"];
+    [firstLineView setValue:[UIFont systemFontOfSize:15.0] forKeyPath:@"_placeholderLabel.font"];
+    firstLineView.textAlignment = NSTextAlignmentCenter;
+    firstLineView.secureTextEntry =  NO;
+    firstLineView.tintColor = ButtonColor;
+    firstLineView.keyboardType = UIKeyboardTypeNumberPad;
+    UIView *seperatorLine = [[UIView alloc] init];
+    [firstLineView addSubview:seperatorLine];
+    seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
+    [seperatorLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self->firstLineView);
+        make.height.mas_equalTo(1.5);
+    }];
     
-    // Line Breaking
-    descriptionView.textAlignment = NSTextAlignmentCenter;
+    [alertView addSubview:firstLineView];
+    firstLineView.frame = CGRectMake(kAlertButtonSideMargin, 60, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin * 2, kAlertdescriptionViewHeight);
+}
+
+- (void)makeSecondAlertdescriptionView
+{
+    secondLineView = [[UITextField alloc] init];
+    secondLineView.font = [UIFont systemFontOfSize:15];
+    secondLineView.borderStyle = UITextBorderStyleNone;
+    secondLineView.placeholder = @"第 二 行";
+    [secondLineView setValue:UIColorFromRGB(0xcccccc) forKeyPath:@"_placeholderLabel.textColor"];
+    [secondLineView setValue:[UIFont systemFontOfSize:15.0] forKeyPath:@"_placeholderLabel.font"];
+    secondLineView.textAlignment = NSTextAlignmentCenter;
+    secondLineView.secureTextEntry =  NO;
+    secondLineView.tintColor = ButtonColor;
+    secondLineView.keyboardType = UIKeyboardTypeNumberPad;
+    UIView *seperatorLine = [[UIView alloc] init];
+    [secondLineView addSubview:seperatorLine];
+    seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
+    [seperatorLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self->secondLineView);
+        make.height.mas_equalTo(1.5);
+    }];
     
-    descriptionView.layer.cornerRadius = 6;
-    descriptionView.layer.masksToBounds = YES;
-    descriptionView.layer.borderColor = [UIColor grayColor].CGColor;
-    descriptionView.layer.borderWidth = 0.5;
+    [alertView addSubview:secondLineView];
+    secondLineView.frame = CGRectMake(kAlertButtonSideMargin, 120, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin * 2, kAlertdescriptionViewHeight);
+
+}
+
+- (void)makeThridAlertdescriptionView
+{
+    thridLineView = [[UITextField alloc] init];
+    thridLineView.font = [UIFont systemFontOfSize:15];
+    thridLineView.borderStyle = UITextBorderStyleNone;
+    thridLineView.placeholder = @"第 三 行";
+    [thridLineView setValue:UIColorFromRGB(0xcccccc) forKeyPath:@"_placeholderLabel.textColor"];
+    [thridLineView setValue:[UIFont systemFontOfSize:15.0] forKeyPath:@"_placeholderLabel.font"];
+    thridLineView.textAlignment = NSTextAlignmentCenter;
+    thridLineView.secureTextEntry =  NO;
+    thridLineView.tintColor = ButtonColor;
+    thridLineView.keyboardType = UIKeyboardTypeNumberPad;
+    UIView *seperatorLine = [[UIView alloc] init];
+    [thridLineView addSubview:seperatorLine];
+    seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
+    [seperatorLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self->thridLineView);
+        make.height.mas_equalTo(1.5);
+    }];
     
-    [descriptionView setTextAlignment:NSTextAlignmentLeft];
-    [descriptionView sizeToFit];
+    [alertView addSubview:thridLineView];
+    thridLineView.frame = CGRectMake(kAlertButtonSideMargin, 180, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin * 2, kAlertdescriptionViewHeight);
+
+}
+
+- (void)makeAlertTips {
+    tipsLabel = [[UILabel alloc]init];
+    [tipsLabel setFrame:CGRectMake(10, alertView.height - 115, CGRectGetWidth(alertView.frame) - (kAlertButtonSideMargin * 2), 20)];
+    tipsLabel.text = @"再爱不过三行 再恨不过两行 笔停处情止时";
+    tipsLabel.textColor = [UIColor darkGrayColor];
+    [tipsLabel setTextAlignment:NSTextAlignmentLeft];
+    tipsLabel.font = [UIFont systemFontOfSize:15];
     
-    [alertView addSubview:descriptionView];
+    [alertView addSubview:tipsLabel];
 }
 
 - (void)makeAlertButton:(BOOL)hasCancelButton
@@ -202,7 +283,7 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
 //            [cancelButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertCancelButtonNormalColor]] forState:UIControlStateNormal];
 //            [cancelButton setBackgroundImage:[UIImage imageWithColor:[self colorFromHexString:kAlertCancelButtonHighlightColor]] forState:UIControlStateHighlighted];
 //        }
-        [cancelButton setImage:[UIImage imageNamed:@"send"] forState:UIControlStateNormal];
+        [cancelButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
 
 //        [cancelButton setTitle:cancelButtonTitleString
 //                      forState:UIControlStateNormal];
@@ -308,6 +389,18 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
         default:
             break;
     }
+    
+    NSString *content = @"";
+    if (firstLineView.text.length) {
+        content = firstLineView.text;
+    }
+    if (secondLineView.text.length) {
+        content = [NSString stringWithFormat:@"%@\n%@", content, secondLineView.text];
+    }
+    if (thridLineView.text.length) {
+        content = [NSString stringWithFormat:@"%@\n%@", content, thridLineView.text];
+    }
+    
     [UIView animateWithDuration:0.8f
                           delay:0.0f
          usingSpringWithDamping:1.0f
@@ -328,7 +421,7 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
                      completion:^(BOOL finished) {
                          [self removeFromSuperview];
                          if (cb) {
-                             cb();
+                             cb(content);
                          }
                          else if (self.delegate && [self.delegate respondsToSelector:@selector(alertViewDidDisappear:buttonType:)] && finished) {
                              [self.delegate alertViewDidDisappear:self buttonType:buttonType];

@@ -99,31 +99,43 @@
 - (void)clickPostBtn {
     
     
-    MODropAlertView *alert = [[MODropAlertView alloc]initDropAlertWithTitle:@"Write To You"
-                                                                description:@"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                                                              okButtonTitle:@"OK"
-                                                          cancelButtonTitle:@"Cancel"
-                                                               successBlock:^{
-                                                                   NSLog(@"Success Log");
-                                                               }
-                                                               failureBlock:^{
-                                                                   NSLog(@"Fail Log");
-                                                               }];
-    [alert show];
     
-//    if ([ZDDUserTool isLogin]) {
-//        ZDDPostThreeLineController *vc = [ZDDPostThreeLineController new];
-//
-//        [self.navigationController presentViewController:vc animated:YES completion:nil] ;
-//
-//    }else {
-//        ZDDLogController *vc = [ZDDLogController new];
-//
-//        [self.navigationController presentViewController:vc animated:YES completion:nil] ;
-//    }
+    
+    if ([ZDDUserTool isLogin]) {
+        MODropAlertView *alert = [[MODropAlertView alloc]initDropAlertWithTitle:@"三行情书"
+                                                                    description:@"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                                                  okButtonTitle:@"OK"
+                                                              cancelButtonTitle:@"Cancel"
+                                                                   successBlock:^(NSString *content) {
+                                                                       [self postWithContent:content];
+                                                                   } failureBlock:^(NSString *content) {
+                                                                       
+                                                                   }];
+        [alert show];
+
+    }else {
+        ZDDLogController *vc = [ZDDLogController new];
+
+        [self.navigationController presentViewController:vc animated:YES completion:nil] ;
+    }
     
     
 }
+
+
+- (void)postWithContent:(NSString *)content {
+    
+    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
+    [MFNETWROK post:@"Poem/Create" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"title" : @"fffff", content : content, @"category" : @"shqs", @"pictures" : @""} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        if (statusCode == 0) {
+            [MFHUDManager showSuccess:@"发表成功"];
+        }
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+        [MFHUDManager showError:@"发表失败"];
+    }];
+    
+}
+
 
 //点击卡片
 - (void)clickCardWithModel:(ZDDThreeLineModel *)model {
