@@ -16,6 +16,9 @@
 #import <YYWebImage/YYWebImage.h>
 #import "ZDDNotificationName.h"
 #import "ZDDUserModel.h"
+
+#import "ZDDLogController.h"
+#import <QMUIKit/QMUIKit.h>
 @interface ZDDFourTabController ()
 <
 UITableViewDelegate,
@@ -61,10 +64,10 @@ UITableViewDataSource
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([ZDDUserTool isLogin]) {
+//    if ([ZDDUserTool isLogin]) {
         return 3;
-    }
-    return 2;
+//    }
+//    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -82,7 +85,10 @@ UITableViewDataSource
         ZDDUserModel *user = [ZDDUserTool shared].user;
         ZDDPersonHeadTableViewCell *cell = [[ZDDPersonHeadTableViewCell alloc] init];
         [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:user.avatar] placeholder:[UIImage imageNamed:@"sex_boy_110x110_"]];
-//        cell.
+        cell.nameLabel.text = [ZDDUserTool isLogin] ? user.user_name : @"登录";
+        [cell.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+        [cell.avatarButton addTarget:self action:@selector(avatar) forControlEvents:UIControlEventTouchUpInside];
+        cell.joinLabel.text = [ZDDUserTool isLogin] ? [NSString stringWithFormat:@"join in %@", user.create_date] : @"";
         return cell;
     }
     else if (indexPath.section == 1) {
@@ -112,9 +118,14 @@ UITableViewDataSource
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
         if (!indexPath.row) {
-            self.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:[ZDDWDFBViewController new] animated:YES];
-            self.hidesBottomBarWhenPushed = NO;
+            if ([ZDDUserTool isLogin]) {
+                self.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:[ZDDWDFBViewController new] animated:YES];
+                self.hidesBottomBarWhenPushed = NO;
+            }
+            else {
+                [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+            }
         }else if (indexPath.row == 1) {
             [self presentViewController:[ZDDYZXSViewController new] animated:YES completion:nil];
         }
@@ -124,6 +135,26 @@ UITableViewDataSource
         [self.tableView reloadData];
     }
     
+}
+
+- (void)login {
+    if ([ZDDUserTool isLogin]) {
+        //改名
+        
+    }else {
+        //login
+        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+    }
+}
+
+- (void)avatar {
+    if ([ZDDUserTool isLogin]) {
+        //改avatar
+        QMUIImagePickerViewController
+    }else {
+        //login
+        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+    }
 }
 
 @end

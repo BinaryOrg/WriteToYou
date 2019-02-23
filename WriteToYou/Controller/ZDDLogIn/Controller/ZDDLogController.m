@@ -60,6 +60,8 @@ static CGFloat const YYSpringBounciness = 16.0;
 
 @implementation ZDDLogController
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -380,7 +382,6 @@ static CGFloat const YYSpringBounciness = 16.0;
     } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
         [MFHUDManager showError:@"登录失败"];
         [self loginFail];
-
     }];
 }
 
@@ -587,7 +588,7 @@ static CGFloat const YYSpringBounciness = 16.0;
         _userTextField.textAlignment = NSTextAlignmentLeft;
         _userTextField.secureTextEntry =  NO;
         _userTextField.tintColor = ButtonColor;
-        
+        _userTextField.keyboardType = UIKeyboardTypeNumberPad;
         UIView *seperatorLine = [[UIView alloc] init];
         [_userTextField addSubview:seperatorLine];
         seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
@@ -618,7 +619,7 @@ static CGFloat const YYSpringBounciness = 16.0;
         _codeTextField.textAlignment = NSTextAlignmentLeft;
         _codeTextField.secureTextEntry = YES;
         _codeTextField.tintColor = ButtonColor;
-        
+        _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
         UIView *seperatorLine = [[UIView alloc] init];
         [_codeTextField addSubview:seperatorLine];
         seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);

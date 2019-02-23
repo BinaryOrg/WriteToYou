@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDUserModel : NSObject
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *sex;
 @property (nonatomic, strong) NSString *avatar;
 @property (nonatomic, strong) NSString *mobile_number;
+@property (nonatomic, assign) NSInteger create_date;
 @end
 
 NS_ASSUME_NONNULL_END
