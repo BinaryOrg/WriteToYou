@@ -21,8 +21,6 @@
 #import <QMUIKit/QMUIKit.h>
 #import "ZDDThemeConfiguration.h"
 
-#define SingleImagePickingTag 1048
-static QMUIAlbumContentType const kAlbumContentType = QMUIAlbumContentTypeOnlyPhoto;
 @interface ZDDFourTabController ()
 <
 UITableViewDelegate,
@@ -194,10 +192,8 @@ QMUIImagePickerViewControllerDelegate
     // 创建一个 QMUIAlbumViewController 实例用于呈现相簿列表
     QMUIAlbumViewController *albumViewController = [[QMUIAlbumViewController alloc] init];
     albumViewController.albumViewControllerDelegate = self;
-    albumViewController.contentType = kAlbumContentType;
+    albumViewController.contentType = QMUIAlbumContentTypeOnlyPhoto;
     albumViewController.title = title;
-    albumViewController.view.tag = SingleImagePickingTag;
-    
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:albumViewController];
     
@@ -211,30 +207,30 @@ QMUIImagePickerViewControllerDelegate
     QMUIImagePickerViewController *imagePickerViewController = [[QMUIImagePickerViewController alloc] init];
     imagePickerViewController.imagePickerViewControllerDelegate = self;
     imagePickerViewController.maximumSelectImageCount = 1;
-    imagePickerViewController.view.tag = albumViewController.view.tag;
-    if (albumViewController.view.tag == SingleImagePickingTag) {
-        imagePickerViewController.allowsMultipleSelection = NO;
-    }
+    imagePickerViewController.allowsMultipleSelection = NO;
     return imagePickerViewController;
 }
 
 #pragma mark - <QMUIImagePickerViewControllerDelegate>
 
 - (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController didSelectImageWithImagesAsset:(QMUIAsset *)imageAsset afterImagePickerPreviewViewControllerUpdate:(QMUIImagePickerPreviewViewController *)imagePickerPreviewViewController {
+    [imagePickerViewController dismissViewControllerAnimated:YES completion:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self startLoadingWithText:@"获取图片..."];
     });
-    [self fetchImageWithAsset:imageAsset.phAsset imageBlock:^(NSData *data) {
-        [MFNETWROK upload:@"" params:nil name:@"" imageDatas:@[data] progress:nil success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-            [ZDDUserTool shared].user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
+    [imageAsset requestImageData:^(NSData *imageData, NSDictionary<NSString *,id> *info, BOOL isGIF, BOOL isHEIC) {
+        NSLog(@"%@", info);
+        [MFNETWROK upload:@"" params:nil name:@"" imageDatas:@[imageData] progress:nil success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                [ZDDUserTool shared].user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
                 [self reloadCustomInfo];
                 [self stopLoading];
             });
         } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-            [self stopLoading];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self stopLoading];
+            });
         }];
-        
     }];
 }
 
@@ -244,24 +240,6 @@ QMUIImagePickerViewControllerDelegate
 
 - (void)stopLoading {
     [QMUITips hideAllToastInView:self.view animated:YES];
-}
-
-- (void)fetchImageWithAsset:(PHAsset*)mAsset imageBlock:(void(^)(NSData*))imageBlock {
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.networkAccessAllowed = YES;
-    options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info)
-    {
-    };
-    [[PHImageManager defaultManager] requestImageDataForAsset:mAsset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-        // 直接得到最终的 NSData 数据
-        
-        {
-            if (imageBlock) {
-                
-                imageBlock(imageData);
-            }
-        }
-    }];
 }
 
 @end
