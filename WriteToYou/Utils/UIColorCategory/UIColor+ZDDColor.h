@@ -8,6 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (ZDDColor)
 // default custom color
++ (UIColor *)zdd_skyBlueColor;
 + (UIColor *)zdd_grayColor;
 + (UIColor *)zdd_redColor;
 + (UIColor *)zdd_yellowColor;

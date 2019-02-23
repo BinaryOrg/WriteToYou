@@ -132,7 +132,7 @@
     self.top_cover_book.layer.allowsEdgeAntialiasing = YES;
     self.promptView.layer.allowsEdgeAntialiasing = YES;
     
-    [self _hideStautsBar];
+//    [self _hideStautsBar];
     self.label.text = @"从前\n车马很慢\n书信很远\n一生\n只够爱一人";
     [self.label shine];
 }
@@ -164,7 +164,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self _showStatusBar];
+//    [self _showStatusBar];
 }
 
 - (void)buttonClick {

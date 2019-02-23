@@ -20,7 +20,7 @@
 #import "ZDDLogController.h"
 #import <QMUIKit/QMUIKit.h>
 #import "ZDDThemeConfiguration.h"
-
+#import "UIColor+ZDDColor.h"
 @interface ZDDFourTabController ()
 <
 UITableViewDelegate,
@@ -142,46 +142,49 @@ QMUIImagePickerViewControllerDelegate
 }
 
 - (void)login {
-    if ([ZDDUserTool isLogin]) {
+//    if ([ZDDUserTool isLogin]) {
         //改名
         [self presentAlertController];
-    }else {
-        //login
-        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
-    }
+//    }else {
+//        //login
+//        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+//    }
 }
 
 - (void)avatar {
-    if ([ZDDUserTool isLogin]) {
+//    if ([ZDDUserTool isLogin]) {
         //改avatar
         [self presentAlbumViewControllerWithTitle:@"请选择头像"];
-    }else {
-        //login
-        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
-    }
+//    }else {
+//        //login
+//        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+//    }
 }
 
 - (void)presentAlertController {
-    QMUIAlertController *alert = [QMUIAlertController alertControllerWithTitle:nil message:@"请输入要修改的用户名" preferredStyle:QMUIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"请输入要修改的用户名" preferredStyle:UIAlertControllerStyleAlert];
     ZDDThemeConfiguration *theme = [ZDDThemeConfiguration defaultConfiguration];
-    [alert addTextFieldWithConfigurationHandler:^(QMUITextField *textField) {
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.tintColor = theme.selectTabColor;
     }];
-    QMUIAlertAction *cancel = [QMUIAlertAction actionWithTitle:@"取消" style:QMUIAlertActionStyleCancel handler:nil];
-    QMUIAlertAction *ensure = [QMUIAlertAction actionWithTitle:@"确定" style:QMUIAlertActionStyleDefault handler:^(__kindof QMUIAlertController *aAlertController, QMUIAlertAction *action) {
-        NSString *user_name = aAlertController.textFields[0].text;
+    __weak typeof(alert) weakAlert = alert;
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *ensure = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        __strong typeof(weakAlert) strongAlert = weakAlert;
+        NSString *user_name = strongAlert.textFields[0].text;
         [MFNETWROK post:@""
                  params:@{
                           
                           }
                 success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-                
+                    
                 }
                 failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-                
+                    
                 }];
     }];
-    
+    [cancel setValue:[UIColor zdd_skyBlueColor] forKey:@"_titleTextColor"];
+    [ensure setValue:[UIColor zdd_skyBlueColor] forKey:@"_titleTextColor"];
     [alert addAction:cancel];
     [alert addAction:ensure];
     [self presentViewController:alert animated:YES completion:nil];
@@ -216,7 +219,7 @@ QMUIImagePickerViewControllerDelegate
 - (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController didSelectImageWithImagesAsset:(QMUIAsset *)imageAsset afterImagePickerPreviewViewControllerUpdate:(QMUIImagePickerPreviewViewController *)imagePickerPreviewViewController {
     [imagePickerViewController dismissViewControllerAnimated:YES completion:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self startLoadingWithText:@"获取图片..."];
+        [self startLoadingWithText:@"上传图片..."];
     });
     [imageAsset requestImageData:^(NSData *imageData, NSDictionary<NSString *,id> *info, BOOL isGIF, BOOL isHEIC) {
         NSLog(@"%@", info);
