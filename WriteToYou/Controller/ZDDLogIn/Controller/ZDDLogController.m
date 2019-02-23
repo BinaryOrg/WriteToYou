@@ -368,7 +368,7 @@ static CGFloat const YYSpringBounciness = 16.0;
     
     NSString *phoneNum = self.userTextField.text;
     MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
-    [MFNETWROK post:@"http://47.106.189.135:10005/User/Login" params:@{@"mobileNumber": phoneNum} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+    [MFNETWROK post:[NSString stringWithFormat:@"%@/User/Login", BASE_URL]params:@{@"mobileNumber": phoneNum} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
         
         ZDDUserModel *userModel = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
         // 存储用户信息

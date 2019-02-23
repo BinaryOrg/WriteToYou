@@ -5,6 +5,9 @@
 #ifndef TEMPMacro_h
 #define TEMPMacro_h
 
+
+#define BASE_URL @"http://47.106.189.135:10005"
+
 #define TEMP_EXTERN extern __attribute__((visibility ("default")))
 
 #define  SCREENWIDTH                       [UIScreen mainScreen].bounds.size.width

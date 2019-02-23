@@ -11,6 +11,8 @@
 #import "ZDDSnowView.h"
 #import "ZDDThreeLineCommentView.h"
 #import "ZDDLogController.h"
+#import "ZDDPostThreeLineController.h"
+#import "MODropAlertView.h"
 
 @interface ZDDOneTabController () <ZDDThreeLineCardViewDelegate>
 
@@ -95,13 +97,30 @@
 
 //点击发布
 - (void)clickPostBtn {
-    if ([ZDDUserTool isLogin]) {
-        
-    }else {
-        ZDDLogController *vc = [ZDDLogController new];
-        
-        [self.navigationController presentViewController:vc animated:YES completion:nil] ;
-    }
+    
+    
+    MODropAlertView *alert = [[MODropAlertView alloc]initDropAlertWithTitle:@"Custom Info"
+                                                                description:@"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                                              okButtonTitle:@"OK"
+                                                          cancelButtonTitle:@"Cancel"
+                                                               successBlock:^{
+                                                                   NSLog(@"Success Log");
+                                                               }
+                                                               failureBlock:^{
+                                                                   NSLog(@"Fail Log");
+                                                               }];
+    [alert show];
+    
+//    if ([ZDDUserTool isLogin]) {
+//        ZDDPostThreeLineController *vc = [ZDDPostThreeLineController new];
+//
+//        [self.navigationController presentViewController:vc animated:YES completion:nil] ;
+//
+//    }else {
+//        ZDDLogController *vc = [ZDDLogController new];
+//
+//        [self.navigationController presentViewController:vc animated:YES completion:nil] ;
+//    }
     
     
 }
