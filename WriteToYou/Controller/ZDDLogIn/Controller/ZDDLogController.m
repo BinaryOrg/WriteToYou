@@ -143,6 +143,7 @@ static CGFloat const YYSpringBounciness = 16.0;
         }
         else
         {
+            NSLog(@"%@", error.userInfo);
             // error
             [MFHUDManager showError:@"网络开小差了~"];
             //button设置为可以点击
