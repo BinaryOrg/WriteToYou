@@ -108,7 +108,7 @@ UITableViewDataSource
              params:@{
                       @"orderBy": @"last_update_date",
                       @"category": @"xgqr",
-                      @"userId": [ZDDUserTool shared].user.user_id,
+                      @"userId": [ZDDUserTool shared].user.user_id ? [ZDDUserTool shared].user.user_id : @"",
                       }
             success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
                 NSLog(@"%@", result);

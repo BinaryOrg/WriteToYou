@@ -73,7 +73,7 @@ typedef void(^requestBlock)(NSInteger code, id result);
 - (void)loadData {
   
     MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
-    [MFNETWROK post:@"Poem/ListRecommendPoem" params:@{@"category" : @"shqs", @"userId" : [ZDDUserTool shared].user.user_id} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+    [MFNETWROK post:@"Poem/ListRecommendPoem" params:@{@"category" : @"shqs", @"userId" : [ZDDUserTool shared].user.user_id ? [ZDDUserTool shared].user.user_id : @""} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
         if (statusCode == 200) {
             NSArray *dataArr = [NSArray yy_modelArrayWithClass:ZDDThreeLineModel.class json:result[@"data"]];
             self.dataArray = dataArr;
