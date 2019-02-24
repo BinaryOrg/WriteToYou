@@ -39,7 +39,7 @@
             make.lh_font([UIFont systemFontOfSize:15]);
         }];
         
-        NSString *time = [[self formateDateWithTimestamp:model.create_date];
+        NSString *time = [self formateDateWithTimestamp:model.create_date];
         
         NSMutableAttributedString *timeAtt = [NSMutableAttributedString lh_makeAttributedString:time attributes:^(NSMutableDictionary *make) {
             make.lh_font([UIFont systemFontOfSize:13]).lh_color([UIColor grayColor]);
