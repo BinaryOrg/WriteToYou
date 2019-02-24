@@ -21,6 +21,7 @@
 #import <QMUIKit/QMUIKit.h>
 #import "ZDDThemeConfiguration.h"
 #import "UIColor+ZDDColor.h"
+#import <MFHUDManager/MFHUDManager.h>
 @interface ZDDFourTabController ()
 <
 UITableViewDelegate,
@@ -29,10 +30,18 @@ QMUIAlbumViewControllerDelegate,
 QMUIImagePickerViewControllerDelegate
 >
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic ,strong) NSArray *funcList;
+@property (nonatomic, strong) NSArray *funcList;
+@property (nonatomic, strong) QMUITips *tips;
 @end
 
 @implementation ZDDFourTabController
+
+- (QMUITips *)tips {
+    if (!_tips) {
+        _tips = [QMUITips createTipsToView:self.view];
+    }
+    return _tips;
+}
 
 - (NSArray *)funcList {
     if (!_funcList) {
@@ -64,7 +73,7 @@ QMUIImagePickerViewControllerDelegate
 }
 
 - (void)reloadCustomInfo {
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -88,11 +97,11 @@ QMUIImagePickerViewControllerDelegate
     if (!indexPath.section) {
         ZDDUserModel *user = [ZDDUserTool shared].user;
         ZDDPersonHeadTableViewCell *cell = [[ZDDPersonHeadTableViewCell alloc] init];
-        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:user.avatar] placeholder:[UIImage imageNamed:@"sex_boy_110x110_"]];
+        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", MFNETWROK.baseURL, user.avater]] placeholder:[UIImage imageNamed:@"sex_boy_110x110_"]];
         cell.nameLabel.text = [ZDDUserTool isLogin] ? user.user_name : @"登录";
         [cell.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
         [cell.avatarButton addTarget:self action:@selector(avatar) forControlEvents:UIControlEventTouchUpInside];
-        cell.joinLabel.text = [ZDDUserTool isLogin] ? [NSString stringWithFormat:@"join in %@", @(user.create_date)] : @"";
+        cell.joinLabel.text = [ZDDUserTool isLogin] ? [NSString stringWithFormat:@"join in %@", [self formatFromTS:user.create_date]] : @"";
         return cell;
     }
     else if (indexPath.section == 1) {
@@ -142,23 +151,23 @@ QMUIImagePickerViewControllerDelegate
 }
 
 - (void)login {
-//    if ([ZDDUserTool isLogin]) {
+    if ([ZDDUserTool isLogin]) {
         //改名
         [self presentAlertController];
-//    }else {
-//        //login
-//        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
-//    }
+    }else {
+        //login
+        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+    }
 }
 
 - (void)avatar {
-//    if ([ZDDUserTool isLogin]) {
+    if ([ZDDUserTool isLogin]) {
         //改avatar
         [self presentAlbumViewControllerWithTitle:@"请选择头像"];
-//    }else {
-//        //login
-//        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
-//    }
+    }else {
+        //login
+        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+    }
 }
 
 - (void)presentAlertController {
@@ -171,16 +180,39 @@ QMUIImagePickerViewControllerDelegate
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *ensure = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         __strong typeof(weakAlert) strongAlert = weakAlert;
+        [self startLoadingWithText:@"修改中..."];
         NSString *user_name = strongAlert.textFields[0].text;
-        [MFNETWROK post:@""
+        [MFNETWROK post:@"User/ChangeUserInfo"
                  params:@{
-                          
+                          @"userId": [ZDDUserTool shared].user.user_id,
+                          @"userName": user_name,
+                          @"sex": @"m"
                           }
                 success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-                    
+                    NSLog(@"%@", result);
+                    if ([result[@"resultCode"] isEqualToString:@"0"]) {
+                        ZDDUserModel *user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
+                        [ZDDUserTool shared].user = user;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self stopLoading];
+                            [self reloadCustomInfo];
+                        });
+                    }else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self showErrorWithText:@"修改失败！"];
+                        });
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [self stopLoading];
+                        });
+                    }
                 }
                 failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self showErrorWithText:@"修改失败！"];
+                    });
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self stopLoading];
+                    });
                 }];
     }];
     [cancel setValue:[UIColor zdd_skyBlueColor] forKey:@"_titleTextColor"];
@@ -217,32 +249,80 @@ QMUIImagePickerViewControllerDelegate
 #pragma mark - <QMUIImagePickerViewControllerDelegate>
 
 - (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController didSelectImageWithImagesAsset:(QMUIAsset *)imageAsset afterImagePickerPreviewViewControllerUpdate:(QMUIImagePickerPreviewViewController *)imagePickerPreviewViewController {
-    [imagePickerViewController dismissViewControllerAnimated:YES completion:nil];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self startLoadingWithText:@"上传图片..."];
-    });
+    [imagePickerViewController dismissViewControllerAnimated:YES completion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self startLoadingWithText:@"上传图片..."];
+        });
+    }];
+    
     [imageAsset requestImageData:^(NSData *imageData, NSDictionary<NSString *,id> *info, BOOL isGIF, BOOL isHEIC) {
         NSLog(@"%@", info);
-        [MFNETWROK upload:@"" params:nil name:@"" imageDatas:@[imageData] progress:nil success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [ZDDUserTool shared].user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
-                [self reloadCustomInfo];
-                [self stopLoading];
-            });
-        } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self stopLoading];
-            });
-        }];
+        [MFNETWROK upload:@"User/ChangeUserAvater"
+                   params:@{
+                            @"userId": [ZDDUserTool shared].user.user_id
+                            }
+                     name:@"pictures"
+               imageDatas:@[imageData]
+                 progress:nil
+                  success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+                      NSLog(@"%@", result);
+                      if ([result[@"resultCode"] isEqualToString:@"0"]) {
+                          ZDDUserModel *user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
+                          [ZDDUserTool shared].user = user;
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              [self stopLoading];
+                              [self reloadCustomInfo];
+                          });
+                      }else {
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              [self showErrorWithText:@"上传失败！"];
+                          });
+                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                              [self stopLoading];
+                          });
+                      }
+                  }
+                  failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self showErrorWithText:@"上传失败！"];
+                    });
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self stopLoading];
+                    });
+                  }];
     }];
 }
 
 - (void)startLoadingWithText:(NSString *)text {
-    [QMUITips showLoading:text inView:self.view];
+//    [QMUITips showLoading:text inView:self.view];
+//    [self.tips showLoading:text];
+    [MFHUDManager showLoading:text];
+}
+
+- (void)showErrorWithText:(NSString *)text {
+//    [self.tips showError:text];
+    [MFHUDManager showError:text];
+}
+
+- (void)showSuccessWithText:(NSString *)text {
+//    [self.tips showSucceed:text];
+    [MFHUDManager showSuccess:text];
+    
 }
 
 - (void)stopLoading {
-    [QMUITips hideAllToastInView:self.view animated:YES];
+//    [QMUITips hideAllToastInView:self.view animated:YES];
+//    [self.tips hideAnimated:YES];
+    [MFHUDManager dismiss];
+}
+
+- (NSString *)formatFromTS:(NSInteger)ts {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd MMM yyyy"];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    NSString *str = [NSString stringWithFormat:@"%@",
+                     [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:ts]]];
+    return str;
 }
 
 @end

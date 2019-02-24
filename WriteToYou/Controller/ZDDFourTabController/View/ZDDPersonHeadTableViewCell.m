@@ -18,6 +18,7 @@
         self.avatarImageView.userInteractionEnabled = YES;
         self.avatarImageView.layer.cornerRadius = 30;
         self.avatarImageView.layer.masksToBounds = YES;
+        self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.avatarButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.avatarButton.frame = self.avatarImageView.bounds;
         [self.avatarImageView addSubview:self.avatarButton];

@@ -27,9 +27,18 @@ CTAssetsPickerControllerDelegate
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, assign) BOOL fuck;
 @property (nonatomic, strong) NSMutableArray *images;
+@property (nonatomic, strong) QMUITips *tips;
 @end
 
 @implementation ZDDFBViewController
+
+- (QMUITips *)tips {
+    if (!_tips) {
+        _tips = [QMUITips createTipsToView:self.view];
+    }
+    return _tips;
+}
+
 
 - (NSMutableArray *)images {
     if (!_images) {
@@ -133,15 +142,43 @@ CTAssetsPickerControllerDelegate
 - (void)fbClick {
 //    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
     if (![QMUIToastView toastInView:self.view]) {
-        [MFNETWROK upload:@""
-                   params:@{}
-                     name:@""
+        [self startLoadingWithText:@"发布中..."];
+        [MFNETWROK upload:@"Poem/Create"
+                   params:@{
+                            @"userId": [ZDDUserTool shared].user.user_id,
+                            @"title": @"我是神",
+                            @"content": self.textView.text,
+                            @"category": @"xgqr"
+                            }
+                     name:@"pictures"
                    images:self.images
                imageScale:1.f
                 imageType:MFImageTypePNG
                  progress:nil
-                  success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {}
-                  failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {}];
+                  success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+                      if ([result[@"resultCode"] isEqualToString:@"0"]) {
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              [self stopLoading];
+                              [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
+                          });
+                          [self.navigationController popViewControllerAnimated:YES];
+                      }else {
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              [self showErrorWithText:@"发布失败！"];
+                          });
+                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                              [self stopLoading];
+                          });
+                      }
+                  }
+                  failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          [self showErrorWithText:@"发布失败！"];
+                      });
+                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                          [self stopLoading];
+                      });
+                  }];
     }
 }
 
@@ -220,11 +257,26 @@ CTAssetsPickerControllerDelegate
 }
 
 - (void)startLoadingWithText:(NSString *)text {
-    [QMUITips showLoading:text inView:self.view];
+    //    [QMUITips showLoading:text inView:self.view];
+    //    [self.tips showLoading:text];
+    [MFHUDManager showLoading:text];
+}
+
+- (void)showErrorWithText:(NSString *)text {
+    //    [self.tips showError:text];
+    [MFHUDManager showError:text];
+}
+
+- (void)showSuccessWithText:(NSString *)text {
+    //    [self.tips showSucceed:text];
+    [MFHUDManager showSuccess:text];
+    
 }
 
 - (void)stopLoading {
-    [QMUITips hideAllToastInView:self.view animated:YES];
+    //    [QMUITips hideAllToastInView:self.view animated:YES];
+    //    [self.tips hideAnimated:YES];
+    [MFHUDManager dismiss];
 }
 
 - (void)fetchImageWithAsset:(PHAsset*)mAsset imageView:(UIImageView *)imageView imageBlock:(void(^)(NSData*))imageBlock {

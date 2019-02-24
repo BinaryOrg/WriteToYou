@@ -159,15 +159,15 @@ UITableViewDataSource
 }
 
 - (void)fbClick {
-//    if ([ZDDUserTool isLogin]) {
+    if ([ZDDUserTool isLogin]) {
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:[ZDDFBViewController new] animated:YES];
         self.hidesBottomBarWhenPushed = NO;
-//    }else {
-//        ZDDLogController *vc = [ZDDLogController new];
-//
-//        [self presentViewController:vc animated:YES completion:nil];
-//    }
+    }else {
+        ZDDLogController *vc = [ZDDLogController new];
+
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 @end
