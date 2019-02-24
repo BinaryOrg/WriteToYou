@@ -379,6 +379,7 @@ static CGFloat const YYSpringBounciness = 16.0;
         [ZDDUserTool shared].phone = phoneNum;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:LoginSuccessNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:QRFBSuccessNotification object:nil];
         [self loginSuccess];
     } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
         [MFHUDManager showError:@"登录失败"];
