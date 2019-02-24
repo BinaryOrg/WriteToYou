@@ -81,8 +81,8 @@
 - (void)setModel:(ZDDThreeLineModel *)model {
     _model = model;
     self.contentLb.text = model.content;
-    self.authoLb.text = [NSString stringWithFormat:@"---  %@", model.autho];
-    self.likeAndCommentCountLb.text = [NSString stringWithFormat:@"%ld 喜欢 · %ld 评论", model.likeCount, model.commentCount];
+    self.authoLb.text = [NSString stringWithFormat:@"---  %@", model.user_name];
+    self.likeAndCommentCountLb.text = [NSString stringWithFormat:@"%ld 喜欢 · %ld 评论", model.star_num, model.comment_num];
     self.timeLb.text = @"2019 / 02 / 20";
     self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"bgv_%u", arc4random()%11]];
     [self reloadLikeView];

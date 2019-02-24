@@ -521,7 +521,7 @@ static CGFloat const YYSpringBounciness = 16.0;
 {
     if (!_LoginImage)
     {
-        _LoginImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logImage"]];
+        _LoginImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_icon"]];
         [self.view addSubview:_LoginImage];
     }
     return _LoginImage;

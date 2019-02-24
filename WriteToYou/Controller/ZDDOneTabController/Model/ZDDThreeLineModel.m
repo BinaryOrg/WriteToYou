@@ -10,4 +10,14 @@
 
 @implementation ZDDThreeLineModel
 
+
+
+// 声明模型中的数组中的元素是模型
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    
+    return @{
+             @"comments" : [ZDDCommentModel class]
+             };
+}
+
 @end

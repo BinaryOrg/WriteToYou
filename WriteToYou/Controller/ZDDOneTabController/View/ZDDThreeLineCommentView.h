@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "ZDDThreeLineModel.h"
+
+
+@protocol ZDDThreeLineCommentViewDelegate <NSObject>
+
+@optional
+
+- (void)sendComment:(NSString *)comment WithModel:(ZDDThreeLineModel *)model;
+
+@end
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDThreeLineCommentView : UIView
 -(void)showWithModel:(ZDDThreeLineModel *)model;
+@property (nonatomic, weak) id <ZDDThreeLineCommentViewDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END
