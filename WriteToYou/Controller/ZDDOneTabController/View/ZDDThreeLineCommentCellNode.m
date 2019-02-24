@@ -39,7 +39,9 @@
             make.lh_font([UIFont systemFontOfSize:15]);
         }];
         
-        NSMutableAttributedString *timeAtt = [NSMutableAttributedString lh_makeAttributedString:@" 5小时前" attributes:^(NSMutableDictionary *make) {
+        NSString *time = [[self formateDateWithTimestamp:model.create_date];
+        
+        NSMutableAttributedString *timeAtt = [NSMutableAttributedString lh_makeAttributedString:time attributes:^(NSMutableDictionary *make) {
             make.lh_font([UIFont systemFontOfSize:13]).lh_color([UIColor grayColor]);
         }];
         
@@ -96,5 +98,25 @@
     _lineNode.style.preferredSize = CGSizeMake(SCREENWIDTH, 0.5f);
     [_lineNode setLayerBacked:YES];
     [self addSubnode:_lineNode];
+}
+
+
+/**
+ 1分钟之内：显示 刚刚
+ 1~60分钟内：显示 XX分钟前
+ 1~24小时内-不跨天：显示 xx小时前
+ 1~24小时内-跨天：显示 昨天
+ 跨两天：显示 前天
+ 超过两天-没有跨年：显示 月日时分
+ 超过两天，且跨年：显示 年月日时分
+ **/
+- (NSString *)formateDateWithTimestamp:(NSInteger)ts {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd MMM yyyy"];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    NSString *str = [NSString stringWithFormat:@"%@",
+                     [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:ts]]];
+    return str;
 }
 @end

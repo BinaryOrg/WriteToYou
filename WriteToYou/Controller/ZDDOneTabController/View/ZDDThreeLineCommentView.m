@@ -159,9 +159,13 @@
     return self.model.comments.count;
 }
 
+- (ZDDThreeLineCommentCellNode *)extracted {
+    return [ZDDThreeLineCommentCellNode alloc];
+}
+
 - (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath {
     return ^ASCellNode * {
-        ZDDThreeLineCommentCellNode *cell = [[ZDDThreeLineCommentCellNode alloc] init];
+        ZDDThreeLineCommentCellNode *cell = [[self extracted] initWithMode:self.model.comments[indexPath.row]];
         return cell;
     };
     
