@@ -20,6 +20,8 @@
 
 /** 顶部导航栏高度 */
 #define NavBarHeight (SCREENHEIGHT >= 812.0 ? 88 : 64)
+#define SafeAreaBottomHeight (SCREENHEIGHT >= 812.0 ? 34 : 0)
+
 
 #define X(v)                    (v).frame.origin.x
 #define Y(v)                    (v).frame.origin.y

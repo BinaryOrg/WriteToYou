@@ -97,7 +97,7 @@
         [[[[UIApplication sharedApplication] delegate] window] addSubview:self];
         [UIView animateWithDuration:0.25f animations:^{
             self.masking.alpha = 0.5;
-            self.bgWhiteView.y = topInsert;
+            self.bgWhiteView.y = topInsert - SafeAreaBottomHeight;
         }];
         [self addRoundedCorners:UIRectCornerTopLeft | UIRectCornerTopRight withRadii:CGSizeMake(10, 10) view:self.bgWhiteView];
         

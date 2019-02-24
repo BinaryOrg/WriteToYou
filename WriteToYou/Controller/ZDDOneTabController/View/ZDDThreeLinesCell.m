@@ -85,7 +85,15 @@
     self.contentLb.text = model.poem.content;
     self.authoLb.text = [NSString stringWithFormat:@"---  %@", model.user.user_name];
     self.likeAndCommentCountLb.text = [NSString stringWithFormat:@"%ld 喜欢 · %ld 评论", model.poem.star_num, model.poem.comment_num];
-    self.timeLb.text = @"2019 / 02 / 20";
+    
+    NSDate *sinceDate = [NSDate dateWithTimeIntervalSince1970:model.poem.create_date];
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [formatter setDateFormat:@"yyyy / MM / dd"];
+    NSString *createdAtString  = [formatter stringFromDate:sinceDate];
+    self.timeLb.text = createdAtString;
+
     self.imgView.image = [UIImage imageNamed:@"bgv_9"/**[NSString stringWithFormat:@"bgv_%u", arc4random()%11]*/];
     [self reloadLikeView];
 }
