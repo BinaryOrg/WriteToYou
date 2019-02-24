@@ -20,6 +20,7 @@
 UITabBarControllerDelegate
 >
 @property (nonatomic, assign) BOOL hasCenterButton;
+
 @end
 
 @implementation ZDDTabBarController
