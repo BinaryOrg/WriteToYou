@@ -148,6 +148,7 @@ QMUIImagePickerViewControllerDelegate
     }
     else if (indexPath.section == 2) {
         [[ZDDUserTool shared] clearUserInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:QRFBSuccessNotification object:nil];
         [self reloadCustomInfo];
     }
     

@@ -19,6 +19,7 @@
 #import "ZDDThemeConfiguration.h"
 #import "ZDDLogController.h"
 #import "UIColor+ZDDColor.h"
+#import "ZDDNotificationName.h"
 
 @interface ZDDQRDetailViewController ()
 <
@@ -44,6 +45,9 @@ UITableViewDataSource
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc] init];
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
         __weak typeof(self) weakSelf = self;
         MJRefreshGifHeader *gifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf refreshPage];
@@ -149,6 +153,7 @@ UITableViewDataSource
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self stopLoading];
                             [self reloadNewData];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:QRFBSuccessNotification object:nil];
                         });
                     }else {
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -256,7 +261,7 @@ UITableViewDataSource
             return cell;
         }
     } else {
-        ZDDDataModel *data = self.list[indexPath.row];
+        ZDDDataModel *data = self.list[indexPath.row - 1];
         ZDDQRModel *qr = data.poem;
         ZDDUserModel *user = data.user;
         ZDDCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
@@ -266,6 +271,7 @@ UITableViewDataSource
             cell.nameLabel.text = user.user_name;
             cell.summaryLabel.text = qr.content;
             [cell.summaryLabel setHeight:qr.content_height + 10];
+            [cell.dateLabel setY:CGRectGetMaxY(cell.summaryLabel.frame)];
             cell.dateLabel.text = [self formatFromTS:qr.last_update_date];
         }
         return cell;
@@ -279,7 +285,7 @@ UITableViewDataSource
         return ((SCREENWIDTH - 80)/2) + 80 + self.data.poem.content_height + 10 + 8;
     }
     else {
-        ZDDDataModel *data = self.list[indexPath.row];
+        ZDDDataModel *data = self.list[indexPath.row - 1];
         ZDDQRModel *qr = data.poem;
         return 70 + qr.content_height + 10;
     }
