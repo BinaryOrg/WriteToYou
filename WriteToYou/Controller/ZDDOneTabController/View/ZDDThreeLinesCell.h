@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "ZDDThreeLineModel.h"
 
+@protocol ZDDThreeLinesCellDelegate <NSObject>
+
+- (void)clickStar:(BOOL)isStar withModel:(ZDDThreeLineModel *)model;
+
+@end
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDThreeLinesCell : UICollectionViewCell
 
-/** <#class#> */
+@property (nonatomic, weak) id <ZDDThreeLinesCellDelegate> delegate;
 @property (nonatomic, strong) ZDDThreeLineModel *model;
 
 

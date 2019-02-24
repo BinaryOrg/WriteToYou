@@ -14,7 +14,7 @@ NSString *const CellIdentifier = @"CellIdentifier";
 CGFloat const HorizontalMargin = 20.0f;
 CGFloat const ItemMargin = 10.0;
 
-@interface ZDDThreeLineCardView() <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ZDDThreeLineCardView() <UICollectionViewDataSource, UICollectionViewDelegate, ZDDThreeLinesCellDelegate>
 
 @property(nonatomic, strong) UICollectionView *collectionView;
 @property(nonatomic, strong) UIScrollView *panScrollView;
@@ -81,6 +81,12 @@ CGFloat const ItemMargin = 10.0;
     [_collectionView reloadData];
 }
 
+- (void)clickStar:(BOOL)isStar withModel:(ZDDThreeLineModel *)model {
+    if ([self.delegate respondsToSelector:@selector(clickStar:withModel:)]) {
+        [self.delegate clickStar:model.poem.is_star withModel:model];
+    }
+}
+
 - (void)autoScroll {
     if (_models.count <= 1) {
         return;
@@ -107,7 +113,7 @@ CGFloat const ItemMargin = 10.0;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZDDThreeLinesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    cell.delegate = self;
     if (indexPath.item < _models.count) {
         cell.model = _models[indexPath.item];
     }

@@ -20,7 +20,7 @@
 
 @implementation ZDDThreeLineCommentCellNode
 
-- (instancetype)initWithMode:(ZDDCommentModel *)model {
+- (instancetype)initWithMode:(ZDDDataModel *)model {
 
     if (self = [super init]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -29,17 +29,18 @@
         [self addContentNode];
         [self addLineNode];
         
-        self.iconNode.URL = [NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550750864454&di=ee102b8cdeca92e1cd28a479105232e7&imgtype=0&src=http%3A%2F%2Fpic.feizl.com%2Fupload%2Fallimg%2F170614%2F2020204301-6.jpg"];
+        self.iconNode.defaultImage = [UIImage imageNamed:@"sex_boy_110x110_"];
+        self.iconNode.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, model.user.avater]];;
         
         self.nameNode.attributedText = [NSMutableAttributedString lh_makeAttributedString:@"Maker" attributes:^(NSMutableDictionary *make) {
             make.lh_font([UIFont systemFontOfSize:15]);
         }];
         
-        NSMutableAttributedString *contentAtt = [NSMutableAttributedString lh_makeAttributedString:model.content attributes:^(NSMutableDictionary *make) {
+        NSMutableAttributedString *contentAtt = [NSMutableAttributedString lh_makeAttributedString:model.poem.content attributes:^(NSMutableDictionary *make) {
             make.lh_font([UIFont systemFontOfSize:15]);
         }];
         
-        NSString *time = [self formateDateWithTimestamp:model.create_date];
+        NSString *time = [self formateDateWithTimestamp:model.poem.last_update_date];
         
         NSMutableAttributedString *timeAtt = [NSMutableAttributedString lh_makeAttributedString:time attributes:^(NSMutableDictionary *make) {
             make.lh_font([UIFont systemFontOfSize:13]).lh_color([UIColor grayColor]);
@@ -115,7 +116,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd MMM yyyy"];
     [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    NSString *str = [NSString stringWithFormat:@"%@",
+    NSString *str = [NSString stringWithFormat:@"  %@",
                      [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:ts]]];
     return str;
 }
