@@ -7,11 +7,11 @@
 //
 
 #import "TEMPBaseTabViewController.h"
-
+#import "ZDDDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDQRDetailViewController : TEMPBaseTabViewController
-
+@property (nonatomic, strong) ZDDDataModel *data;
 @end
 
 NS_ASSUME_NONNULL_END
