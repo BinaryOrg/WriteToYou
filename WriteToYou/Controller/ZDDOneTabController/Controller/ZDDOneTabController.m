@@ -71,19 +71,16 @@ typedef void(^requestBlock)(NSInteger code, id result);
 
 #pragma mark - 网络请求
 - (void)loadData {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
-        [MFNETWROK post:@"Poem/ListRecommendPoem" params:@{@"category" : @"shqs", @"userId" : [ZDDUserTool shared].user.user_id ? [ZDDUserTool shared].user.user_id : @""} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-            if (statusCode == 200) {
-                NSArray *dataArr = [NSArray yy_modelArrayWithClass:ZDDThreeLineModel.class json:result[@"data"]];
-                self.dataArray = dataArr;
-                self.cardView.models = self.dataArray;
-            }
-        } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-            
-        }];
-    });
-   
+    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
+    [MFNETWROK post:@"Poem/ListRecommendPoem" params:@{@"category" : @"shqs", @"userId" : [ZDDUserTool shared].user.user_id ? [ZDDUserTool shared].user.user_id : @""} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        if (statusCode == 200) {
+            NSArray *dataArr = [NSArray yy_modelArrayWithClass:ZDDThreeLineModel.class json:result[@"data"]];
+            self.dataArray = dataArr;
+            self.cardView.models = self.dataArray;
+        }
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+        
+    }];
     
 }
 
