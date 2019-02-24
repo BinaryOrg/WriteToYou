@@ -108,6 +108,7 @@ UITableViewDataSource
              params:@{
                       @"orderBy": @"last_update_date",
                       @"category": @"xgqr",
+                      @"userId": [ZDDUserTool shared].user.user_id,
                       }
             success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
                 NSLog(@"%@", result);
@@ -236,7 +237,7 @@ UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ZDDQRDetailViewController *detail = [[ZDDQRDetailViewController alloc] init];
-    
+    detail.data = self.list[indexPath.row];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detail animated:YES];
     self.hidesBottomBarWhenPushed = NO;
