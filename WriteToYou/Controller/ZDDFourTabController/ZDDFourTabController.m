@@ -97,7 +97,7 @@ QMUIImagePickerViewControllerDelegate
     if (!indexPath.section) {
         ZDDUserModel *user = [ZDDUserTool shared].user;
         ZDDPersonHeadTableViewCell *cell = [[ZDDPersonHeadTableViewCell alloc] init];
-        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", MFNETWROK.baseURL, user.avater]] placeholder:[UIImage imageNamed:@"sex_boy_110x110_"]];
+        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, user.avater]] placeholder:[UIImage imageNamed:@"sex_boy_110x110_"]];
         cell.nameLabel.text = [ZDDUserTool isLogin] ? user.user_name : @"登录";
         [cell.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
         [cell.avatarButton addTarget:self action:@selector(avatar) forControlEvents:UIControlEventTouchUpInside];
@@ -249,14 +249,12 @@ QMUIImagePickerViewControllerDelegate
 #pragma mark - <QMUIImagePickerViewControllerDelegate>
 
 - (void)imagePickerViewController:(QMUIImagePickerViewController *)imagePickerViewController didSelectImageWithImagesAsset:(QMUIAsset *)imageAsset afterImagePickerPreviewViewControllerUpdate:(QMUIImagePickerPreviewViewController *)imagePickerPreviewViewController {
-    [imagePickerViewController dismissViewControllerAnimated:YES completion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self startLoadingWithText:@"上传图片..."];
-        });
-    }];
+    [imagePickerViewController dismissViewControllerAnimated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self startLoadingWithText:@"上传图片..."];
+    });
     
     [imageAsset requestImageData:^(NSData *imageData, NSDictionary<NSString *,id> *info, BOOL isGIF, BOOL isHEIC) {
-        NSLog(@"%@", info);
         [MFNETWROK upload:@"User/ChangeUserAvater"
                    params:@{
                             @"userId": [ZDDUserTool shared].user.user_id
