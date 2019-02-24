@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDQRModel : NSObject
 
-@property (nonatomic, strong) NSArray<NSString *> *pics;
-@property (nonatomic, strong) NSString *summary;
-@property (nonatomic, strong) NSString *date;
-@property (nonatomic, assign) NSInteger like_count;
-@property (nonatomic, assign) NSInteger comment_count;
-@property (nonatomic, assign) BOOL liked;
+@property (nonatomic, strong) NSArray<NSString *> *picture_path;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, assign) NSInteger last_update_date;
+@property (nonatomic, assign) NSInteger star_num;
+@property (nonatomic, assign) NSInteger comment_num;
+@property (nonatomic, assign) BOOL is_star;
 @end
 
 NS_ASSUME_NONNULL_END

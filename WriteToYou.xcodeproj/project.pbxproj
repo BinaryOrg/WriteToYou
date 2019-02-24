@@ -76,6 +76,8 @@
 		4AF49E10221A9B0E004F45EB /* ZDDThreeTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49E0F221A9B0E004F45EB /* ZDDThreeTabController.m */; };
 		4AF49E13221A9B1A004F45EB /* ZDDFourTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49E12221A9B1A004F45EB /* ZDDFourTabController.m */; };
 		4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49E16221A9E58004F45EB /* ZDDThemeConfiguration.m */; };
+		751099BF22226BC600AE12AF /* ZDDQR0TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 751099BE22226BC600AE12AF /* ZDDQR0TableViewCell.m */; };
+		751099C2222281E400AE12AF /* ZDDDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 751099C1222281E400AE12AF /* ZDDDataModel.m */; };
 		7554A27F2220C18900F7F099 /* ZDDWDFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A27E2220C18900F7F099 /* ZDDWDFBViewController.m */; };
 		7554A2842220C1F400F7F099 /* ZDDFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A2832220C1F300F7F099 /* ZDDFBViewController.m */; };
 		7554A2882220C20A00F7F099 /* ZDDQRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7554A2862220C20A00F7F099 /* ZDDQRDetailViewController.m */; };
@@ -237,6 +239,10 @@
 		4AF49E12221A9B1A004F45EB /* ZDDFourTabController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDFourTabController.m; sourceTree = "<group>"; };
 		4AF49E15221A9E58004F45EB /* ZDDThemeConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThemeConfiguration.h; sourceTree = "<group>"; };
 		4AF49E16221A9E58004F45EB /* ZDDThemeConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThemeConfiguration.m; sourceTree = "<group>"; };
+		751099BD22226BC600AE12AF /* ZDDQR0TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDQR0TableViewCell.h; sourceTree = "<group>"; };
+		751099BE22226BC600AE12AF /* ZDDQR0TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDQR0TableViewCell.m; sourceTree = "<group>"; };
+		751099C0222281E400AE12AF /* ZDDDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDDataModel.h; sourceTree = "<group>"; };
+		751099C1222281E400AE12AF /* ZDDDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDDataModel.m; sourceTree = "<group>"; };
 		7554A27D2220C18900F7F099 /* ZDDWDFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDWDFBViewController.h; sourceTree = "<group>"; };
 		7554A27E2220C18900F7F099 /* ZDDWDFBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDDWDFBViewController.m; sourceTree = "<group>"; };
 		7554A2822220C1F300F7F099 /* ZDDFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDFBViewController.h; sourceTree = "<group>"; };
@@ -751,6 +757,8 @@
 			children = (
 				7554A28B2220C22E00F7F099 /* ZDDQRModel.h */,
 				7554A28C2220C22E00F7F099 /* ZDDQRModel.m */,
+				751099C0222281E400AE12AF /* ZDDDataModel.h */,
+				751099C1222281E400AE12AF /* ZDDDataModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -762,6 +770,8 @@
 				7554A28F2220C23D00F7F099 /* ZDDQR1TableViewCell.m */,
 				7554A28E2220C23D00F7F099 /* ZDDQR2TableViewCell.h */,
 				7554A2902220C23D00F7F099 /* ZDDQR2TableViewCell.m */,
+				751099BD22226BC600AE12AF /* ZDDQR0TableViewCell.h */,
+				751099BE22226BC600AE12AF /* ZDDQR0TableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -917,6 +927,7 @@
 				37E3E01C22217FFA0088FCE4 /* UIImage+ImageEffects.m in Sources */,
 				4A275565221E9715003689F6 /* ZDDPersonSettingTableViewCell.m in Sources */,
 				37FA540B221F9F0900E5C5A9 /* POPAnimationTracer.mm in Sources */,
+				751099BF22226BC600AE12AF /* ZDDQR0TableViewCell.m in Sources */,
 				37FA5427221FD28200E5C5A9 /* NSString+Regex.m in Sources */,
 				7554A2882220C20A00F7F099 /* ZDDQRDetailViewController.m in Sources */,
 				37FA5419221F9F0900E5C5A9 /* POPLayerExtras.mm in Sources */,
@@ -927,6 +938,7 @@
 				37FA540C221F9F0900E5C5A9 /* POPAnimationExtras.mm in Sources */,
 				4AF49DED221A92F1004F45EB /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				7554A2842220C1F400F7F099 /* ZDDFBViewController.m in Sources */,
+				751099C2222281E400AE12AF /* ZDDDataModel.m in Sources */,
 				371F72A5221E990A001DEC05 /* UIView+ZDD.m in Sources */,
 				4AF49DFA221A937A004F45EB /* TEMPAppDelegate+OpenURL.m in Sources */,
 				37FA540A221F9F0900E5C5A9 /* POPCustomAnimation.mm in Sources */,

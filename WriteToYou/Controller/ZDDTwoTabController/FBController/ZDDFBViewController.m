@@ -143,6 +143,10 @@ CTAssetsPickerControllerDelegate
     if ([MFHUDManager isShowing]) {
         return;
     }
+    if (!self.imageView1.image) {
+        [MFHUDManager showError:@"请至少选择一张图片！"];
+        return;
+    }
 //    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
     self.imageView1.image ? [self.images addObject:self.imageView1.image] : nil;
     self.imageView2.image ? [self.images addObject:self.imageView2.image] : nil;
@@ -159,10 +163,11 @@ CTAssetsPickerControllerDelegate
             imageType:MFImageTypePNG
              progress:nil
               success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+                  NSLog(@"%@", result);
                   if ([result[@"resultCode"] isEqualToString:@"0"]) {
                       dispatch_async(dispatch_get_main_queue(), ^{
                           [self stopLoading];
-                          [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
+                          [[NSNotificationCenter defaultCenter] postNotificationName:QRFBSuccessNotification object:nil];
                       });
                       [self.navigationController popViewControllerAnimated:YES];
                   }else {
@@ -175,6 +180,7 @@ CTAssetsPickerControllerDelegate
                   }
               }
               failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+                  NSLog(@"%@", error.userInfo);
                   dispatch_async(dispatch_get_main_queue(), ^{
                       [self showErrorWithText:@"发布失败！"];
                   });

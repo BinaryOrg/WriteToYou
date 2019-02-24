@@ -11,6 +11,7 @@
 #import "TEMPMacro.h"
 #import <MFNetworkManager/MFNetworkManager.h>
 
+#import "ZDDQR0TableViewCell.h"
 #import "ZDDQR1TableViewCell.h"
 #import "ZDDQR2TableViewCell.h"
 
@@ -21,6 +22,7 @@
 #import "ZDDQRModel.h"
 #import <YYWebImage/YYWebImage.h>
 #import "ZDDLogController.h"
+#import "ZDDDataModel.h"
 @interface ZDDTwoTabController ()
 <
 UITableViewDelegate,
@@ -78,34 +80,59 @@ UITableViewDataSource
         _tableView.mj_header = gifHeader;
         
         
-        //        MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
-        ////            [weakSelf mf_loadMoreDataWithId:weakSelf.pagination.last_key];
-        //        }];
-        //        _tableView.mj_footer = footer;
-        
     }
     return _tableView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:FBSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNewData) name:QRFBSuccessNotification object:nil];
     self.navigationItem.title = @"写给前任";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_comment_reply_24x24_"] style:UIBarButtonItemStylePlain target:self action:@selector(fbClick)];
-    //    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.tableView];
     [self sendRequest];
 }
 
 - (void)refreshPage {
     [self.tableView.mj_header beginRefreshing];
+    [self sendRequest];
+}
+
+- (void)loadNewData {
+//    [self.tableView.mj_header beginRefreshing];
+    [self sendRequest];
 }
 
 - (void)sendRequest {
-    [MFNETWROK get:@"" params:nil success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-        [self.tableView.mj_header endRefreshing];
-    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-        [self.tableView.mj_header endRefreshing];
-    }];
+    [MFNETWROK post:@"Poem/ListRecommendPoem"
+             params:@{
+                      @"orderBy": @"last_update_date",
+                      @"category": @"xgqr",
+                      }
+            success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+                NSLog(@"%@", result);
+                if ([result[@"resultCode"] isEqualToString:@"0"]) {
+                    if (self.list.count) {
+                        [self.list removeAllObjects];
+                    }
+                    for (NSDictionary *dic in result[@"data"]) {
+                        ZDDDataModel *data = [ZDDDataModel yy_modelWithJSON:dic];
+                        [self.list addObject:data];
+                    }
+                    
+                    [self.tableView reloadData];
+                }else {
+                    
+                }
+                if ([self.tableView.mj_header isRefreshing]) {
+                    [self.tableView.mj_header endRefreshing];
+                }
+            } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+                NSLog(@"%@", error.userInfo);
+                if ([self.tableView.mj_header isRefreshing]) {
+                    [self.tableView.mj_header endRefreshing];
+                }
+            }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -113,15 +140,16 @@ UITableViewDataSource
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZDDQRModel *qr = self.list[indexPath.row];
-    if (qr.pics.count == 1) {
+    ZDDDataModel *data = self.list[indexPath.row];
+    ZDDQRModel *qr = data.poem;
+    if (qr.picture_path.count == 1) {
         ZDDQR1TableViewCell *cell = [[ZDDQR1TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"qr1"];
-        [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:qr.pics[0]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
-        cell.summaryLabel.text = qr.summary;
-        cell.dateLabel.text = qr.date;
-        cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.like_count)];
-        cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.comment_count)];
-        if (qr.liked) {
+        [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, qr.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        cell.summaryLabel.text = qr.content;
+        cell.dateLabel.text = [self formatFromTS:qr.last_update_date];
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.star_num)];
+        cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.comment_num)];
+        if (qr.is_star) {
             cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_selected_20x20_"];
         }else {
             cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
@@ -129,13 +157,13 @@ UITableViewDataSource
         return cell;
     }else {
         ZDDQR2TableViewCell *cell = [[ZDDQR2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"qr2"];
-        [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:qr.pics[0]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
-        [cell.imageView2 yy_setImageWithURL:[NSURL URLWithString:qr.pics[1]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
-        cell.summaryLabel.text = qr.summary;
-        cell.dateLabel.text = qr.date;
-        cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.like_count)];
-        cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.comment_count)];
-        if (qr.liked) {
+        [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, qr.picture_path[0]]]  options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        [cell.imageView2 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, qr.picture_path[1]]]  options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        cell.summaryLabel.text = qr.content;
+        cell.dateLabel.text = [self formatFromTS:qr.last_update_date];
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.star_num)];
+        cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(qr.comment_num)];
+        if (qr.is_star) {
             cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_selected_20x20_"];
         }else {
             cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
@@ -146,7 +174,7 @@ UITableViewDataSource
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ((SCREENWIDTH - 80)/2) + 40 + 80;
+    return ((SCREENWIDTH - 80)/2) + 140;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -168,6 +196,15 @@ UITableViewDataSource
 
         [self presentViewController:vc animated:YES completion:nil];
     }
+}
+
+- (NSString *)formatFromTS:(NSInteger)ts {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd MMM yyyy"];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    NSString *str = [NSString stringWithFormat:@"%@",
+                     [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:ts]]];
+    return str;
 }
 
 @end

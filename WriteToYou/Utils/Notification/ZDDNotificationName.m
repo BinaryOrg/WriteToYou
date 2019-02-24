@@ -8,7 +8,7 @@
 
 #import "ZDDNotificationName.h"
 NSNotificationName const ExampleNotificationName = @"ExampleNotificationName";
-NSNotificationName const FBSuccessNotification = @"FBSuccessNotification";
+NSNotificationName const QRFBSuccessNotification = @"QRFBSuccessNotification";
 NSNotificationName const LoginSuccessNotification = @"LoginSuccessNotification";
 @implementation ZDDNotificationName
 

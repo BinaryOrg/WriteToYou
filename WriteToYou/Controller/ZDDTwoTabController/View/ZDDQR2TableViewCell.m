@@ -48,13 +48,16 @@
         self.commentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREENWIDTH - 135, CGRectGetMaxY(self.summaryLabel.frame) + 5, 20, 20)];
         self.commentImageView.image = [UIImage imageNamed:@"ic_messages_comment_20x20_"];
         [self.contentView addSubview:self.commentImageView];
-        self.commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.commentImageView.frame), CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 20)];
+        self.commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.commentImageView.frame)+5, CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 20)];
         [self.contentView addSubview:self.commentCountLabel];
         self.likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.commentCountLabel.frame) + 5, CGRectGetMaxY(self.summaryLabel.frame) + 5, 20, 20)];
         self.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
         [self.contentView addSubview:self.likeImageView];
-        self.likeCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.likeImageView.frame), CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 20)];
+        self.likeCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.likeImageView.frame)+5, CGRectGetMaxY(self.summaryLabel.frame) + 5, 30, 20)];
         [self.contentView addSubview:self.likeCountLabel];
+        
+        self.likeCountLabel.textColor = [UIColor zdd_grayColor];
+        self.commentCountLabel.textColor = [UIColor zdd_grayColor];
     }
     return self;
 }
