@@ -30,7 +30,6 @@
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         [self addNotiObser];
         [self setupUI];
-        self.titleLb.text = @"共 1999条评论";
     }
     return self;
 }
@@ -72,7 +71,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.inputView resignFirstResponder];
+    [self.inputView.textView resignFirstResponder];
 }
 
 #pragma mark - 发送评论
@@ -82,7 +81,7 @@
         [self.delegate sendComment:self.inputView.textView.text WithModel:self.model];
     }
     self.inputView.textView.text = @"";
-    [self.inputView resignFirstResponder];
+    [self.inputView.textView resignFirstResponder];
 
     
 }
@@ -92,13 +91,18 @@
 -(void)showWithModel:(ZDDThreeLineModel *)model
 {
     self.model = model;
+    self.titleLb.text = [NSString stringWithFormat:@"共 %ld条评论", model.comments.count];
     [self.tableNode reloadData];
-    [[[[UIApplication sharedApplication] delegate] window] addSubview:self];
-    [UIView animateWithDuration:0.25f animations:^{
-        self.masking.alpha = 0.5;
-        self.bgWhiteView.y = topInsert;
-    }];
-    [self addRoundedCorners:UIRectCornerTopLeft | UIRectCornerTopRight withRadii:CGSizeMake(10, 10) view:self.bgWhiteView];
+    if (![[[[UIApplication sharedApplication] delegate] window].subviews containsObject:self]) {
+        [[[[UIApplication sharedApplication] delegate] window] addSubview:self];
+        [UIView animateWithDuration:0.25f animations:^{
+            self.masking.alpha = 0.5;
+            self.bgWhiteView.y = topInsert;
+        }];
+        [self addRoundedCorners:UIRectCornerTopLeft | UIRectCornerTopRight withRadii:CGSizeMake(10, 10) view:self.bgWhiteView];
+        
+    }
+   
 }
 /** 隐藏 */
 -(void)dismiss

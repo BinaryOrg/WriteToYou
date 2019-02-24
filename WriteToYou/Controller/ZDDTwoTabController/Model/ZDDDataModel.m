@@ -10,4 +10,10 @@
 
 @implementation ZDDDataModel
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+             @"poem" : @[@"poem", @"comment"],
+             };
+}
+
 @end

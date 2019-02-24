@@ -8,6 +8,8 @@
 //
 
 #import "ZDDThreeLinesCell.h"
+#import "UIWindow+Tools.h"
+#import "ZDDLogController.h"
 
 @interface ZDDThreeLinesCell ()
 
@@ -80,16 +82,16 @@
 
 - (void)setModel:(ZDDThreeLineModel *)model {
     _model = model;
-    self.contentLb.text = model.content;
-    self.authoLb.text = [NSString stringWithFormat:@"---  %@", model.user_name];
-    self.likeAndCommentCountLb.text = [NSString stringWithFormat:@"%ld 喜欢 · %ld 评论", model.star_num, model.comment_num];
+    self.contentLb.text = model.poem.content;
+    self.authoLb.text = [NSString stringWithFormat:@"---  %@", model.user.user_name];
+    self.likeAndCommentCountLb.text = [NSString stringWithFormat:@"%ld 喜欢 · %ld 评论", model.poem.star_num, model.poem.comment_num];
     self.timeLb.text = @"2019 / 02 / 20";
-    self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"bgv_%u", arc4random()%11]];
+    self.imgView.image = [UIImage imageNamed:@"bgv_9"/**[NSString stringWithFormat:@"bgv_%u", arc4random()%11]*/];
     [self reloadLikeView];
 }
 
 - (void)reloadLikeView {
-    if (self.model.isLike) {
+    if (self.model.poem.is_star) {
         self.likeImageView.image = [UIImage imageNamed:@"like"];
         [self heartAnimation];
     }else {
@@ -117,10 +119,22 @@
 }
 
 - (void)clickLike {
-    
-    self.model.isLike = !self.model.isLike;
-    [self reloadLikeView];
-    
+    if ([ZDDUserTool isLogin]) {
+        self.model.poem.is_star = !self.model.poem.is_star;
+        [self reloadLikeView];
+        if ([self.delegate respondsToSelector:@selector(clickStar:withModel:)]) {
+            [self.delegate clickStar:self.model.poem.is_star withModel:self.model];
+        }
+    }else {
+   
+        ZDDLogController *vc = [ZDDLogController new];
+        
+        [[UIWindow topViewController] presentViewController:vc animated:YES completion:nil] ;
+    }
+}
+
+- (void)dealloc {
+    self.delegate = nil;
 }
 
 - (UILabel *)contentLb {

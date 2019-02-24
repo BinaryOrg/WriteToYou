@@ -15,11 +15,12 @@
 		371F72A1221E949F001DEC05 /* ZDDInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72A0221E949F001DEC05 /* ZDDInputView.m */; };
 		371F72A5221E990A001DEC05 /* UIView+ZDD.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72A3221E990A001DEC05 /* UIView+ZDD.m */; };
 		371F72A8221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72A7221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m */; };
-		371F72AB221EA3C7001DEC05 /* ZDDCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AA221EA3C7001DEC05 /* ZDDCommentModel.m */; };
 		371F72B0221EA896001DEC05 /* NSMutableAttributedString+Chain.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */; };
 		371F72B1221EA896001DEC05 /* NSMutableDictionary+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 371F72AF221EA896001DEC05 /* NSMutableDictionary+Attributes.m */; };
 		37E3E01B22217FFA0088FCE4 /* MODropAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E3E01922217FFA0088FCE4 /* MODropAlertView.m */; };
 		37E3E01C22217FFA0088FCE4 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E3E01A22217FFA0088FCE4 /* UIImage+ImageEffects.m */; };
+		37F5E2902222BA2E004C841E /* ZDDPoemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5E28F2222BA2E004C841E /* ZDDPoemModel.m */; };
+		37F5E2932222C0BC004C841E /* UIWindow+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5E2912222C0BC004C841E /* UIWindow+Tools.m */; };
 		37FA53CC221F89EB00E5C5A9 /* ZDDLogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FA53CB221F89EB00E5C5A9 /* ZDDLogController.m */; };
 		37FA5406221F9F0900E5C5A9 /* POPCGUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 37FA53D4221F9F0900E5C5A9 /* POPCGUtils.mm */; };
 		37FA5407221F9F0900E5C5A9 /* pop-ios-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37FA53D6221F9F0900E5C5A9 /* pop-ios-Info.plist */; };
@@ -105,8 +106,6 @@
 		371F72A4221E990A001DEC05 /* UIView+ZDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDD.h"; sourceTree = "<group>"; };
 		371F72A6221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDThreeLineCommentCellNode.h; sourceTree = "<group>"; };
 		371F72A7221E9C63001DEC05 /* ZDDThreeLineCommentCellNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDThreeLineCommentCellNode.m; sourceTree = "<group>"; };
-		371F72A9221EA3C7001DEC05 /* ZDDCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDCommentModel.h; sourceTree = "<group>"; };
-		371F72AA221EA3C7001DEC05 /* ZDDCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDCommentModel.m; sourceTree = "<group>"; };
 		371F72AC221EA895001DEC05 /* NSMutableDictionary+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Attributes.h"; sourceTree = "<group>"; };
 		371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Chain.m"; sourceTree = "<group>"; };
 		371F72AE221EA896001DEC05 /* NSMutableAttributedString+Chain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Chain.h"; sourceTree = "<group>"; };
@@ -115,6 +114,10 @@
 		37E3E01822217FFA0088FCE4 /* MODropAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MODropAlertView.h; sourceTree = "<group>"; };
 		37E3E01922217FFA0088FCE4 /* MODropAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MODropAlertView.m; sourceTree = "<group>"; };
 		37E3E01A22217FFA0088FCE4 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		37F5E28E2222BA2E004C841E /* ZDDPoemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDPoemModel.h; sourceTree = "<group>"; };
+		37F5E28F2222BA2E004C841E /* ZDDPoemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDPoemModel.m; sourceTree = "<group>"; };
+		37F5E2912222C0BC004C841E /* UIWindow+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Tools.m"; sourceTree = "<group>"; };
+		37F5E2922222C0BC004C841E /* UIWindow+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Tools.h"; sourceTree = "<group>"; };
 		37FA53CA221F89EB00E5C5A9 /* ZDDLogController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDLogController.h; sourceTree = "<group>"; };
 		37FA53CB221F89EB00E5C5A9 /* ZDDLogController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDLogController.m; sourceTree = "<group>"; };
 		37FA53CE221F9F0900E5C5A9 /* POPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPMath.h; sourceTree = "<group>"; };
@@ -313,8 +316,8 @@
 			children = (
 				371F07B1221D51BA00453357 /* ZDDThreeLineModel.h */,
 				371F07B2221D51BA00453357 /* ZDDThreeLineModel.m */,
-				371F72A9221EA3C7001DEC05 /* ZDDCommentModel.h */,
-				371F72AA221EA3C7001DEC05 /* ZDDCommentModel.m */,
+				37F5E28E2222BA2E004C841E /* ZDDPoemModel.h */,
+				37F5E28F2222BA2E004C841E /* ZDDPoemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -335,6 +338,8 @@
 			children = (
 				37FA5426221FD28200E5C5A9 /* NSString+Regex.h */,
 				37FA5425221FD28100E5C5A9 /* NSString+Regex.m */,
+				37F5E2922222C0BC004C841E /* UIWindow+Tools.h */,
+				37F5E2912222C0BC004C841E /* UIWindow+Tools.m */,
 				371F72AE221EA896001DEC05 /* NSMutableAttributedString+Chain.h */,
 				371F72AD221EA895001DEC05 /* NSMutableAttributedString+Chain.m */,
 				371F72AC221EA895001DEC05 /* NSMutableDictionary+Attributes.h */,
@@ -919,9 +924,9 @@
 				4AF49DFF221A9944004F45EB /* TEMPBaseViewController.m in Sources */,
 				4AF49DD5221A8FE3004F45EB /* TEMPKeyConfiguration.m in Sources */,
 				4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */,
+				37F5E2902222BA2E004C841E /* ZDDPoemModel.m in Sources */,
 				4A27555A221E3DA3003689F6 /* ZDDYZXSViewController.m in Sources */,
 				7554A27F2220C18900F7F099 /* ZDDWDFBViewController.m in Sources */,
-				371F72AB221EA3C7001DEC05 /* ZDDCommentModel.m in Sources */,
 				37FA5417221F9F0900E5C5A9 /* POPAnimationRuntime.mm in Sources */,
 				4AF49E17221A9E58004F45EB /* ZDDThemeConfiguration.m in Sources */,
 				37E3E01C22217FFA0088FCE4 /* UIImage+ImageEffects.m in Sources */,
@@ -936,6 +941,7 @@
 				371F07B3221D51BA00453357 /* ZDDThreeLineModel.m in Sources */,
 				4AF49E0A221A9AD3004F45EB /* ZDDOneTabController.m in Sources */,
 				37FA540C221F9F0900E5C5A9 /* POPAnimationExtras.mm in Sources */,
+				37F5E2932222C0BC004C841E /* UIWindow+Tools.m in Sources */,
 				4AF49DED221A92F1004F45EB /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				7554A2842220C1F400F7F099 /* ZDDFBViewController.m in Sources */,
 				751099C2222281E400AE12AF /* ZDDDataModel.m in Sources */,

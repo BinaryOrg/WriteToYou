@@ -16,7 +16,7 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     
     return @{
-             @"comments" : [ZDDCommentModel class]
+             @"comments" : [ZDDDataModel class]
              };
 }
 

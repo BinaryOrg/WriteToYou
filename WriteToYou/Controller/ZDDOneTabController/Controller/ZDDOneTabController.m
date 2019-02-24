@@ -90,7 +90,7 @@ typedef void(^requestBlock)(NSInteger code, id result);
     
     MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
     [MFNETWROK post:@"Poem/Create" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"title" : @"fffff", @"content" : content, @"category" : @"shqs", @"pictures" : @""} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-        if (statusCode == 0) {
+        if (statusCode == 200) {
             [MFHUDManager showSuccess:@"发表成功"];
             [self loadData];
         }
@@ -103,10 +103,18 @@ typedef void(^requestBlock)(NSInteger code, id result);
 //发布评论
 - (void)sendComment:(NSString *)comment WithModel:(ZDDThreeLineModel *)model {
     MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
-    [MFNETWROK post:@"Comment/Create" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"poemId" : model.poem_id, @"content" : comment} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-        if (statusCode == 0) {
-            [MFHUDManager showSuccess:@"发表成功"];
-            [self loadData];
+    [MFNETWROK post:@"Comment/Create" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"poemId" : model.poem.poem_id, @"content" : comment} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        if (statusCode == 200) {
+            [MFHUDManager showSuccess:@"评论成功"];
+            ZDDDataModel *comment = [ZDDDataModel yy_modelWithJSON:result];
+            if (comment.poem.poem_id.length) {
+                NSMutableArray *tempArr = [NSMutableArray arrayWithArray:model.comments];
+                [tempArr insertObject:comment atIndex:0];
+                model.comments = tempArr.copy;
+            }
+            if (self.commentView.superview) {
+                [self.commentView showWithModel:model];
+            }
         }
     } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
         [MFHUDManager showError:@"发表失败"];
@@ -123,8 +131,19 @@ typedef void(^requestBlock)(NSInteger code, id result);
     }];
 }
 
-#pragma mark - 点击事件
+//点击点赞
+- (void)clickStar:(BOOL)isStar withModel:(ZDDThreeLineModel *)model {
+    
+    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
+    [MFNETWROK post:@"Star/AddOrCancel" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"poemId" : model.poem.poem_id, @"category" : @"poem"} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+    }];
+    
+    
+}
 
+#pragma mark - 点击事件
 //点击发布
 - (void)clickPostBtn {
     
@@ -151,15 +170,16 @@ typedef void(^requestBlock)(NSInteger code, id result);
 //点击卡片
 - (void)clickCardWithModel:(ZDDThreeLineModel *)model {
     __weak typeof(self)weakSelf = self;
-    [self getCommentListWithId:model.poem_id block:^(NSInteger code, id result) {
+    [self getCommentListWithId:model.poem.poem_id block:^(NSInteger code, id result) {
         if (code == 200) {
-            model.comments = [NSArray yy_modelArrayWithClass:ZDDCommentModel.class json:result[@"data"]];
+            model.comments = [NSArray yy_modelArrayWithClass:ZDDDataModel.class json:result[@"data"]];
             [weakSelf.commentView showWithModel:model];
         }else {
             [MFHUDManager showError:@"获取评论失败"];
         }
     }];
-    }
+   
+}
 
 
 - (ZDDThreeLineCardView *)cardView {
