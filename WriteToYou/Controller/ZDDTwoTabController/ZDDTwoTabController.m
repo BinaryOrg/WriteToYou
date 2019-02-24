@@ -47,7 +47,9 @@ UITableViewDataSource
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [[UIView alloc] init];
-        __weak typeof(self) weakSelf = self;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;        __weak typeof(self) weakSelf = self;
         MJRefreshGifHeader *gifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf refreshPage];
         }];
