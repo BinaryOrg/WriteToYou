@@ -26,7 +26,7 @@ CTAssetsPickerControllerDelegate
 @property (nonatomic, assign) NSInteger count;
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, assign) BOOL fuck;
-@property (nonatomic, strong) NSMutableArray *images;
+@property (nonatomic, strong) NSMutableArray *imageDatas;
 @property (nonatomic, strong) QMUITips *tips;
 @end
 
@@ -140,49 +140,53 @@ CTAssetsPickerControllerDelegate
 }
 
 - (void)fbClick {
+    if ([MFHUDManager isShowing]) {
+        return;
+    }
 //    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
-    if (![QMUIToastView toastInView:self.view]) {
-        [self startLoadingWithText:@"发布中..."];
-        [MFNETWROK upload:@"Poem/Create"
-                   params:@{
-                            @"userId": [ZDDUserTool shared].user.user_id,
-                            @"title": @"我是神",
-                            @"content": self.textView.text,
-                            @"category": @"xgqr"
-                            }
-                     name:@"pictures"
-                   images:self.images
-               imageScale:1.f
-                imageType:MFImageTypePNG
-                 progress:nil
-                  success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-                      if ([result[@"resultCode"] isEqualToString:@"0"]) {
-                          dispatch_async(dispatch_get_main_queue(), ^{
-                              [self stopLoading];
-                              [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
-                          });
-                          [self.navigationController popViewControllerAnimated:YES];
-                      }else {
-                          dispatch_async(dispatch_get_main_queue(), ^{
-                              [self showErrorWithText:@"发布失败！"];
-                          });
-                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                              [self stopLoading];
-                          });
-                      }
-                  }
-                  failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+    [self startLoadingWithText:@"发布中..."];
+    [MFNETWROK upload:@"Poem/Create"
+               params:@{
+                        @"userId": [ZDDUserTool shared].user.user_id,
+                        @"content": self.textView.text,
+                        @"category": @"xgqr"
+                        }
+                 name:@"pictures"
+               images:self.images
+           imageScale:1.f
+            imageType:MFImageTypePNG
+             progress:nil
+              success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+                  if ([result[@"resultCode"] isEqualToString:@"0"]) {
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          [self stopLoading];
+                          [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
+                      });
+                      [self.navigationController popViewControllerAnimated:YES];
+                  }else {
                       dispatch_async(dispatch_get_main_queue(), ^{
                           [self showErrorWithText:@"发布失败！"];
                       });
                       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                           [self stopLoading];
                       });
-                  }];
-    }
+                  }
+              }
+              failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+                  dispatch_async(dispatch_get_main_queue(), ^{
+                      [self showErrorWithText:@"发布失败！"];
+                  });
+                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                      [self stopLoading];
+                  });
+              }];
+    
 }
 
 - (void)addButtonClick {
+    if ([MFHUDManager isShowing]) {
+        return;
+    }
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
         dispatch_async(dispatch_get_main_queue(), ^{
             

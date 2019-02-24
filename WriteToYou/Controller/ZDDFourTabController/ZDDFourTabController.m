@@ -129,6 +129,9 @@ QMUIImagePickerViewControllerDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([MFHUDManager isShowing]) {
+        return;
+    }
     if (indexPath.section == 1) {
         if (!indexPath.row) {
             if ([ZDDUserTool isLogin]) {
@@ -151,6 +154,9 @@ QMUIImagePickerViewControllerDelegate
 }
 
 - (void)login {
+    if ([MFHUDManager isShowing]) {
+        return;
+    }
     if ([ZDDUserTool isLogin]) {
         //改名
         [self presentAlertController];
@@ -161,6 +167,9 @@ QMUIImagePickerViewControllerDelegate
 }
 
 - (void)avatar {
+    if ([MFHUDManager isShowing]) {
+        return;
+    }
     if ([ZDDUserTool isLogin]) {
         //改avatar
         [self presentAlbumViewControllerWithTitle:@"请选择头像"];
@@ -171,6 +180,7 @@ QMUIImagePickerViewControllerDelegate
 }
 
 - (void)presentAlertController {
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"请输入要修改的用户名" preferredStyle:UIAlertControllerStyleAlert];
     ZDDThemeConfiguration *theme = [ZDDThemeConfiguration defaultConfiguration];
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
