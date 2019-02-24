@@ -26,7 +26,7 @@ CTAssetsPickerControllerDelegate
 @property (nonatomic, assign) NSInteger count;
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, assign) BOOL fuck;
-@property (nonatomic, strong) NSMutableArray *imageDatas;
+@property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) QMUITips *tips;
 @end
 
@@ -144,6 +144,8 @@ CTAssetsPickerControllerDelegate
         return;
     }
 //    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
+    self.imageView1.image ? [self.images addObject:self.imageView1.image] : nil;
+    self.imageView2.image ? [self.images addObject:self.imageView2.image] : nil;
     [self startLoadingWithText:@"发布中..."];
     [MFNETWROK upload:@"Poem/Create"
                params:@{
