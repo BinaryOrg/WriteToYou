@@ -70,6 +70,7 @@ CGFloat const ItemMargin = 10.0;
     
     [_collectionView addGestureRecognizer:_panScrollView.panGestureRecognizer];
     _collectionView.panGestureRecognizer.enabled = NO;
+    
 }
 
 - (void)setModels:(NSArray<ZDDThreeLineModel *> *)models {
