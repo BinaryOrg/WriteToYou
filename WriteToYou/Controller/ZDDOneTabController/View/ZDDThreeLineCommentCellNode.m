@@ -20,8 +20,8 @@
 
 @implementation ZDDThreeLineCommentCellNode
 
-- (instancetype)init {
-    
+- (instancetype)initWithMode:(ZDDCommentModel *)model {
+
     if (self = [super init]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self addIconNode];
@@ -35,7 +35,7 @@
             make.lh_font([UIFont systemFontOfSize:15]);
         }];
         
-        NSMutableAttributedString *contentAtt = [NSMutableAttributedString lh_makeAttributedString:@"我多想再见你\n哪怕匆匆一眼就别理\n路灯下昏黄的剪影\n越走越漫长的林径" attributes:^(NSMutableDictionary *make) {
+        NSMutableAttributedString *contentAtt = [NSMutableAttributedString lh_makeAttributedString:model.content attributes:^(NSMutableDictionary *make) {
             make.lh_font([UIFont systemFontOfSize:15]);
         }];
         

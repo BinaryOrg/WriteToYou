@@ -6,10 +6,12 @@
 //  Copyright © 2019 binary. All rights reserved.
 //
 
+#import "ZDDCommentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
 @interface ZDDThreeLineCommentCellNode : ASCellNode
+
+- (instancetype)initWithMode:(ZDDCommentModel *)model;
 
 @end
 

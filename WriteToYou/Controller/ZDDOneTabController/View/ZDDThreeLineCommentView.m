@@ -78,9 +78,12 @@
 #pragma mark - 发送评论
 - (void)sendComment {
     
+    if ([self.delegate respondsToSelector:@selector(sendComment:WithModel:)]) {
+        [self.delegate sendComment:self.inputView.textView.text WithModel:self.model];
+    }
     self.inputView.textView.text = @"";
     [self.inputView resignFirstResponder];
-    
+
     
 }
 
@@ -89,6 +92,7 @@
 -(void)showWithModel:(ZDDThreeLineModel *)model
 {
     self.model = model;
+    [self.tableNode reloadData];
     [[[[UIApplication sharedApplication] delegate] window] addSubview:self];
     [UIView animateWithDuration:0.25f animations:^{
         self.masking.alpha = 0.5;
@@ -152,7 +156,7 @@
 #pragma mark - tableNodeDelegate
 - (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section {
     
-    return 20;
+    return self.model.comments.count;
 }
 
 - (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -232,4 +236,8 @@
     view.layer.mask = shape;
 }
 
+
+- (void)dealloc {
+    self.delegate = nil;
+}
 @end

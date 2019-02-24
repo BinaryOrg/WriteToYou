@@ -112,6 +112,20 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     return self;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [firstLineView resignFirstResponder];
+    [secondLineView resignFirstResponder];
+    [thridLineView resignFirstResponder];
+}
+
+- (void)thridLineViewDidChange:(UITextField *)textField {
+    // 超过字符,不作输出
+    if (textField.text.length > 15) {
+        textField.text = [textField.text substringToIndex:15];
+    }
+    
+}
+
 - (void)initDropAlert
 {
     self.frame = [self mainScreenFrame];
@@ -189,7 +203,6 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     firstLineView.textAlignment = NSTextAlignmentCenter;
     firstLineView.secureTextEntry =  NO;
     firstLineView.tintColor = ButtonColor;
-    firstLineView.keyboardType = UIKeyboardTypeNumberPad;
     UIView *seperatorLine = [[UIView alloc] init];
     [firstLineView addSubview:seperatorLine];
     seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
@@ -200,7 +213,10 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     
     [alertView addSubview:firstLineView];
     firstLineView.frame = CGRectMake(kAlertButtonSideMargin, 60, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin * 2, kAlertdescriptionViewHeight);
+    [firstLineView addTarget:self action:@selector(thridLineViewDidChange:) forControlEvents:UIControlEventEditingChanged];
+
 }
+
 
 - (void)makeSecondAlertdescriptionView
 {
@@ -213,7 +229,6 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     secondLineView.textAlignment = NSTextAlignmentCenter;
     secondLineView.secureTextEntry =  NO;
     secondLineView.tintColor = ButtonColor;
-    secondLineView.keyboardType = UIKeyboardTypeNumberPad;
     UIView *seperatorLine = [[UIView alloc] init];
     [secondLineView addSubview:seperatorLine];
     seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
@@ -224,6 +239,7 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     
     [alertView addSubview:secondLineView];
     secondLineView.frame = CGRectMake(kAlertButtonSideMargin, 120, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin * 2, kAlertdescriptionViewHeight);
+    [secondLineView addTarget:self action:@selector(thridLineViewDidChange:) forControlEvents:UIControlEventEditingChanged];
 
 }
 
@@ -238,7 +254,6 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     thridLineView.textAlignment = NSTextAlignmentCenter;
     thridLineView.secureTextEntry =  NO;
     thridLineView.tintColor = ButtonColor;
-    thridLineView.keyboardType = UIKeyboardTypeNumberPad;
     UIView *seperatorLine = [[UIView alloc] init];
     [thridLineView addSubview:seperatorLine];
     seperatorLine.backgroundColor = UIColorFromRGB(0xe1e1e1);
@@ -249,6 +264,7 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
     
     [alertView addSubview:thridLineView];
     thridLineView.frame = CGRectMake(kAlertButtonSideMargin, 180, CGRectGetWidth(alertView.frame) - kAlertButtonSideMargin * 2, kAlertdescriptionViewHeight);
+    [thridLineView addTarget:self action:@selector(thridLineViewDidChange:) forControlEvents:UIControlEventEditingChanged];
 
 }
 
@@ -395,10 +411,10 @@ static NSString* kAlertCancelButtonHighlightColor = @"#b0120a";
         content = firstLineView.text;
     }
     if (secondLineView.text.length) {
-        content = [NSString stringWithFormat:@"%@\n%@", content, secondLineView.text];
+        content = [NSString stringWithFormat:@"%@\n\n%@", content, secondLineView.text];
     }
     if (thridLineView.text.length) {
-        content = [NSString stringWithFormat:@"%@\n%@", content, thridLineView.text];
+        content = [NSString stringWithFormat:@"%@\n\n%@", content, thridLineView.text];
     }
     
     [UIView animateWithDuration:0.8f

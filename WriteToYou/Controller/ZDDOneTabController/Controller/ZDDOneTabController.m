@@ -14,7 +14,10 @@
 #import "ZDDPostThreeLineController.h"
 #import "MODropAlertView.h"
 
-@interface ZDDOneTabController () <ZDDThreeLineCardViewDelegate>
+typedef void(^requestBlock)(NSInteger code, id result);
+
+
+@interface ZDDOneTabController () <ZDDThreeLineCardViewDelegate, ZDDThreeLineCommentViewDelegate>
 
 @property (nonatomic, strong) UILabel *titleLb;
 @property (nonatomic, strong) UIButton *postBtn;
@@ -30,7 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.titleLb.text = @"愿你一别心宽，再生欢喜";
+
     [self setupUI];
     [self loadData];
     
@@ -61,49 +65,72 @@
         make.left.right.mas_equalTo(self.view);
         make.height.mas_equalTo(51);
     }];
+    
+    
 }
 
-
+#pragma mark - 网络请求
 - (void)loadData {
-    ZDDThreeLineModel *model = [[ZDDThreeLineModel alloc] init];
-    model.content = @"螃蟹在剥我的壳，笔记本在写我 \n 漫天的我落在枫叶上雪花上 \n而你在想我";
-    model.autho = @"Maker";
-    model.likeCount = arc4random()%9999999;
-    model.commentCount = arc4random()%9999999;
+  
+    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
+    [MFNETWROK post:@"Poem/ListRecommendPoem" params:nil success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        if (statusCode == 200) {
+            NSArray *dataArr = [NSArray yy_modelArrayWithClass:ZDDThreeLineModel.class json:result[@"data"]];
+            self.dataArray = dataArr;
+            self.cardView.models = self.dataArray;
+        }
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+
+    }];
     
-    ZDDThreeLineModel *model1 = [[ZDDThreeLineModel alloc] init];
-    model1.content = @"从来不洗脸不漱口就去吃早饭\n那天你说你要来\n我洗了二块九毛七的澡";
-    model1.autho = @"Maker";
-    model1.likeCount = arc4random()%9999999;
-    model1.commentCount = arc4random()%9999999;
-    
-    ZDDThreeLineModel *model2 = [[ZDDThreeLineModel alloc] init];
-    model2.content = @"我想你 \n 我想睡你 \n我想睡醒有你";
-    model2.autho = @"Maker";
-    model2.likeCount = arc4random()%9999999;
-    model2.commentCount = arc4random()%9999999;
-    
-    ZDDThreeLineModel *model3 = [[ZDDThreeLineModel alloc] init];
-    model3.content = @"他们告诉我 女孩的心是水做的 \n 也难怪 \n我的爱 是横波啊";
-    model3.autho = @"Maker";
-    model3.likeCount = arc4random()%9999999;
-    model3.commentCount = arc4random()%9999999;
-    
-    self.dataArray = @[model, model1, model2, model3];
-    self.cardView.models = self.dataArray;
-    
-    self.titleLb.text = @"愿你一别心宽，再生欢喜";
 }
+
+//发布三行情书
+- (void)postWithContent:(NSString *)content {
+    
+    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
+    [MFNETWROK post:@"Poem/Create" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"title" : @"fffff", @"content" : content, @"category" : @"shqs", @"pictures" : @""} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        if (statusCode == 0) {
+            [MFHUDManager showSuccess:@"发表成功"];
+            [self loadData];
+        }
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+        [MFHUDManager showError:@"发表失败"];
+    }];
+    
+}
+
+//发布评论
+- (void)sendComment:(NSString *)comment WithModel:(ZDDThreeLineModel *)model {
+    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
+    [MFNETWROK post:@"Comment/Create" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"poemId" : model.poem_id, @"content" : comment} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        if (statusCode == 0) {
+            [MFHUDManager showSuccess:@"发表成功"];
+            [self loadData];
+        }
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+        [MFHUDManager showError:@"发表失败"];
+    }];
+}
+
+//获取评论列表
+- (void)getCommentListWithId:(NSString *)poemId block:(requestBlock)block {
+    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
+    [MFNETWROK post:@"Comment/ListCommentByPoemId" params:@{@"poemId": poemId} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        block(statusCode, result);
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+        block(statusCode, error);
+    }];
+}
+
+#pragma mark - 点击事件
 
 //点击发布
 - (void)clickPostBtn {
     
-    
-    
-    
     if ([ZDDUserTool isLogin]) {
         MODropAlertView *alert = [[MODropAlertView alloc]initDropAlertWithTitle:@"三行情书"
-                                                                    description:@"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                                                    description:@"aaa"
                                                                   okButtonTitle:@"OK"
                                                               cancelButtonTitle:@"Cancel"
                                                                    successBlock:^(NSString *content) {
@@ -112,35 +139,27 @@
                                                                        
                                                                    }];
         [alert show];
-
+        
     }else {
         ZDDLogController *vc = [ZDDLogController new];
-
+        
         [self.navigationController presentViewController:vc animated:YES completion:nil] ;
     }
     
     
 }
-
-
-- (void)postWithContent:(NSString *)content {
-    
-    MFNETWROK.requestSerialization = MFJSONRequestSerialization;;
-    [MFNETWROK post:@"Poem/Create" params:@{@"userId": [ZDDUserTool shared].user.user_id, @"title" : @"fffff", content : content, @"category" : @"shqs", @"pictures" : @""} success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-        if (statusCode == 0) {
-            [MFHUDManager showSuccess:@"发表成功"];
-        }
-    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-        [MFHUDManager showError:@"发表失败"];
-    }];
-    
-}
-
-
 //点击卡片
 - (void)clickCardWithModel:(ZDDThreeLineModel *)model {
-    [self.commentView showWithModel:model];
-}
+    __weak typeof(self)weakSelf = self;
+    [self getCommentListWithId:model.poem_id block:^(NSInteger code, id result) {
+        if (code == 200) {
+            model.comments = [NSArray yy_modelArrayWithClass:ZDDCommentModel.class json:result[@"data"]];
+            [weakSelf.commentView showWithModel:model];
+        }else {
+            [MFHUDManager showError:@"获取评论失败"];
+        }
+    }];
+    }
 
 
 - (ZDDThreeLineCardView *)cardView {
@@ -175,6 +194,7 @@
 - (ZDDThreeLineCommentView *)commentView {
     if (!_commentView) {
         _commentView = [[ZDDThreeLineCommentView alloc] init];
+        _commentView.delegate = self;
     }
     return _commentView;
 }
