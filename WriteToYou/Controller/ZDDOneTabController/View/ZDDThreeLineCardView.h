@@ -13,6 +13,7 @@
 
 @optional
 
+- (void)refreshData;
 - (void)clickCardWithModel:(ZDDThreeLineModel *)model;
 - (void)clickStar:(BOOL)isStar withModel:(ZDDThreeLineModel *)model;
 
