@@ -227,7 +227,10 @@ UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath.row) {
         if (self.data.poem.picture_path.count == 1) {
-            ZDDDetailHeader1TableViewCell *cell = [[ZDDDetailHeader1TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr1"];
+            ZDDDetailHeader1TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dqr1"];
+            if (!cell) {
+                cell = [[ZDDDetailHeader1TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr1"];
+            }
             [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
             cell.nameLabel.text = self.data.user.user_name;
             [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
@@ -243,7 +246,10 @@ UITableViewDataSource
             [cell.summaryLabel setHeight:self.data.poem.content_height + 10];
             return cell;
         }else {
-            ZDDDetailHeader2TableViewCell *cell = [[ZDDDetailHeader2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr2"];
+            ZDDDetailHeader2TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dqr2"];
+            if (!cell) {
+                cell = [[ZDDDetailHeader2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr2"];
+            }
             [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
             cell.nameLabel.text = self.data.user.user_name;
             [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
@@ -267,13 +273,13 @@ UITableViewDataSource
         ZDDCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
         if (!cell) {
             cell = [[ZDDCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"comment"];
-            [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
-            cell.nameLabel.text = user.user_name;
-            cell.summaryLabel.text = qr.content;
-            [cell.summaryLabel setHeight:qr.content_height + 10];
-            [cell.dateLabel setY:CGRectGetMaxY(cell.summaryLabel.frame)];
-            cell.dateLabel.text = [self formatFromTS:qr.last_update_date];
         }
+        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        cell.nameLabel.text = user.user_name;
+        cell.summaryLabel.text = qr.content;
+        [cell.summaryLabel setHeight:qr.content_height + 10];
+        [cell.dateLabel setY:CGRectGetMaxY(cell.summaryLabel.frame)];
+        cell.dateLabel.text = [self formatFromTS:qr.last_update_date];
         return cell;
     }
     

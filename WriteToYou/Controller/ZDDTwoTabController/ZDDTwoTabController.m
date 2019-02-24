@@ -113,7 +113,6 @@ UITableViewDataSource
                       @"userId": [ZDDUserTool shared].user.user_id ? [ZDDUserTool shared].user.user_id : @"",
                       }
             success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-                NSLog(@"%@", result);
                 if ([result[@"resultCode"] isEqualToString:@"0"]) {
                     if (self.list.count) {
                         [self.list removeAllObjects];
