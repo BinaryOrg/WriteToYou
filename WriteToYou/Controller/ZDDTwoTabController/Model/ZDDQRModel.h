@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger star_num;
 @property (nonatomic, assign) NSInteger comment_num;
 @property (nonatomic, assign) BOOL is_star;
+@property (nonatomic, strong) NSString *poem_id;
 @end
 
 NS_ASSUME_NONNULL_END

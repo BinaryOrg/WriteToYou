@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *commentCountLabel;
 @property (nonatomic, strong) UIImageView *likeImageView;
 @property (nonatomic, strong) UILabel *likeCountLabel;
+@property (nonatomic, strong) UIButton *likeButton;
+
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *nameLabel;
 @end
 
 NS_ASSUME_NONNULL_END

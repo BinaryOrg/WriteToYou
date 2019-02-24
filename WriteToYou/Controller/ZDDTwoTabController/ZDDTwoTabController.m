@@ -142,8 +142,11 @@ UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZDDDataModel *data = self.list[indexPath.row];
     ZDDQRModel *qr = data.poem;
+    ZDDUserModel *user = data.user;
     if (qr.picture_path.count == 1) {
         ZDDQR1TableViewCell *cell = [[ZDDQR1TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"qr1"];
+        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        cell.nameLabel.text = user.user_name;
         [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, qr.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
         cell.summaryLabel.text = qr.content;
         cell.dateLabel.text = [self formatFromTS:qr.last_update_date];
@@ -154,9 +157,12 @@ UITableViewDataSource
         }else {
             cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
         }
+        [cell.likeButton addTarget:self action:@selector(like1:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }else {
         ZDDQR2TableViewCell *cell = [[ZDDQR2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"qr2"];
+        [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+        cell.nameLabel.text = user.user_name;
         [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, qr.picture_path[0]]]  options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
         [cell.imageView2 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, qr.picture_path[1]]]  options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
         cell.summaryLabel.text = qr.content;
@@ -168,13 +174,64 @@ UITableViewDataSource
         }else {
             cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
         }
+        [cell.likeButton addTarget:self action:@selector(like2:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
     return nil;
 }
 
+- (void)like1:(UIButton *)sender {
+    ZDDQR1TableViewCell *cell = (ZDDQR1TableViewCell *)sender.superview.superview.superview;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    ZDDDataModel *data = self.list[indexPath.row];
+    
+    if (data.poem.is_star) {
+        data.poem.star_num -= 1;
+    }else {
+        data.poem.star_num += 1;
+        
+    }
+    [MFNETWROK post:@"Star/AddOrCancel" params:@{
+                                                 @"userId": [ZDDUserTool shared].user.user_id,
+                                                 @"poemId": data.poem.poem_id,
+                                                 @"category": @"poem",
+                                                 } success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+                                                     NSLog(@"%@", result);
+                                                 } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+                                                     NSLog(@"%@", error.userInfo);
+                                                 }];
+    data.poem.is_star = !data.poem.is_star;
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+}
+
+- (void)like2:(UIButton *)sender {
+    ZDDQR2TableViewCell *cell = (ZDDQR2TableViewCell *)sender.superview.superview.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    ZDDDataModel *data = self.list[indexPath.row];
+    
+    if (data.poem.is_star) {
+        data.poem.star_num -= 1;
+    }else {
+        data.poem.star_num += 1;
+        
+    }
+    [MFNETWROK post:@"Star/AddOrCancel" params:@{
+                                                 @"userId": [ZDDUserTool shared].user.user_id,
+                                                 @"poemId": data.poem.poem_id,
+                                                 @"category": @"poem",
+                                                 } success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+                                                     NSLog(@"%@", result);
+                                                 } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+                                                     NSLog(@"%@", error.userInfo);
+                                                 }];
+    data.poem.is_star = !data.poem.is_star;
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ((SCREENWIDTH - 80)/2) + 140;
+    return ((SCREENWIDTH - 80)/2) + 160;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
