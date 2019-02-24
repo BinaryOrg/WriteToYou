@@ -32,7 +32,7 @@
         self.iconNode.defaultImage = [UIImage imageNamed:@"sex_boy_110x110_"];
         self.iconNode.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, model.user.avater]];;
         
-        self.nameNode.attributedText = [NSMutableAttributedString lh_makeAttributedString:@"Maker" attributes:^(NSMutableDictionary *make) {
+        self.nameNode.attributedText = [NSMutableAttributedString lh_makeAttributedString:model.user.user_name attributes:^(NSMutableDictionary *make) {
             make.lh_font([UIFont systemFontOfSize:15]);
         }];
         
