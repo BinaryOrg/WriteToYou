@@ -181,8 +181,7 @@ UITableViewDataSource
 }
 
 - (void)like1:(UIButton *)sender {
-    ZDDQR1TableViewCell *cell = (ZDDQR1TableViewCell *)sender.superview.superview.superview;
-    
+    ZDDQR1TableViewCell *cell = (ZDDQR1TableViewCell *)sender.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     ZDDDataModel *data = self.list[indexPath.row];
     
@@ -207,7 +206,7 @@ UITableViewDataSource
 }
 
 - (void)like2:(UIButton *)sender {
-    ZDDQR2TableViewCell *cell = (ZDDQR2TableViewCell *)sender.superview.superview.superview;
+    ZDDQR2TableViewCell *cell = (ZDDQR2TableViewCell *)sender.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     ZDDDataModel *data = self.list[indexPath.row];
     
