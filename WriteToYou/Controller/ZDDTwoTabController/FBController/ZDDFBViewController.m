@@ -15,7 +15,7 @@
 #import <QMUIKit.h>
 #import "ZDDThemeConfiguration.h"
 #import <MFNetworkManager/MFNetworkManager.h>
-
+#import "UIImage+Blur.h"
 @interface ZDDFBViewController ()
 <
 CTAssetsPickerControllerDelegate
@@ -148,8 +148,8 @@ CTAssetsPickerControllerDelegate
         return;
     }
 //    [[NSNotificationCenter defaultCenter] postNotificationName:FBSuccessNotification object:nil];
-    self.imageView1.image ? [self.images addObject:self.imageView1.image] : nil;
-    self.imageView2.image ? [self.images addObject:self.imageView2.image] : nil;
+    self.imageView1.image ? [self.images addObject:[self.imageView1.image imageByScalingAndCroppingForSize:CGSizeMake(300, 300)]] : nil;
+    self.imageView2.image ? [self.images addObject:[self.imageView2.image imageByScalingAndCroppingForSize:CGSizeMake(300, 300)]] : nil;
     [self startLoadingWithText:@"发布中..."];
     [MFNETWROK upload:@"Poem/Create"
                params:@{
@@ -159,7 +159,7 @@ CTAssetsPickerControllerDelegate
                         }
                  name:@"pictures"
                images:self.images
-           imageScale:1.f
+           imageScale:0.1
             imageType:MFImageTypePNG
              progress:nil
               success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {

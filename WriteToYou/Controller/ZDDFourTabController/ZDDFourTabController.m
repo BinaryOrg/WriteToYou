@@ -264,42 +264,65 @@ QMUIImagePickerViewControllerDelegate
     dispatch_async(dispatch_get_main_queue(), ^{
         [self startLoadingWithText:@"上传图片..."];
     });
-    
-    [imageAsset requestImageData:^(NSData *imageData, NSDictionary<NSString *,id> *info, BOOL isGIF, BOOL isHEIC) {
-        [MFNETWROK upload:@"User/ChangeUserAvater"
-                   params:@{
-                            @"userId": [ZDDUserTool shared].user.user_id
-                            }
-                     name:@"pictures"
-               imageDatas:@[imageData]
-                 progress:nil
-                  success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
-                      NSLog(@"%@", result);
-                      if ([result[@"resultCode"] isEqualToString:@"0"]) {
-                          ZDDUserModel *user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
-                          [ZDDUserTool shared].user = user;
-                          dispatch_async(dispatch_get_main_queue(), ^{
-                              [self stopLoading];
-                              [self reloadCustomInfo];
-                          });
-                      }else {
-                          dispatch_async(dispatch_get_main_queue(), ^{
-                              [self showErrorWithText:@"上传失败！"];
-                          });
-                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                              [self stopLoading];
-                          });
-                      }
-                  }
-                  failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self showErrorWithText:@"上传失败！"];
-                    });
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self stopLoading];
-                    });
-                  }];
+    [MFNETWROK upload:@"User/ChangeUserAvater" params:@{@"userId": [ZDDUserTool shared].user.user_id} name:@"pictures" images:@[imageAsset.previewImage] imageScale:0.1 imageType:MFImageTypePNG progress:nil success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+        if ([result[@"resultCode"] isEqualToString:@"0"]) {
+            ZDDUserModel *user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
+            [ZDDUserTool shared].user = user;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self stopLoading];
+                [self reloadCustomInfo];
+            });
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showErrorWithText:@"上传失败！"];
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self stopLoading];
+            });
+        }
+    } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showErrorWithText:@"上传失败！"];
+        });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self stopLoading];
+        });
     }];
+//    [imageAsset requestImageData:^(NSData *imageData, NSDictionary<NSString *,id> *info, BOOL isGIF, BOOL isHEIC) {
+//        [MFNETWROK upload:@"User/ChangeUserAvater"
+//                   params:@{
+//                            @"userId": [ZDDUserTool shared].user.user_id
+//                            }
+//                     name:@"pictures"
+//               imageDatas:@[imageData]
+//                 progress:nil
+//                  success:^(id result, NSInteger statusCode, NSURLSessionDataTask *task) {
+//                      NSLog(@"%@", result);
+//                      if ([result[@"resultCode"] isEqualToString:@"0"]) {
+//                          ZDDUserModel *user = [ZDDUserModel yy_modelWithJSON:result[@"user"]];
+//                          [ZDDUserTool shared].user = user;
+//                          dispatch_async(dispatch_get_main_queue(), ^{
+//                              [self stopLoading];
+//                              [self reloadCustomInfo];
+//                          });
+//                      }else {
+//                          dispatch_async(dispatch_get_main_queue(), ^{
+//                              [self showErrorWithText:@"上传失败！"];
+//                          });
+//                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                              [self stopLoading];
+//                          });
+//                      }
+//                  }
+//                  failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self showErrorWithText:@"上传失败！"];
+//                    });
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                        [self stopLoading];
+//                    });
+//                  }];
+//    }];
 }
 
 - (void)startLoadingWithText:(NSString *)text {
