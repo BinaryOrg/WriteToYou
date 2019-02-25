@@ -14,7 +14,7 @@
 #import "ZDDTwoTabController.h"
 #import "ZDDThreeTabController.h"
 #import "ZDDFourTabController.h"
-
+#import "ZDDNavigationViewController.h"
 @interface ZDDTabBarController ()
 <
 UITabBarControllerDelegate
@@ -76,7 +76,7 @@ UITabBarControllerDelegate
     UINavigationController *n1 = [[UINavigationController alloc] initWithRootViewController:one];
     UINavigationController *n2 = [[UINavigationController alloc] initWithRootViewController:two];
     //    UINavigationController *n3 = [[UINavigationController alloc] initWithRootViewController:three];
-    UINavigationController *n4 = [[UINavigationController alloc] initWithRootViewController:four];
+    ZDDNavigationViewController *n4 = [[ZDDNavigationViewController alloc] initWithRootViewController:four];
     
     [self addChildViewController:n1];
     [self addChildViewController:n2];

@@ -72,6 +72,7 @@ QMUIImagePickerViewControllerDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCustomInfo) name:LoginSuccessNotification object:nil];
 }
 
+
 - (void)reloadCustomInfo {
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -135,9 +136,9 @@ QMUIImagePickerViewControllerDelegate
     if (indexPath.section == 1) {
         if (!indexPath.row) {
             if ([ZDDUserTool isLogin]) {
-                self.hidesBottomBarWhenPushed = YES;
+//                self.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:[ZDDWDFBViewController new] animated:YES];
-                self.hidesBottomBarWhenPushed = NO;
+//                self.hidesBottomBarWhenPushed = NO;
             }
             else {
                 [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
