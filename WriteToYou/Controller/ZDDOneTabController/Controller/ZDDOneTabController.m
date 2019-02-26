@@ -26,6 +26,7 @@ typedef void(^requestBlock)(NSInteger code, id result);
 @property (nonatomic, strong) ZDDSnowView *snowView;
 @property (nonatomic, strong) ZDDThreeLineCommentView *commentView;
 
+@property (nonatomic, strong)  UIButton *btn;
 
 @end
 
@@ -66,7 +67,20 @@ typedef void(^requestBlock)(NSInteger code, id result);
         make.height.mas_equalTo(51);
     }];
     
-    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(0);
+        make.width.mas_equalTo(100);
+    }];
+    [btn setTitle:@"重新加载" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(loadData) forControlEvents:UIControlEventTouchUpInside];
+    btn.layer.cornerRadius = 5;
+    btn.layer.masksToBounds = YES;
+    btn.layer.borderColor = [UIColor grayColor].CGColor;
+    btn.layer.borderWidth = 0.5;
+    self.btn = btn;
 }
 
 #pragma mark - 网络请求
@@ -77,6 +91,9 @@ typedef void(^requestBlock)(NSInteger code, id result);
             NSArray *dataArr = [NSArray yy_modelArrayWithClass:ZDDThreeLineModel.class json:result[@"data"]];
             self.dataArray = dataArr;
             self.cardView.models = self.dataArray;
+            self.btn.hidden = YES;
+        }else{
+            self.btn.hidden = NO;
         }
     } failure:^(NSError *error, NSInteger statusCode, NSURLSessionDataTask *task) {
         
