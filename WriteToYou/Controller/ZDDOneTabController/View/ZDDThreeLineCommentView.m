@@ -64,7 +64,7 @@
     
     [self.bgWhiteView addSubview:self.inputView];
     [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_offset(0);
+        make.bottom.mas_offset(SafeAreaBottomHeight);
         make.left.right.mas_equalTo(0);
         make.height.mas_equalTo(51);
     }];
