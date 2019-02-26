@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDDQRDetailViewController : TEMPBaseTabViewController
 @property (nonatomic, strong) ZDDDataModel *data;
+@property (nonatomic, assign) NSInteger flag;
 @end
 
 NS_ASSUME_NONNULL_END

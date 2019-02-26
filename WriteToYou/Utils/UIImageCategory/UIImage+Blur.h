@@ -11,5 +11,5 @@
 
 - (UIImage *)blurredImage;
 - (UIImage *)blurredImageWithRadius:(CGFloat)radius;
-
+- (UIImage *)imageByScalingAndCroppingForSize:(CGSize)targetSize;
 @end

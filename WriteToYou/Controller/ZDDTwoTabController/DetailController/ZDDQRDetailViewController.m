@@ -20,6 +20,7 @@
 #import "ZDDLogController.h"
 #import "UIColor+ZDDColor.h"
 #import "ZDDNotificationName.h"
+#import "ZDDSHQSDetailTableViewCell.h"
 
 @interface ZDDQRDetailViewController ()
 <
@@ -226,34 +227,54 @@ UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath.row) {
-        if (self.data.poem.picture_path.count == 1) {
-            ZDDDetailHeader1TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dqr1"];
-            if (!cell) {
-                cell = [[ZDDDetailHeader1TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr1"];
-            }
-            [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
-            cell.nameLabel.text = self.data.user.user_name;
-            [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
-            cell.summaryLabel.text = self.data.poem.content;
-            cell.dateLabel.text = [self formatFromTS:self.data.poem.last_update_date];
-            cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(self.data.poem.star_num)];
-            cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(self.data.poem.comment_num)];
-            if (self.data.poem.is_star) {
-                cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_selected_20x20_"];
+        if (!self.flag) {
+            if (self.data.poem.picture_path.count == 1) {
+                ZDDDetailHeader1TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dqr1"];
+                if (!cell) {
+                    cell = [[ZDDDetailHeader1TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr1"];
+                }
+                [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+                cell.nameLabel.text = self.data.user.user_name;
+                [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+                cell.summaryLabel.text = self.data.poem.content;
+                cell.dateLabel.text = [self formatFromTS:self.data.poem.last_update_date];
+                cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(self.data.poem.star_num)];
+                cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(self.data.poem.comment_num)];
+                if (self.data.poem.is_star) {
+                    cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_selected_20x20_"];
+                }else {
+                    cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
+                }
+                [cell.summaryLabel setHeight:self.data.poem.content_height + 10];
+                return cell;
             }else {
-                cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
+                ZDDDetailHeader2TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dqr2"];
+                if (!cell) {
+                    cell = [[ZDDDetailHeader2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr2"];
+                }
+                [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+                cell.nameLabel.text = self.data.user.user_name;
+                [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+                [cell.imageView2 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[1]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
+                cell.summaryLabel.text = self.data.poem.content;
+                cell.dateLabel.text = [self formatFromTS:self.data.poem.last_update_date];
+                cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(self.data.poem.star_num)];
+                cell.commentCountLabel.text = [NSString stringWithFormat:@"%@", @(self.data.poem.comment_num)];
+                if (self.data.poem.is_star) {
+                    cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_selected_20x20_"];
+                }else {
+                    cell.likeImageView.image = [UIImage imageNamed:@"ic_messages_like_20x20_"];
+                }
+                [cell.summaryLabel setHeight:self.data.poem.content_height + 10];
+                return cell;
             }
-            [cell.summaryLabel setHeight:self.data.poem.content_height + 10];
-            return cell;
         }else {
-            ZDDDetailHeader2TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dqr2"];
+            ZDDSHQSDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shqs1"];
             if (!cell) {
-                cell = [[ZDDDetailHeader2TableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dqr2"];
+                cell = [[ZDDSHQSDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shqs1"];
             }
             [cell.avatarImageView yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.user.avater]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
             cell.nameLabel.text = self.data.user.user_name;
-            [cell.imageView1 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[0]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
-            [cell.imageView2 yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", MFNETWROK.baseURL, self.data.poem.picture_path[1]]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
             cell.summaryLabel.text = self.data.poem.content;
             cell.dateLabel.text = [self formatFromTS:self.data.poem.last_update_date];
             cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", @(self.data.poem.star_num)];
@@ -288,7 +309,10 @@ UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath.row) {
-        return ((SCREENWIDTH - 80)/2) + 80 + self.data.poem.content_height + 10 + 8;
+        if (!self.flag) {
+            return ((SCREENWIDTH - 80)/2) + 80 + self.data.poem.content_height + 10 + 8;
+        }
+        return 80 + self.data.poem.content_height + 10 + 8;
     }
     else {
         ZDDDataModel *data = self.list[indexPath.row - 1];
