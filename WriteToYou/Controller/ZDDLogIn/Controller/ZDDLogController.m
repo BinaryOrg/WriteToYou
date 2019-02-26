@@ -122,7 +122,7 @@ static CGFloat const YYSpringBounciness = 16.0;
     
     if ([self.userTextField.text  isEqual: @"17665152519"]) {
         self.codeTextField.text = @"1111";
-        [self loginSuccess];
+        [self loginWithTelephone];
         return;
     }
     else if (![phoneNum isMobileNumber]) {
@@ -280,7 +280,7 @@ static CGFloat const YYSpringBounciness = 16.0;
     
     if ([self.userTextField.text  isEqual: @"17665152519"]) {
         
-        [self loginSuccess];
+        [self loginWithTelephone];
         return;
     }
     
