@@ -184,6 +184,10 @@ UITableViewDataSource
 }
 
 - (void)like1:(UIButton *)sender {
+    if (![ZDDUserTool isLogin]) {
+        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+        return;
+    }
     ZDDQR1TableViewCell *cell = (ZDDQR1TableViewCell *)sender.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     ZDDDataModel *data = self.list[indexPath.row];
@@ -209,6 +213,10 @@ UITableViewDataSource
 }
 
 - (void)like2:(UIButton *)sender {
+    if (![ZDDUserTool isLogin]) {
+        [self presentViewController:[ZDDLogController new] animated:YES completion:nil];
+        return;
+    }
     ZDDQR2TableViewCell *cell = (ZDDQR2TableViewCell *)sender.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     ZDDDataModel *data = self.list[indexPath.row];
