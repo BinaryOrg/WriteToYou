@@ -52,6 +52,8 @@
 		4A275562221E9708003689F6 /* ZDDPersonHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275561221E9708003689F6 /* ZDDPersonHeadTableViewCell.m */; };
 		4A275565221E9715003689F6 /* ZDDPersonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275564221E9715003689F6 /* ZDDPersonSettingTableViewCell.m */; };
 		4A275568221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A275567221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m */; };
+		4A759F5D2224C3B800A22141 /* ZDDSHQSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A759F5C2224C3B800A22141 /* ZDDSHQSTableViewCell.m */; };
+		4A759F602224C75500A22141 /* ZDDSHQSDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A759F5F2224C75500A22141 /* ZDDSHQSDetailTableViewCell.m */; };
 		4A7FCF06221B94F300CD6876 /* ZDDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */; };
 		4AF49DB4221A8A18004F45EB /* TEMPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF49DB3221A8A18004F45EB /* TEMPAppDelegate.m */; };
 		4AF49DBC221A8A29004F45EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AF49DBB221A8A29004F45EB /* Assets.xcassets */; };
@@ -199,6 +201,10 @@
 		4A275564221E9715003689F6 /* ZDDPersonSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDPersonSettingTableViewCell.m; sourceTree = "<group>"; };
 		4A275566221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDPersonLogoutTableViewCell.h; sourceTree = "<group>"; };
 		4A275567221E9CBC003689F6 /* ZDDPersonLogoutTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDPersonLogoutTableViewCell.m; sourceTree = "<group>"; };
+		4A759F5B2224C3B800A22141 /* ZDDSHQSTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDSHQSTableViewCell.h; sourceTree = "<group>"; };
+		4A759F5C2224C3B800A22141 /* ZDDSHQSTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDSHQSTableViewCell.m; sourceTree = "<group>"; };
+		4A759F5E2224C75500A22141 /* ZDDSHQSDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDSHQSDetailTableViewCell.h; sourceTree = "<group>"; };
+		4A759F5F2224C75500A22141 /* ZDDSHQSDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDSHQSDetailTableViewCell.m; sourceTree = "<group>"; };
 		4A7FCF04221B94F300CD6876 /* ZDDTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDDTabBarController.h; sourceTree = "<group>"; };
 		4A7FCF05221B94F300CD6876 /* ZDDTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDDTabBarController.m; sourceTree = "<group>"; };
 		4AF49DAF221A8A18004F45EB /* WriteToYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WriteToYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -518,6 +524,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4A759F5A2224C37900A22141 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4A759F5B2224C3B800A22141 /* ZDDSHQSTableViewCell.h */,
+				4A759F5C2224C3B800A22141 /* ZDDSHQSTableViewCell.m */,
+				4A759F5E2224C75500A22141 /* ZDDSHQSDetailTableViewCell.h */,
+				4A759F5F2224C75500A22141 /* ZDDSHQSDetailTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		4AF49DA6221A8A18004F45EB = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +772,7 @@
 		750E6B1F22240CD8001A72BC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A759F5A2224C37900A22141 /* Cell */,
 				750E6B2022240D07001A72BC /* ZDDWDTwoViewController.h */,
 				750E6B2122240D07001A72BC /* ZDDWDTwoViewController.m */,
 				750E6B2322240D14001A72BC /* ZDDWDOneViewController.h */,
@@ -1025,6 +1043,8 @@
 				4AF49DE7221A92B8004F45EB /* NSArray+HYBUnicodeReadable.m in Sources */,
 				37FA540E221F9F0900E5C5A9 /* POPDecayAnimation.mm in Sources */,
 				37FA5424221FC32300E5C5A9 /* ZDDUserTool.m in Sources */,
+				4A759F5D2224C3B800A22141 /* ZDDSHQSTableViewCell.m in Sources */,
+				4A759F602224C75500A22141 /* ZDDSHQSDetailTableViewCell.m in Sources */,
 				4AF49DC2221A8A29004F45EB /* main.m in Sources */,
 				37FA5408221F9F0900E5C5A9 /* POPMath.mm in Sources */,
 				371F72B0221EA896001DEC05 /* NSMutableAttributedString+Chain.m in Sources */,
